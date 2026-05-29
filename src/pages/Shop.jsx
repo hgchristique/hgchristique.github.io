@@ -4,7 +4,7 @@ import '../styles/shop.css'
 
 const PRODUCTS = [
   { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 1290, tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
-  { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Outerwear',   price: 1480, tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Outerwear',   price: 1480, tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
   { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Knitwear',    price: 620,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 540,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 390,  tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)' },
@@ -245,7 +245,7 @@ export default function Shop() {
                   {p.tag === 'sale' && <span className="product-tag tag-sale">SALE</span>}
                   <span className="product-sku">{p.sku}</span>
                   {p.img
-                    ? <img src={p.img} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                    ? <img src={p.img} alt={p.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain' }} />
                     : <ProductSvg cat={p.cat} color={p.color} />
                   }
                   <div className="product-add-btn">+</div>
