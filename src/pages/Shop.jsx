@@ -1,0 +1,336 @@
+import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import '../styles/shop.css'
+
+const PRODUCTS = [
+  { sku: 'AT-0341', name: 'Lambeth Wool Coat',   cat: 'Outerwear',   price: 1290, tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Outerwear',   price: 1480, tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Knitwear',    price: 620,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 540,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 390,  tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0724', name: 'Linen Field Shirt',    cat: 'Shirts',      price: 310,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0731', name: 'Silk Poplin Shirt',    cat: 'Shirts',      price: 460,  tag: 'new',  bg: '#b8c4c0', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers',    price: 380,  tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Trousers',    price: 420,  tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-1002', name: 'The Silk Slip Dress',  cat: 'Dresses',     price: 680,  tag: 'new',  bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-1018', name: 'Linen Shift Dress',    cat: 'Dresses',     price: 490,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0042', name: 'Onyx Crossbody',       cat: 'Bags',        price: 890,  tag: null,   bg: '#0a0a0a', color: '#c8a96e' },
+  { sku: 'AT-0105', name: 'Market Tote',          cat: 'Bags',        price: 620,  tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0211', name: 'Box Clutch',           cat: 'Bags',        price: 540,  tag: 'new',  bg: '#3d302a', color: '#c8a96e' },
+  { sku: 'AT-0318', name: 'Chain Shoulder Bag',   cat: 'Bags',        price: 980,  tag: null,   bg: '#6b5a4e', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0422', name: 'Zip Pouch',            cat: 'Bags',        price: 210,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0533', name: 'Weekend Duffel',       cat: 'Bags',        price: 1180, tag: null,   bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0601', name: 'Silk Scarf',           cat: 'Accessories', price: 180,  tag: 'new',  bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0614', name: 'Leather Belt',         cat: 'Accessories', price: 220,  tag: null,   bg: '#3d302a', color: '#c8a96e' },
+  { sku: 'AT-0627', name: 'Wool Beanie',          cat: 'Accessories', price: 120,  tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0641', name: 'Canvas Tote Bag',      cat: 'Accessories', price: 95,   tag: 'low',  bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
+]
+
+const CATEGORIES = [
+  { id: 'all',         label: 'All items',    count: 21 },
+  { id: 'Outerwear',   label: 'Outerwear',    count: 2 },
+  { id: 'Knitwear',    label: 'Knitwear',     count: 2 },
+  { id: 'Shirts',      label: 'Shirts',       count: 3 },
+  { id: 'Trousers',    label: 'Trousers',     count: 2 },
+  { id: 'Dresses',     label: 'Dresses',      count: 2 },
+  { id: 'Bags',        label: 'Bags',         count: 6 },
+  { id: 'Accessories', label: 'Accessories',  count: 4 },
+]
+
+function ProductSvg({ cat, color }) {
+  const base = { fill: 'none', strokeWidth: '1.3', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: color }
+  switch (cat) {
+    case 'Outerwear':
+      return <svg viewBox="0 0 160 200" {...base}><path d="M52 14 L36 34 L52 42 L52 186 L108 186 L108 42 L124 34 L108 14"/><path d="M52 14 Q80 28 108 14"/></svg>
+    case 'Knitwear':
+      return <svg viewBox="0 0 160 180" {...base}><path d="M50 24 L28 52 L46 60 L46 168 L114 168 L114 60 L132 52 L110 24"/><path d="M50 24 Q80 40 110 24"/><line x1="46" y1="95" x2="114" y2="95"/><line x1="46" y1="110" x2="114" y2="110"/><line x1="46" y1="125" x2="114" y2="125"/><line x1="46" y1="140" x2="114" y2="140"/></svg>
+    case 'Shirts':
+      return <svg viewBox="0 0 160 180" {...base}><path d="M54 20 L30 50 L48 58 L48 168 L112 168 L112 58 L130 50 L106 20"/><path d="M54 20 Q80 35 106 20"/><line x1="80" y1="35" x2="80" y2="168"/></svg>
+    case 'Trousers':
+      return <svg viewBox="0 0 160 200" {...base}><line x1="40" y1="20" x2="120" y2="20"/><line x1="40" y1="20" x2="38" y2="100"/><line x1="120" y1="20" x2="122" y2="100"/><path d="M38 100 Q80 108 122 100"/><line x1="38" y1="100" x2="30" y2="195"/><line x1="80" y1="104" x2="80" y2="195"/><line x1="122" y1="100" x2="130" y2="195"/><line x1="30" y1="195" x2="80" y2="195"/><line x1="80" y1="195" x2="130" y2="195"/></svg>
+    case 'Dresses':
+      return <svg viewBox="0 0 160 220" {...base}><line x1="68" y1="8" x2="62" y2="36"/><line x1="92" y1="8" x2="98" y2="36"/><path d="M62 36 Q80 46 98 36"/><line x1="62" y1="36" x2="54" y2="82"/><line x1="98" y1="36" x2="106" y2="82"/><path d="M54 82 Q80 90 106 82"/><line x1="54" y1="82" x2="16" y2="212"/><line x1="106" y1="82" x2="144" y2="212"/><line x1="16" y1="212" x2="144" y2="212"/></svg>
+    case 'Bags':
+      return <svg viewBox="0 0 160 160" {...base}><path d="M52 46 Q52 26 80 26 Q108 26 108 46"/><rect x="28" y="46" width="104" height="96" rx="6"/><line x1="28" y1="70" x2="132" y2="70"/></svg>
+    default:
+      return <svg viewBox="0 0 160 120" {...base}><rect x="20" y="24" width="120" height="72" rx="4"/><path d="M20 24 L80 60 L140 24"/><circle cx="80" cy="60" r="6"/></svg>
+  }
+}
+
+const fmt = n => n.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+
+export default function Shop() {
+  const [cart, setCart] = useState({})
+  const [activeCategory, setActiveCategory] = useState('all')
+  const [activeFilter, setActiveFilter] = useState('instock')
+  const [searchQuery, setSearchQuery] = useState('')
+  const [paymentMethod, setPaymentMethod] = useState('Card')
+  const [loading, setLoading] = useState(true)
+  const [loadingVisible, setLoadingVisible] = useState(true)
+  const [time, setTime] = useState('')
+
+  useEffect(() => {
+    function tick() {
+      const now = new Date()
+      setTime(`${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`)
+    }
+    tick()
+    const timer = setInterval(tick, 10000)
+    return () => clearInterval(timer)
+  }, [])
+
+  useEffect(() => {
+    const fade = setTimeout(() => setLoading(false), 1400)
+    const remove = setTimeout(() => setLoadingVisible(false), 2000)
+    return () => { clearTimeout(fade); clearTimeout(remove) }
+  }, [])
+
+  function addToCart(sku) {
+    setCart(prev => ({ ...prev, [sku]: (prev[sku] || 0) + 1 }))
+  }
+
+  function removeFromCart(sku) {
+    setCart(prev => { const next = { ...prev }; delete next[sku]; return next })
+  }
+
+  function changeQty(sku, delta) {
+    setCart(prev => {
+      const next = { ...prev, [sku]: (prev[sku] || 0) + delta }
+      if (next[sku] <= 0) delete next[sku]
+      return next
+    })
+  }
+
+  function processCharge() {
+    if (cartEntries.length === 0) return
+    setCart({})
+  }
+
+  function toggleFilter(f) {
+    setActiveFilter(prev => prev === f ? 'instock' : f)
+  }
+
+  const cartEntries = Object.entries(cart)
+  const itemCount = cartEntries.reduce((s, [, q]) => s + q, 0)
+  const subtotal = cartEntries.reduce((s, [sku, q]) => {
+    const p = PRODUCTS.find(x => x.sku === sku)
+    return s + (p ? p.price * q : 0)
+  }, 0)
+  const tax = subtotal * 0.0875
+  const total = subtotal + tax
+
+  const filtered = PRODUCTS.filter(p => {
+    if (activeCategory !== 'all' && p.cat !== activeCategory) return false
+    if (activeFilter === 'new' && p.tag !== 'new') return false
+    if (activeFilter === 'sale' && p.tag !== 'sale') return false
+    if (searchQuery) {
+      const q = searchQuery.toLowerCase()
+      return p.name.toLowerCase().includes(q) || p.sku.toLowerCase().includes(q) || p.cat.toLowerCase().includes(q)
+    }
+    return true
+  })
+
+  return (
+    <div className="pos-app">
+      {loadingVisible && (
+        <div
+          className="loading-screen"
+          style={{ opacity: loading ? 1 : 0, pointerEvents: loading ? 'auto' : 'none', transition: 'opacity 0.5s' }}
+        >
+          <div className="loading-logo">
+            <div className="loading-icon">S</div>
+            <span className="loading-brand">STYLE <span>BOSS</span></span>
+          </div>
+          <p className="loading-sub">Point-of-sale · Register 04 · Floor 1</p>
+          <div className="loading-bar"><div className="loading-bar-fill"></div></div>
+        </div>
+      )}
+
+      <header className="pos-topbar">
+        <Link to="/" className="pos-back" title="Back to site">
+          <svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
+        </Link>
+        <div className="pos-brand">
+          <div className="pos-brand-icon">S</div>
+          <div>
+            <div className="pos-brand-name">Styleboss</div>
+            <div className="pos-register">Register 04 · Floor 1</div>
+          </div>
+        </div>
+        <div className="pos-search">
+          <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+          <input
+            type="text"
+            placeholder="Scan barcode or search items... try AT-0341 or 'tote'"
+            value={searchQuery}
+            onChange={e => setSearchQuery(e.target.value)}
+          />
+          <span className="pos-search-hint">⌘K</span>
+        </div>
+        <div className="pos-topbar-right">
+          <div className="register-badge"><span className="dot"></span>Register open</div>
+          <div className="pos-time">{time}</div>
+          <div className="pos-user">
+            <div>
+              <div className="pos-user-name">Marlowe Quinn</div>
+              <div className="pos-user-role">Floor · Senior</div>
+            </div>
+            <div className="pos-avatar">MQ</div>
+          </div>
+        </div>
+      </header>
+
+      <main className="pos-main">
+        <aside className="pos-sidebar">
+          <p className="sidebar-section-label">CATALOGUE</p>
+          {CATEGORIES.map(c => (
+            <button
+              key={c.id}
+              className={`cat-btn${activeCategory === c.id ? ' active' : ''}`}
+              onClick={() => setActiveCategory(c.id)}
+            >
+              {c.label} <span className="cat-count-badge">{c.count}</span>
+            </button>
+          ))}
+          <div className="sidebar-divider"></div>
+          <div className="sidebar-stats">
+            <p className="stats-label">Today's register</p>
+            <p className="stats-value">$12,480</p>
+            <p className="stats-delta">↑ 8.4% vs avg</p>
+            <div className="stats-chart">
+              <svg viewBox="0 0 180 32" preserveAspectRatio="none">
+                <polyline
+                  points="0,28 20,24 40,26 60,18 80,20 100,14 120,16 140,10 160,12 180,8"
+                  fill="none" stroke="var(--indigo)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
+        </aside>
+
+        <section className="pos-catalogue">
+          <div className="catalogue-header">
+            <div>
+              <h2 className="catalogue-title">{activeCategory === 'all' ? 'All items' : activeCategory}</h2>
+              <p className="catalogue-meta">{filtered.length} items · S/S 26 · floors 1 & 2</p>
+            </div>
+            <div className="catalogue-filters">
+              {[
+                { id: 'instock', label: 'In stock' },
+                { id: 'new',     label: 'New' },
+                { id: 'sale',    label: 'Sale' },
+                { id: 'all-items', label: 'Sort' },
+              ].map(f => (
+                <button
+                  key={f.id}
+                  className={`filter-btn${activeFilter === f.id ? ' active' : ''}`}
+                  onClick={() => toggleFilter(f.id)}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
+          </div>
+          <div className="products-grid">
+            {filtered.map(p => (
+              <div
+                key={p.sku}
+                className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
+                onClick={() => addToCart(p.sku)}
+              >
+                <div className="product-img" style={{ background: p.bg }}>
+                  {p.tag === 'new'  && <span className="product-tag tag-new">NEW</span>}
+                  {p.tag === 'low'  && <span className="product-tag tag-low">LOW STOCK</span>}
+                  {p.tag === 'sale' && <span className="product-tag tag-sale">SALE</span>}
+                  <span className="product-sku">{p.sku}</span>
+                  <ProductSvg cat={p.cat} color={p.color} />
+                  <div className="product-add-btn">+</div>
+                </div>
+                <div className="product-info">
+                  <div className="product-name">{p.name}</div>
+                  <div className="product-cat">{p.cat}</div>
+                  <div className="product-price">${p.price.toLocaleString()}<span className="price-cents">.00</span></div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </section>
+
+        <aside className="pos-order">
+          <div className="order-header">
+            <div>
+              <h3>Current order</h3>
+              <p>Nº MA-2452-1000 · Walk-in</p>
+            </div>
+            <div className="order-count-badge">{itemCount}</div>
+          </div>
+          <div className="order-items">
+            {cartEntries.length === 0 ? (
+              <div className="order-empty">
+                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                <p>Order is empty</p>
+                <span>Scan or tap an item to begin</span>
+              </div>
+            ) : (
+              cartEntries.map(([sku, qty]) => {
+                const p = PRODUCTS.find(x => x.sku === sku)
+                if (!p) return null
+                return (
+                  <div key={sku} className="order-item">
+                    <div className="order-item-thumb" style={{ background: p.bg }}>
+                      <ProductSvg cat={p.cat} color={p.color} />
+                    </div>
+                    <div>
+                      <div className="order-item-name">{p.name}</div>
+                      <div className="order-item-qty">
+                        <span className="qty-btn" onClick={e => { e.stopPropagation(); changeQty(sku, -1) }}>−</span>
+                        {qty}
+                        <span className="qty-btn" onClick={e => { e.stopPropagation(); changeQty(sku, 1) }}>+</span>
+                        <span>· ${p.price.toLocaleString()} each</span>
+                      </div>
+                    </div>
+                    <div>
+                      <div className="order-item-price">${(p.price * qty).toLocaleString()}</div>
+                      <span className="order-item-remove" onClick={e => { e.stopPropagation(); removeFromCart(sku) }}>×</span>
+                    </div>
+                  </div>
+                )
+              })
+            )}
+          </div>
+          {cartEntries.length > 0 && (
+            <div className="order-footer">
+              <div className="order-line"><span>Subtotal</span><span>${fmt(subtotal)}</span></div>
+              <div className="order-line"><span>Sales tax · 8.75%</span><span>${fmt(tax)}</span></div>
+              <div className="order-line loyalty"><span>Loyalty credit</span><span>– $0.00</span></div>
+              <div className="order-total">
+                <span className="order-total-label">Total due</span>
+                <span className="order-total-value">
+                  ${Math.floor(total).toLocaleString()}<span className="cents">.{total.toFixed(2).split('.')[1]}</span>
+                </span>
+              </div>
+              <div className="payment-methods">
+                {['Card', 'Cash', 'Split'].map(method => (
+                  <button
+                    key={method}
+                    className={`pay-btn${paymentMethod === method ? ' active' : ''}`}
+                    onClick={() => setPaymentMethod(method)}
+                  >
+                    {method === 'Card'  && <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>}
+                    {method === 'Cash'  && <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>}
+                    {method === 'Split' && <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>}
+                    {method}
+                  </button>
+                ))}
+              </div>
+              <button className="charge-btn" onClick={processCharge}>
+                <span>Charge</span>
+                <span className="charge-amount">${fmt(total)}</span>
+              </button>
+            </div>
+          )}
+        </aside>
+      </main>
+    </div>
+  )
+}
