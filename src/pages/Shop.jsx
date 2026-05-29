@@ -7,7 +7,7 @@ const PRODUCTS = [
   { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Bags',        price: 1480, tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
   { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 620,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 540,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
-  { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 390,  tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 390,  tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg' },
   { sku: 'AT-0724', name: 'Linen Field Shirt',    cat: 'Shirts',      price: 310,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0731', name: 'Silk Poplin Shirt',    cat: 'Shirts',      price: 460,  tag: 'new',  bg: '#b8c4c0', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers',    price: 380,  tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)' },
