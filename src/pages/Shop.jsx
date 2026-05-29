@@ -57,10 +57,13 @@ function ProductSvg({ cat, color }) {
   }
 }
 
+const BAG_COLORS = ['#0a0a0a', '#b8845a', '#2d3642', '#6b2d3e', '#4a5240', '#c4b89a']
+
 const fmt = n => n.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
 
 export default function Shop() {
   const [cart, setCart] = useState({})
+  const [selectedColors, setSelectedColors] = useState({})
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeFilter, setActiveFilter] = useState('instock')
   const [searchQuery, setSearchQuery] = useState('')
@@ -238,12 +241,24 @@ export default function Shop() {
                 className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
                 onClick={() => addToCart(p.sku)}
               >
-                <div className="product-img" style={{ background: p.bg }}>
+                <div className="product-img" style={{ background: selectedColors[p.sku] ?? p.bg }}>
                   {p.img
-                    ? <img src={p.img} alt={p.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'contain' }} />
+                    ? <img src={p.img} alt={p.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                     : <ProductSvg cat={p.cat} color={p.color} />
                   }
                   <div className="product-add-btn">+</div>
+                  {p.cat === 'Bags' && !p.img && (
+                    <div className="color-swatches" onClick={e => e.stopPropagation()}>
+                      {BAG_COLORS.map(c => (
+                        <span
+                          key={c}
+                          className={`color-swatch${(selectedColors[p.sku] ?? p.bg) === c ? ' active' : ''}`}
+                          style={{ background: c }}
+                          onClick={() => setSelectedColors(prev => ({ ...prev, [p.sku]: c }))}
+                        />
+                      ))}
+                    </div>
+                  )}
                 </div>
                 <div className="product-info">
                   <div className="product-name">{p.name}</div>
@@ -278,7 +293,7 @@ export default function Shop() {
                   <div key={sku} className="order-item">
                     <div className="order-item-thumb" style={{ background: p.bg, overflow: 'hidden' }}>
                       {p.img
-                        ? <img src={p.img} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+                        ? <img src={p.img} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
                         : <ProductSvg cat={p.cat} color={p.color} />
                       }
                     </div>
