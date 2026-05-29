@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>STYLEBOSS — Spring–Summer 2026</title>
+  <link rel="stylesheet" href="site.css" />
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+
+<!-- ── HEADER ─────────────────────────────────────── -->
+<header class="site-header">
+  <div class="utility-bar">
+    <span>EN · USD</span>
+    <span>·</span>
+    <a href="#">STORES</a>
+  </div>
+  <div class="header-main">
+    <div class="header-icons" style="margin-right: auto; margin-left: 0;">
+      <!-- Search -->
+      <button aria-label="Search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
+      </button>
+      <!-- Account -->
+      <button aria-label="Account">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
+      </button>
+      <!-- Wishlist -->
+      <button aria-label="Wishlist">
+        <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </button>
+      <!-- Bag -->
+      <button aria-label="Shopping bag" style="display:flex;align-items:center;gap:4px;">
+        <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+        <span class="bag-count" id="bag-count">0</span>
+      </button>
+    </div>
+    <a href="index.html" class="header-logo">STYLEBOSS</a>
+    <div class="header-icons" style="margin-left: auto;">
+      <a href="shop.html" class="open-shop-btn">OPEN SHOP <span>→</span></a>
+    </div>
+  </div>
+  <nav class="header-nav">
+    <a href="#">WOMEN</a>
+    <a href="#">MEN</a>
+    <a href="#">BAGS</a>
+    <a href="#">READY-TO-WEAR</a>
+    <a href="#">ACCESSORIES</a>
+    <a href="#">NEW IN</a>
+    <a href="#" class="active">THE HOUSE</a>
+  </nav>
+</header>
+
+<!-- ── HERO CAROUSEL ──────────────────────────────── -->
+<section class="hero" id="hero">
+  <!-- Slide 1: Wool Coat -->
+  <div class="slide active" style="background: var(--brown-hero);">
+    <span class="hero-vertical-text">SPRING–SUMMER · MMXXVI</span>
+    <span class="hero-season-label">SPRING–SUMMER 2026 · DROP 04</span>
+    <span class="hero-slide-counter">01 — The Wool Coat</span>
+    <div class="hero-content">
+      <h1 class="hero-headline">The new<br><em>season,</em> in<br>cloth<br>and leather.</h1>
+      <p class="hero-sub">A study in slow-made tailoring and considered carry, cut between Brooklyn and Paris.</p>
+      <div class="hero-ctas">
+        <a href="#" class="hero-cta">DISCOVER THE COLLECTION</a>
+        <a href="#" class="hero-cta">SHOP READY-TO-WEAR</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Wool coat SVG -->
+      <svg viewBox="0 0 280 400" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Collar left -->
+        <path d="M100 20 L80 60 L120 80"/>
+        <!-- Collar right -->
+        <path d="M180 20 L200 60 L160 80"/>
+        <!-- V-neck join -->
+        <path d="M120 80 Q140 95 160 80"/>
+        <!-- Left shoulder & side -->
+        <path d="M60 30 L80 60"/>
+        <path d="M60 30 L55 120 L50 390"/>
+        <!-- Right shoulder & side -->
+        <path d="M220 30 L200 60"/>
+        <path d="M220 30 L225 120 L230 390"/>
+        <!-- Hem -->
+        <line x1="50" y1="390" x2="230" y2="390"/>
+        <!-- Lapel lines -->
+        <line x1="100" y1="90" x2="80" y2="120"/>
+        <line x1="180" y1="90" x2="200" y2="120"/>
+        <!-- Button placket -->
+        <line x1="140" y1="95" x2="140" y2="390"/>
+        <!-- Pocket lines -->
+        <line x1="75" y1="250" x2="110" y2="250"/>
+        <line x1="170" y1="250" x2="205" y2="250"/>
+      </svg>
+    </div>
+  </div>
+
+  <!-- Slide 2: Silk Dress -->
+  <div class="slide" style="background: var(--navy);">
+    <span class="hero-vertical-text">SPRING–SUMMER · MMXXVI</span>
+    <span class="hero-season-label">SPRING–SUMMER 2026 · DROP 04</span>
+    <span class="hero-slide-counter">02 — The Silk Dress</span>
+    <div class="hero-content">
+      <h1 class="hero-headline">The new<br><em>season,</em> in<br>cloth<br>and leather.</h1>
+      <p class="hero-sub">A study in slow-made tailoring and considered carry, cut between Brooklyn and Paris.</p>
+      <div class="hero-ctas">
+        <a href="#" class="hero-cta">DISCOVER THE COLLECTION</a>
+        <a href="#" class="hero-cta">SHOP READY-TO-WEAR</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <!-- Silk dress SVG — A-line with straps -->
+      <svg viewBox="0 0 260 380" fill="none" xmlns="http://www.w3.org/2000/svg" stroke="rgba(255,255,255,0.55)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Left strap -->
+        <line x1="108" y1="10" x2="100" y2="55"/>
+        <!-- Right strap -->
+        <line x1="152" y1="10" x2="160" y2="55"/>
+        <!-- Neckline -->
+        <path d="M100 55 Q130 68 160 55"/>
+        <!-- Bodice left side -->
+        <line x1="100" y1="55" x2="88" y2="130"/>
+        <!-- Bodice right side -->
+        <line x1="160" y1="55" x2="172" y2="130"/>
+        <!-- Waist seam -->
+        <path d="M88 130 Q130 138 172 130"/>
+        <!-- Skirt flare left -->
+        <line x1="88" y1="130" x2="22" y2="368"/>
+        <!-- Skirt flare right -->
+        <line x1="172" y1="130" x2="238" y2="368"/>
+        <!-- Hem -->
+        <line x1="22" y1="368" x2="238" y2="368"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ── SPLIT EDITORIAL TILES ──────────────────────── -->
+<section class="split-tiles">
+  <!-- RTW tile -->
+  <div class="split-tile" style="background: var(--slate);">
+    <span class="tile-label">READY-TO-WEAR</span>
+    <div class="split-tile-svg">
+      <svg viewBox="0 0 220 320" fill="none" stroke="rgba(255,255,255,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="90" y1="8" x2="82" y2="44"/>
+        <line x1="130" y1="8" x2="138" y2="44"/>
+        <path d="M82 44 Q110 56 138 44"/>
+        <line x1="82" y1="44" x2="72" y2="104"/>
+        <line x1="138" y1="44" x2="148" y2="104"/>
+        <path d="M72 104 Q110 112 148 104"/>
+        <line x1="72" y1="104" x2="18" y2="298"/>
+        <line x1="148" y1="104" x2="202" y2="298"/>
+        <line x1="18" y1="298" x2="202" y2="298"/>
+      </svg>
+    </div>
+    <div>
+      <h2 class="tile-headline">An afternoon<br>in <em>silk.</em></h2>
+      <a href="#" class="tile-cta">EXPLORE THE EDIT →</a>
+    </div>
+  </div>
+  <!-- Leather goods tile -->
+  <div class="split-tile" style="background: var(--caramel);">
+    <span class="tile-label">LEATHER GOODS</span>
+    <div class="split-tile-svg">
+      <!-- Tote bag SVG -->
+      <svg viewBox="0 0 220 280" fill="none" stroke="rgba(0,0,0,0.45)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+        <!-- Handles -->
+        <path d="M78 60 Q78 30 110 30 Q142 30 142 60"/>
+        <!-- Body -->
+        <rect x="42" y="60" width="136" height="170" rx="4"/>
+        <!-- Top seam -->
+        <line x1="42" y1="88" x2="178" y2="88"/>
+        <!-- Centre stitch -->
+        <line x1="110" y1="88" x2="110" y2="230"/>
+      </svg>
+    </div>
+    <div>
+      <h2 class="tile-headline">The carry,<br><em>re-considered.</em></h2>
+      <a href="#" class="tile-cta">DISCOVER BAGS →</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── HOUSE QUOTE ────────────────────────────────── -->
+<section class="house-quote">
+  <span class="label">THE HOUSE</span>
+  <span class="quote-mark">"</span>
+  <blockquote>We make clothing the way we'd want to <em>receive</em> it&nbsp;—&nbsp;slowly, by hand, in two cities.</blockquote>
+  <a href="contact.html">OUR STORY</a>
+</section>
+
+<!-- ── FEATURED PIECE ─────────────────────────────── -->
+<section class="featured-piece">
+  <div class="featured-visual">
+    <!-- Crossbody bag with strap — gold stroke on black -->
+    <svg viewBox="0 0 300 340" fill="none" stroke="var(--gold-line)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <!-- Strap going diagonally -->
+      <path d="M70 40 Q50 20 60 60 Q70 100 60 140"/>
+      <line x1="60" y1="140" x2="58" y2="165"/>
+      <!-- Bag body -->
+      <rect x="58" y="165" width="184" height="130" rx="4"/>
+      <!-- Clasp on top -->
+      <rect x="130" y="158" width="40" height="14" rx="3"/>
+      <!-- Front flap line -->
+      <path d="M58 220 Q150 236 242 220"/>
+      <!-- Strap ring -->
+      <circle cx="72" cy="168" r="5"/>
+    </svg>
+  </div>
+  <div class="featured-info">
+    <span class="label">FEATURED PIECE · NO. 042</span>
+    <h2 class="featured-title">The Onyx<br><em>Crossbody.</em></h2>
+    <p class="featured-desc">Vegetable-tanned calfskin, hand-burnished edges, a single solid-brass clasp from a workshop in Lyon. Made to be carried, not displayed.</p>
+    <div class="featured-actions">
+      <button class="add-to-bag" onclick="addToBag()">ADD TO BAG · $890</button>
+      <a href="#" class="view-details">VIEW DETAILS</a>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATEGORY GRID ──────────────────────────────── -->
+<section class="category-section">
+  <div class="category-header">
+    <span class="label">EXPLORE</span>
+    <h2 class="category-header-title">By <em>category.</em></h2>
+  </div>
+  <div class="category-grid">
+    <!-- Knitwear -->
+    <div class="category-card" style="background: linear-gradient(160deg, #d4a853, #c4944a);">
+      <div class="cat-svg">
+        <svg viewBox="0 0 200 200" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- T-shirt outline -->
+          <path d="M60 30 L30 60 L55 70 L55 170 L145 170 L145 70 L170 60 L140 30"/>
+          <!-- Neckline -->
+          <path d="M60 30 Q100 50 140 30"/>
+          <!-- Ribbing lines on body -->
+          <line x1="55" y1="100" x2="145" y2="100"/>
+          <line x1="55" y1="115" x2="145" y2="115"/>
+          <line x1="55" y1="130" x2="145" y2="130"/>
+          <line x1="55" y1="145" x2="145" y2="145"/>
+          <!-- Cuff ribbing -->
+          <line x1="30" y1="60" x2="55" y2="70"/>
+        </svg>
+      </div>
+      <div class="cat-footer">
+        <span class="cat-name">KNITWEAR</span>
+        <span class="cat-count">06</span>
+      </div>
+    </div>
+    <!-- Bags & Clutches -->
+    <div class="category-card" style="background: var(--terracotta);">
+      <div class="cat-svg">
+        <!-- Envelope/clutch SVG -->
+        <svg viewBox="0 0 240 160" fill="none" stroke="rgba(0,0,0,0.5)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <rect x="20" y="30" width="200" height="120" rx="4"/>
+          <!-- Flap -->
+          <path d="M20 30 L120 90 L220 30"/>
+          <!-- Clasp -->
+          <circle cx="120" cy="90" r="7"/>
+        </svg>
+      </div>
+      <div class="cat-footer">
+        <span class="cat-name">BAGS &amp; CLUTCHES</span>
+        <span class="cat-count">06</span>
+      </div>
+    </div>
+    <!-- Boots & Accessories -->
+    <div class="category-card" style="background: var(--charcoal);">
+      <div class="cat-svg">
+        <!-- Boot SVG -->
+        <svg viewBox="0 0 180 220" fill="none" stroke="var(--gold-line)" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
+          <!-- Boot shaft -->
+          <path d="M60 20 L60 140"/>
+          <path d="M120 20 L120 140"/>
+          <!-- Top of shaft -->
+          <line x1="60" y1="20" x2="120" y2="20"/>
+          <!-- Ankle -->
+          <path d="M60 140 Q55 160 50 170"/>
+          <path d="M120 140 Q130 155 140 165 L140 200"/>
+          <!-- Toe box -->
+          <path d="M50 170 Q40 180 42 195 Q44 205 80 205 L140 200"/>
+          <!-- Heel -->
+          <line x1="118" y1="170" x2="140" y2="165"/>
+          <!-- Sole -->
+          <path d="M42 195 L42 205 L80 208 L140 205 L140 200"/>
+        </svg>
+      </div>
+      <div class="cat-footer">
+        <span class="cat-name">BOOTS &amp; ACCESSORIES</span>
+        <span class="cat-count">04</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── CRAFT VALUES ───────────────────────────────── -->
+<section class="craft-values">
+  <span class="label craft-label">THE HOUSE</span>
+  <h2 class="craft-heading">Two cities. One studio.<br><em>Seven seasons.</em></h2>
+  <div class="craft-cols">
+    <div class="craft-col">
+      <h3 class="craft-col-title">Cut in Brooklyn,<br>finished in Paris.</h3>
+      <p class="craft-col-body">Patterns are drafted and cut in our Williamsburg studio. The panels travel to a third-generation house in the 11th arrondissement to be sewn, pressed, and finished by hand.</p>
+    </div>
+    <div class="craft-col">
+      <h3 class="craft-col-title">Materials,<br>then everything else.</h3>
+      <p class="craft-col-body">Italian wool, Japanese cotton, vegetable-tanned calfskin. We start with the fiber and design backward. Synthetics are a hard no.</p>
+    </div>
+    <div class="craft-col">
+      <h3 class="craft-col-title">Repair,<br>never replace.</h3>
+      <p class="craft-col-body">Every piece carries a lifetime mending program. Tears, lost buttons, worn cuffs — send it back, we'll fix it. We've re-soled bags from 2020.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ── NEWSLETTER ─────────────────────────────────── -->
+<section class="newsletter">
+  <div>
+    <span class="label">HOUSE LETTERS</span>
+    <h2 class="newsletter-heading">One note a month. <em>No more.</em></h2>
+  </div>
+  <div>
+    <form class="newsletter-form" onsubmit="subscribeNewsletter(event)">
+      <div class="newsletter-field">
+        <input type="email" placeholder="Your email address" required />
+        <button type="submit" class="newsletter-submit">SUBSCRIBE</button>
+      </div>
+      <p class="newsletter-confirm" id="nl-confirm">You're on the list. One note a month, as promised.</p>
+    </form>
+  </div>
+</section>
+
+<!-- ── FOOTER ─────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="footer-grid">
+    <div class="footer-col">
+      <p class="footer-col-title">CLIENT SERVICES</p>
+      <ul>
+        <li><a href="contact.html">Contact us</a></li>
+        <li><a href="#">Stores &amp; locations</a></li>
+        <li><a href="#">Shipping &amp; returns</a></li>
+        <li><a href="#">Repair &amp; care</a></li>
+        <li><a href="#">Size guide</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">THE HOUSE</p>
+      <ul>
+        <li><a href="contact.html">Our story</a></li>
+        <li><a href="#">Craft &amp; materials</a></li>
+        <li><a href="#">Sustainability</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">DISCOVER</p>
+      <ul>
+        <li><a href="#">Women</a></li>
+        <li><a href="#">Men</a></li>
+        <li><a href="#">Bags</a></li>
+        <li><a href="#">Ready-to-wear</a></li>
+        <li><a href="#">Accessories</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <p class="footer-col-title">FOLLOW STYLEBOSS</p>
+      <ul>
+        <li><a href="#">Instagram</a></li>
+        <li><a href="#">Pinterest</a></li>
+        <li><a href="#">Spotify</a></li>
+        <li><a href="#">Journal</a></li>
+        <li><a href="#">Subscribe to letters</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span class="footer-logo">STYLEBOSS</span>
+    <div class="footer-legal">
+      <a href="#">LEGAL</a>
+      <a href="#">PRIVACY</a>
+      <a href="#">COOKIES</a>
+      <a href="#">ACCESSIBILITY</a>
+    </div>
+    <span class="footer-copy">© 2026 STYLEBOSS · ALL RIGHTS RESERVED</span>
+  </div>
+</footer>
+
+<script>
+  // ── Hero carousel ───────────────────────────────
+  const slides = document.querySelectorAll('.slide');
+  let current = 0;
+  setInterval(() => {
+    slides[current].classList.remove('active');
+    current = (current + 1) % slides.length;
+    slides[current].classList.add('active');
+  }, 5000);
+
+  // ── Bag count ────────────────────────────────────
+  let bagCount = 0;
+  function addToBag() {
+    bagCount++;
+    document.getElementById('bag-count').textContent = bagCount;
+  }
+
+  // ── Newsletter ────────────────────────────────────
+  function subscribeNewsletter(e) {
+    e.preventDefault();
+    const confirm = document.getElementById('nl-confirm');
+    confirm.style.display = 'block';
+    e.target.querySelector('input').value = '';
+  }
+</script>
+</body>
+</html>
