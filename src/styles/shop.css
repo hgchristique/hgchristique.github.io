@@ -242,6 +242,7 @@
   height: 160px;
   display: flex; align-items: center; justify-content: center;
   position: relative;
+  overflow: hidden;
 }
 .product-img svg { max-height: 110px; width: auto; }
 .product-tag {

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import '../styles/shop.css'
 
 const PRODUCTS = [
-  { sku: 'AT-0341', name: 'Lambeth Wool Coat',   cat: 'Outerwear',   price: 1290, tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 1290, tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
   { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Outerwear',   price: 1480, tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
   { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Knitwear',    price: 620,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 540,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
@@ -28,7 +28,8 @@ const PRODUCTS = [
 
 const CATEGORIES = [
   { id: 'all',         label: 'All items',    count: 21 },
-  { id: 'Outerwear',   label: 'Outerwear',    count: 2 },
+  { id: 'Neckwear',    label: 'Neckwear',     count: 1 },
+  { id: 'Outerwear',   label: 'Outerwear',    count: 1 },
   { id: 'Knitwear',    label: 'Knitwear',     count: 2 },
   { id: 'Shirts',      label: 'Shirts',       count: 3 },
   { id: 'Trousers',    label: 'Trousers',     count: 2 },
@@ -172,10 +173,10 @@ export default function Shop() {
           <div className="pos-time">{time}</div>
           <div className="pos-user">
             <div>
-              <div className="pos-user-name">Marlowe Quinn</div>
+              <div className="pos-user-name">Style Shop</div>
               <div className="pos-user-role">Floor · Senior</div>
             </div>
-            <div className="pos-avatar">MQ</div>
+            <div className="pos-avatar">SS</div>
           </div>
         </div>
       </header>
@@ -243,7 +244,10 @@ export default function Shop() {
                   {p.tag === 'low'  && <span className="product-tag tag-low">LOW STOCK</span>}
                   {p.tag === 'sale' && <span className="product-tag tag-sale">SALE</span>}
                   <span className="product-sku">{p.sku}</span>
-                  <ProductSvg cat={p.cat} color={p.color} />
+                  {p.img
+                    ? <img src={p.img} alt={p.name} style={{ position: 'absolute', inset: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                    : <ProductSvg cat={p.cat} color={p.color} />
+                  }
                   <div className="product-add-btn">+</div>
                 </div>
                 <div className="product-info">
