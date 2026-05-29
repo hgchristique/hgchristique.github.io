@@ -313,15 +313,14 @@ export default function Shop() {
                 </span>
               </div>
               <div className="payment-methods">
-                {['Card', 'Cash', 'Split'].map(method => (
+                {['Card', 'MoMo'].map(method => (
                   <button
                     key={method}
                     className={`pay-btn${paymentMethod === method ? ' active' : ''}`}
                     onClick={() => setPaymentMethod(method)}
                   >
-                    {method === 'Card'  && <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>}
-                    {method === 'Cash'  && <svg viewBox="0 0 24 24"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>}
-                    {method === 'Split' && <svg viewBox="0 0 24 24"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>}
+                    {method === 'Card' && <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>}
+                    {method === 'MoMo' && <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" strokeLinecap="round" strokeWidth="2"/></svg>}
                     {method}
                   </button>
                 ))}

@@ -388,7 +388,7 @@
 .order-total-value { font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
 .order-total-value .cents { font-size: 16px; font-weight: 400; }
 .payment-methods {
-  display: grid; grid-template-columns: repeat(3, 1fr);
+  display: grid; grid-template-columns: repeat(2, 1fr);
   gap: 8px; margin-bottom: 10px;
 }
 .pay-btn {
