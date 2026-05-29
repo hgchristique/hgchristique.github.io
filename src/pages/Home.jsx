@@ -24,25 +24,10 @@ export default function Home() {
   return (
     <>
       <header className="site-header">
-        <div className="utility-bar">
-          <span>EN · USD</span>
-          <span>·</span>
-          <a href="#">STORES</a>
-        </div>
         <div className="header-main">
           <div className="header-icons" style={{ marginRight: 'auto', marginLeft: 0 }}>
-            <button aria-label="Search">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><circle cx="11" cy="11" r="7"/><line x1="16.5" y1="16.5" x2="22" y2="22"/></svg>
-            </button>
             <button aria-label="Account">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            </button>
-            <button aria-label="Wishlist">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-            </button>
-            <button aria-label="Shopping bag" style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
-              <span className="bag-count">{bagCount}</span>
             </button>
           </div>
           <Link to="/" className="header-logo">STYLEBOSS</Link>
@@ -50,15 +35,6 @@ export default function Home() {
             <Link to="/shop" className="open-shop-btn">OPEN SHOP <span>→</span></Link>
           </div>
         </div>
-        <nav className="header-nav">
-          <a href="#">WOMEN</a>
-          <a href="#">MEN</a>
-          <a href="#">BAGS</a>
-          <a href="#">READY-TO-WEAR</a>
-          <a href="#">ACCESSORIES</a>
-          <a href="#">NEW IN</a>
-          <a href="#" className="active">THE HOUSE</a>
-        </nav>
       </header>
 
       <section className="hero" id="hero">
