@@ -4,8 +4,8 @@ import '../styles/shop.css'
 
 const PRODUCTS = [
   { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 1290, tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
-  { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Outerwear',   price: 1480, tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
-  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Knitwear',    price: 620,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Bags',        price: 1480, tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
+  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 620,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 540,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 390,  tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0724', name: 'Linen Field Shirt',    cat: 'Shirts',      price: 310,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
@@ -28,13 +28,12 @@ const PRODUCTS = [
 
 const CATEGORIES = [
   { id: 'all',         label: 'All items',    count: 21 },
-  { id: 'Neckwear',    label: 'Neckwear',     count: 1 },
-  { id: 'Outerwear',   label: 'Outerwear',    count: 1 },
-  { id: 'Knitwear',    label: 'Knitwear',     count: 2 },
+  { id: 'Neckwear',    label: 'Neckwear',     count: 2 },
+  { id: 'Knitwear',    label: 'Knitwear',     count: 1 },
   { id: 'Shirts',      label: 'Shirts',       count: 3 },
   { id: 'Trousers',    label: 'Trousers',     count: 2 },
   { id: 'Dresses',     label: 'Dresses',      count: 2 },
-  { id: 'Bags',        label: 'Bags',         count: 6 },
+  { id: 'Bags',        label: 'Bags',         count: 7 },
   { id: 'Accessories', label: 'Accessories',  count: 4 },
 ]
 
