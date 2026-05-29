@@ -11,7 +11,7 @@ const PRODUCTS = [
   { sku: 'AT-0724', name: 'Linen Field Shirt',    cat: 'Shirts',      price: 310,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg' },
   { sku: 'AT-0731', name: 'Silk Poplin Shirt',    cat: 'Shirts',      price: 460,  tag: 'new',  bg: '#b8c4c0', color: 'rgba(0,0,0,0.45)', img: '/bag5.jpeg' },
   { sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers',    price: 380,  tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg' },
-  { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Trousers',    price: 420,  tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Trousers',    price: 420,  tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)', img: '/bag7.jpeg' },
   { sku: 'AT-1002', name: 'The Silk Slip Dress',  cat: 'Dresses',     price: 680,  tag: 'new',  bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
   { sku: 'AT-1018', name: 'Linen Shift Dress',    cat: 'Dresses',     price: 490,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0042', name: 'Onyx Crossbody',       cat: 'Bags',        price: 890,  tag: null,   bg: '#0a0a0a', color: '#c8a96e' },
