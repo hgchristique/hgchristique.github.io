@@ -195,20 +195,6 @@ export default function Shop() {
               {c.label} <span className="cat-count-badge">{c.count}</span>
             </button>
           ))}
-          <div className="sidebar-divider"></div>
-          <div className="sidebar-stats">
-            <p className="stats-label">Today's register</p>
-            <p className="stats-value">$12,480</p>
-            <p className="stats-delta">↑ 8.4% vs avg</p>
-            <div className="stats-chart">
-              <svg viewBox="0 0 180 32" preserveAspectRatio="none">
-                <polyline
-                  points="0,28 20,24 40,26 60,18 80,20 100,14 120,16 140,10 160,12 180,8"
-                  fill="none" stroke="var(--indigo)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-          </div>
         </aside>
 
         <section className="pos-catalogue">
