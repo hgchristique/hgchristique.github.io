@@ -7,7 +7,7 @@ export default function Home() {
 
   useEffect(() => {
     const timer = setInterval(() => {
-      setCurrent(prev => (prev + 1) % 3)
+      setCurrent(prev => (prev + 1) % 4)
     }, 5000)
     return () => clearInterval(timer)
   }, [])
@@ -32,9 +32,10 @@ export default function Home() {
 
       <section className="hero" id="hero">
         {[
-          { img: '/hero1.jpg', counter: '01 — The Wool Coat',   label: 'READY-TO-WEAR' },
-          { img: '/hero2.jpg', counter: '02 — The Silk Dress',  label: 'NEW ARRIVALS' },
-          { img: '/hero3.jpg', counter: '03 — The Leather Bag', label: 'LEATHER GOODS' },
+          { img: '/hero1.1.jpg', counter: '01 — The Wool Coat',   label: 'READY-TO-WEAR' },
+          { img: '/hero2.jpg',   counter: '02 — The Silk Dress',  label: 'NEW ARRIVALS' },
+          { img: '/hero3.jpg',   counter: '03 — The Leather Bag', label: 'LEATHER GOODS' },
+          { img: '/hero4.jpg',   counter: '04 — The Collection',  label: 'NEW SEASON' },
         ].map((slide, i) => (
           <div
             key={i}
@@ -51,7 +52,7 @@ export default function Home() {
               <h1 className="hero-title">STYLEBOSS</h1>
             </div>
             <div className="hero-dots">
-              {[0, 1, 2].map(d => (
+              {[0, 1, 2, 3].map(d => (
                 <span
                   key={d}
                   className={`hero-dot${current === d ? ' active' : ''}`}
