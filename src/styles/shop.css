@@ -418,3 +418,50 @@
 }
 .charge-btn:hover { background: #3730a3; transform: translateY(-1px); }
 .charge-btn .charge-amount { font-size: 13px; font-weight: 700; }
+
+/* ── Mobile responsive ───────────────────────────── */
+@media (max-width: 1024px) {
+  .pos-main { grid-template-columns: 180px 1fr 300px; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 768px) {
+  .pos-app { height: auto; min-height: 100vh; overflow-y: auto; }
+  .pos-topbar { padding: 0 10px; height: 48px; gap: 6px; }
+  .pos-brand { margin-left: 6px; margin-right: 10px; }
+  .pos-brand-name { display: none; }
+  .pos-register { display: none; }
+  .pos-user-name { display: none; }
+  .pos-user-role { display: none; }
+  .pos-time { display: none; }
+  .register-badge { display: none; }
+  .pos-topbar-right { gap: 8px; }
+  .pos-search { margin: 0 6px; }
+
+  .pos-main {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+    overflow: visible;
+  }
+  .pos-sidebar { display: none; }
+  .pos-catalogue { padding: 10px; }
+  .catalogue-title { font-size: 16px; }
+  .catalogue-filters { flex-wrap: wrap; gap: 6px; }
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+  .product-img { height: 130px; }
+  .product-name { font-size: 12px; }
+  .product-price { font-size: 13px; }
+
+  .pos-order {
+    border-left: none;
+    border-top: 2px solid rgba(0,0,0,0.08);
+    max-height: 480px;
+  }
+  .order-total-value { font-size: 22px; }
+}
+
+@media (max-width: 480px) {
+  .products-grid { grid-template-columns: repeat(2, 1fr); gap: 6px; }
+  .product-img { height: 110px; }
+  .payment-methods { grid-template-columns: repeat(2, 1fr); }
+}

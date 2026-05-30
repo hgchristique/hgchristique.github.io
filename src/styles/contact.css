@@ -279,6 +279,36 @@
   text-decoration-color: rgba(0,0,0,0.2);
 }
 .store-card-links a:hover { color: var(--black); text-decoration-color: var(--black); }
+
+/* ── Mobile responsive ───────────────────────────── */
+@media (max-width: 768px) {
+  .contact-header { padding: 12px 16px; }
+  .contact-nav a:not(.open-shop-pill):not(.active) { display: none; }
+  .contact-logo { font-size: 14px; }
+
+  .contact-hero { padding: 60px 20px 36px; text-align: left; }
+  .contact-hero h1 { font-size: clamp(32px, 8vw, 52px); }
+  .contact-eyebrow { font-size: 10px; }
+  .contact-sub { font-size: 13px; }
+
+  .stores-only {
+    flex-direction: column;
+    padding: 0 16px;
+    margin: 40px auto 60px;
+    max-width: 100%;
+  }
+  .store-card { padding: 32px 24px; }
+  .store-card:first-child { border-radius: 16px 16px 0 0; }
+  .store-card:last-child  { border-radius: 0 0 16px 16px; }
+  .store-divider { width: auto; height: 1px; }
+  .store-city { font-size: clamp(32px, 8vw, 48px); }
+}
+
+@media (max-width: 480px) {
+  .contact-nav { gap: 12px; }
+  .open-shop-pill { padding: 7px 14px; font-size: 11px; }
+  .store-card { padding: 24px 20px; }
+}
 .press-card {
   background: var(--black);
   color: var(--white);
