@@ -207,6 +207,7 @@
 
 /* Store cards */
 .stores-section { display: flex; flex-direction: column; gap: 16px; }
+.stores-only { flex-direction: row; justify-content: center; max-width: 800px; margin: 60px auto; padding: 0 40px; }
 .store-card {
   background: var(--white);
   border-radius: 12px;
