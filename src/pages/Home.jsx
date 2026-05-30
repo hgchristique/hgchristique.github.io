@@ -4,7 +4,6 @@ import '../styles/home.css'
 
 export default function Home() {
   const [current, setCurrent] = useState(0)
-  const [bagCount, setBagCount] = useState(0)
   const [email, setEmail] = useState('')
   const [newsletterConfirmed, setNewsletterConfirmed] = useState(false)
 
@@ -88,108 +87,8 @@ export default function Home() {
       </section>
 
       <section className="house-quote">
-        <span className="label">THE HOUSE</span>
-        <span className="quote-mark">"</span>
-        <blockquote>We make clothing the way we'd want to <em>receive</em> it — slowly, by hand, in two cities.</blockquote>
-        <Link to="/contact">OUR STORY</Link>
-      </section>
-
-      <section className="featured-piece">
-        <div className="featured-visual">
-          <svg viewBox="0 0 300 340" fill="none" stroke="var(--gold-line)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M70 40 Q50 20 60 60 Q70 100 60 140"/>
-            <line x1="60" y1="140" x2="58" y2="165"/>
-            <rect x="58" y="165" width="184" height="130" rx="4"/>
-            <rect x="130" y="158" width="40" height="14" rx="3"/>
-            <path d="M58 220 Q150 236 242 220"/>
-            <circle cx="72" cy="168" r="5"/>
-          </svg>
-        </div>
-        <div className="featured-info">
-          <span className="label">FEATURED PIECE · NO. 042</span>
-          <h2 className="featured-title">The Onyx<br /><em>Crossbody.</em></h2>
-          <p className="featured-desc">Vegetable-tanned calfskin, hand-burnished edges, a single solid-brass clasp from a workshop in Lyon. Made to be carried, not displayed.</p>
-          <div className="featured-actions">
-            <button className="add-to-bag" onClick={() => setBagCount(c => c + 1)}>ADD TO BAG · $890</button>
-            <a href="#" className="view-details">VIEW DETAILS</a>
-          </div>
-        </div>
-      </section>
-
-      <section className="category-section">
-        <div className="category-header">
-          <span className="label">EXPLORE</span>
-          <h2 className="category-header-title">By <em>category.</em></h2>
-        </div>
-        <div className="category-grid">
-          <div className="category-card" style={{ background: 'linear-gradient(160deg, #d4a853, #c4944a)' }}>
-            <div className="cat-svg">
-              <svg viewBox="0 0 200 200" fill="none" stroke="rgba(0,0,0,0.5)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M60 30 L30 60 L55 70 L55 170 L145 170 L145 70 L170 60 L140 30"/>
-                <path d="M60 30 Q100 50 140 30"/>
-                <line x1="55" y1="100" x2="145" y2="100"/>
-                <line x1="55" y1="115" x2="145" y2="115"/>
-                <line x1="55" y1="130" x2="145" y2="130"/>
-                <line x1="55" y1="145" x2="145" y2="145"/>
-                <line x1="30" y1="60" x2="55" y2="70"/>
-              </svg>
-            </div>
-            <div className="cat-footer">
-              <span className="cat-name">KNITWEAR</span>
-              <span className="cat-count">06</span>
-            </div>
-          </div>
-          <div className="category-card" style={{ background: 'var(--terracotta)' }}>
-            <div className="cat-svg">
-              <svg viewBox="0 0 240 160" fill="none" stroke="rgba(0,0,0,0.5)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                <rect x="20" y="30" width="200" height="120" rx="4"/>
-                <path d="M20 30 L120 90 L220 30"/>
-                <circle cx="120" cy="90" r="7"/>
-              </svg>
-            </div>
-            <div className="cat-footer">
-              <span className="cat-name">BAGS & CLUTCHES</span>
-              <span className="cat-count">06</span>
-            </div>
-          </div>
-          <div className="category-card" style={{ background: 'var(--charcoal)' }}>
-            <div className="cat-svg">
-              <svg viewBox="0 0 180 220" fill="none" stroke="var(--gold-line)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M60 20 L60 140"/>
-                <path d="M120 20 L120 140"/>
-                <line x1="60" y1="20" x2="120" y2="20"/>
-                <path d="M60 140 Q55 160 50 170"/>
-                <path d="M120 140 Q130 155 140 165 L140 200"/>
-                <path d="M50 170 Q40 180 42 195 Q44 205 80 205 L140 200"/>
-                <line x1="118" y1="170" x2="140" y2="165"/>
-                <path d="M42 195 L42 205 L80 208 L140 205 L140 200"/>
-              </svg>
-            </div>
-            <div className="cat-footer">
-              <span className="cat-name">BOOTS & ACCESSORIES</span>
-              <span className="cat-count">04</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="craft-values">
-        <span className="label craft-label">THE HOUSE</span>
-        <h2 className="craft-heading">Two cities. One studio.<br /><em>Seven seasons.</em></h2>
-        <div className="craft-cols">
-          <div className="craft-col">
-            <h3 className="craft-col-title">Cut in Brooklyn,<br />finished in Paris.</h3>
-            <p className="craft-col-body">Patterns are drafted and cut in our Williamsburg studio. The panels travel to a third-generation house in the 11th arrondissement to be sewn, pressed, and finished by hand.</p>
-          </div>
-          <div className="craft-col">
-            <h3 className="craft-col-title">Materials,<br />then everything else.</h3>
-            <p className="craft-col-body">Italian wool, Japanese cotton, vegetable-tanned calfskin. We start with the fiber and design backward. Synthetics are a hard no.</p>
-          </div>
-          <div className="craft-col">
-            <h3 className="craft-col-title">Repair,<br />never replace.</h3>
-            <p className="craft-col-body">Every piece carries a lifetime mending program. Tears, lost buttons, worn cuffs — send it back, we'll fix it. We've re-soled bags from 2020.</p>
-          </div>
-        </div>
+        <span className="label">ABOUT</span>
+        <Link to="/contact">CONTACT US</Link>
       </section>
 
       <section className="newsletter">
