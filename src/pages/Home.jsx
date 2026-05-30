@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/home.css'
+import LogoSvg from '../components/LogoSvg'
 
 export default function Home() {
   const [current, setCurrent] = useState(0)
@@ -84,7 +85,7 @@ export default function Home() {
       <section className="about-section">
         <div className="about-inner">
           <div className="about-label-row">
-            <img src="/logo.jpeg" alt="StyleBoss" className="about-logo" />
+            <LogoSvg size={44} />
             <span className="label">ABOUT STYLEBOSS</span>
           </div>
           <h2 className="about-heading">Be a Boss <em>with Style.</em></h2>
