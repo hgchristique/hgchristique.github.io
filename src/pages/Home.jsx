@@ -32,7 +32,7 @@ export default function Home() {
 
       <section className="hero" id="hero">
         {[
-          { img: '/hero1.1.jpg', counter: '01 — The Wool Coat',   label: 'READY-TO-WEAR' },
+          { img: '/hero5.jpg',   counter: '01 — The Wool Coat',   label: 'READY-TO-WEAR' },
           { img: '/hero2.jpg',   counter: '02 — The Silk Dress',  label: 'NEW ARRIVALS' },
           { img: '/hero3.jpg',   counter: '03 — The Leather Bag', label: 'LEATHER GOODS' },
           { img: '/hero4.jpg',   counter: '04 — The Collection',  label: 'NEW SEASON' },
