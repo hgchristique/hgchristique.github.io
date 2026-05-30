@@ -118,12 +118,13 @@ export default function LogoSvg({ size = 48, className = '' }) {
 
       {/* Tagline */}
       <text
-        x="150" y="276"
+        x="150" y="278"
         fontFamily="system-ui,Arial,sans-serif"
-        fontSize="9"
+        fontSize="13"
         fill="url(#lgold)"
         textAnchor="middle"
-        letterSpacing="3.5"
+        letterSpacing="3"
+        fontWeight="500"
       >BE A BOSS WITH STYLE</text>
     </svg>
   )

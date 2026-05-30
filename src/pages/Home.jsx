@@ -18,12 +18,10 @@ export default function Home() {
     <>
       <header className="site-header">
         <div className="header-main">
-          <div className="header-icons" style={{ marginRight: 'auto', marginLeft: 0 }}>
-            <button aria-label="Account">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.4"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 3.6-7 8-7s8 3 8 7"/></svg>
-            </button>
+          <div className="header-icons" style={{ marginRight: 'auto', marginLeft: 0, display: 'flex', alignItems: 'center', gap: '10px' }}>
+            <LogoSvg size={80} />
+            <Link to="/" className="header-logo">STYLEBOSS</Link>
           </div>
-          <Link to="/" className="header-logo">STYLEBOSS</Link>
           <div className="header-icons" style={{ marginLeft: 'auto', display: 'flex', gap: '12px', alignItems: 'center' }}>
             <Link to="/contact" className="open-shop-btn">CONTACT US</Link>
             <Link to="/shop" className="open-shop-btn">OPEN SHOP <span>→</span></Link>
@@ -48,6 +46,7 @@ export default function Home() {
             }}
           >
             <div className="slide-overlay" />
+            <LogoSvg size={120} className="hero-logo" />
             <div className="hero-content">
               <p className="hero-eyebrow">THE FASHION HOUSE</p>
               <h1 className="hero-title">STYLEBOSS</h1>

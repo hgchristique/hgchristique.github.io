@@ -159,6 +159,12 @@
   border-bottom: 1px solid rgba(255,255,255,0.3);
   padding-bottom: 6px;
 }
+.hero-logo {
+  position: absolute;
+  top: 20px;
+  left: 24px;
+  z-index: 3;
+}
 .hero-content {
   position: absolute;
   bottom: 80px;
