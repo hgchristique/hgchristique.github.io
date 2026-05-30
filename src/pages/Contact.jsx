@@ -1,7 +1,26 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/contact.css'
 
+function useStoreOpen() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  useEffect(() => {
+    function check() {
+      const hour = new Date().getUTCHours()
+      setIsOpen(hour >= 8 && hour < 17)
+    }
+    check()
+    const interval = setInterval(check, 60000)
+    return () => clearInterval(interval)
+  }, [])
+
+  return isOpen
+}
+
 export default function Contact() {
+  const isOpen = useStoreOpen()
+
   return (
     <div className="contact-page">
       <header className="contact-header">
@@ -24,8 +43,9 @@ export default function Contact() {
 
       <div className="stores-only">
         <div className="store-card">
-          <div className="store-status open">
-            <span className="dot"></span>Open · Closes 8pm
+          <div className={`store-status ${isOpen ? 'open' : 'closed'}`}>
+            <span className="dot"></span>
+            {isOpen ? 'Open now' : 'Closed'}
           </div>
           <p className="store-city">New York</p>
           <address>
@@ -46,8 +66,9 @@ export default function Contact() {
         <div className="store-divider"></div>
 
         <div className="store-card">
-          <div className="store-status closed">
-            <span className="dot"></span>Closed · Opens 10am
+          <div className={`store-status ${isOpen ? 'open' : 'closed'}`}>
+            <span className="dot"></span>
+            {isOpen ? 'Open now' : 'Closed'}
           </div>
           <p className="store-city">Paris</p>
           <address>
