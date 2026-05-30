@@ -78,19 +78,11 @@ export default function Home() {
             <h2 className="tile-headline">Crafted in<br /><em>beads.</em></h2>
           </div>
         </div>
-        <div className="split-tile" style={{ background: 'var(--caramel)' }}>
-          <span className="tile-label">LEATHER GOODS</span>
-          <div className="split-tile-svg">
-            <svg viewBox="0 0 220 280" fill="none" stroke="rgba(0,0,0,0.45)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M78 60 Q78 30 110 30 Q142 30 142 60"/>
-              <rect x="42" y="60" width="136" height="170" rx="4"/>
-              <line x1="42" y1="88" x2="178" y2="88"/>
-              <line x1="110" y1="88" x2="110" y2="230"/>
-            </svg>
-          </div>
+        <div className="split-tile split-tile-img" style={{ background: 'var(--caramel)' }}>
+          <img src="/wed.png" alt="Wedding" className="split-tile-photo" />
+          <div className="split-tile-overlay" />
           <div>
             <h2 className="tile-headline">The carry,<br /><em>re-considered.</em></h2>
-            <a href="#" className="tile-cta">DISCOVER BAGS →</a>
           </div>
         </div>
       </section>
