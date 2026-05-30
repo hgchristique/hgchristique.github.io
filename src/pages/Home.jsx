@@ -85,7 +85,7 @@ export default function Home() {
       <section className="about-section">
         <div className="about-inner">
           <div className="about-label-row">
-            <LogoSvg size={44} />
+            <LogoSvg size={80} />
             <span className="label">ABOUT STYLEBOSS</span>
           </div>
           <h2 className="about-heading">Be a Boss <em>with Style.</em></h2>
