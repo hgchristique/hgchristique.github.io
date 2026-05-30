@@ -16,7 +16,7 @@ export default function LogoSvg({ size = 48, className = '' }) {
         </linearGradient>
       </defs>
 
-      {/* Circle arc — right/top solid, left side replaced by pearls */}
+      {/* Circle arc — right/top solid */}
       <path
         d="M 150 30 A 100 100 0 1 1 72 198"
         fill="none"
@@ -43,57 +43,69 @@ export default function LogoSvg({ size = 48, className = '' }) {
         <circle key={i} cx={cx} cy={cy} r={r} fill="url(#lgold)" />
       ))}
 
-      {/* Large S */}
+      {/* Large S — behind figure */}
       <text
-        x="98" y="176"
+        x="90" y="178"
         fontFamily="Georgia,'Times New Roman',serif"
-        fontSize="112"
+        fontSize="116"
         fontWeight="bold"
         fill="url(#lgold)"
-        opacity="0.93"
+        opacity="0.85"
       >S</text>
 
-      {/* Large B */}
+      {/* Large B — behind figure */}
       <text
-        x="166" y="174"
+        x="162" y="176"
         fontFamily="Georgia,'Times New Roman',serif"
-        fontSize="100"
+        fontSize="104"
         fontWeight="bold"
         fill="url(#lgold)"
-        opacity="0.88"
+        opacity="0.80"
       >B</text>
 
-      {/* Woman silhouette — head */}
-      <ellipse cx="155" cy="75" rx="11" ry="13" fill="url(#lgold)" />
-      {/* Hair updo */}
-      <ellipse cx="155" cy="64" rx="7" ry="5" fill="url(#lgold)" />
+      {/* ── Woman silhouette ── */}
 
-      {/* Body + flowing dress train */}
+      {/* Hair updo bun */}
+      <ellipse cx="158" cy="60" rx="9" ry="7" fill="url(#lgold)" />
+      <ellipse cx="162" cy="64" rx="5" ry="4" fill="url(#lgold)" />
+
+      {/* Head */}
+      <ellipse cx="157" cy="75" rx="12" ry="14" fill="url(#lgold)" />
+
+      {/* Neck */}
+      <rect x="153" y="87" width="8" height="10" rx="3" fill="url(#lgold)" />
+
+      {/* Body — fitted torso, wide gown, dramatic train sweeping right */}
       <path
         d="
-          M 148 88
-          C 144 98 142 110 140 122
-          L 136 146
-          C 134 158 132 168 136 177
-          L 142 191
-          C 146 197 152 202 158 201
-          C 167 195 179 184 194 169
-          C 207 155 212 146 207 143
-          C 198 155 182 164 172 168
-          L 167 169
-          C 164 162 161 153 159 142
-          L 155 126
-          C 153 118 152 108 152 99
-          L 150 90
-          C 149 89 149 88 148 88
+          M 161 97
+          C 166 100 170 106 170 114
+          C 170 122 167 130 165 138
+          C 163 145 163 152 167 160
+          C 172 168 182 172 194 170
+          C 208 168 220 160 228 164
+          C 222 174 208 184 194 192
+          C 180 199 167 206 158 208
+          L 150 207
+          C 141 205 134 198 132 188
+          C 130 178 132 165 135 154
+          C 138 143 139 132 138 122
+          C 137 112 140 101 145 97
+          C 149 94 156 94 161 97
           Z
         "
         fill="url(#lgold)"
       />
 
-      {/* Left arm hand-on-hip */}
+      {/* Left arm — hand on hip */}
       <path
-        d="M 140 110 C 134 107 127 109 123 115 C 121 119 122 123 126 124 C 132 122 137 117 140 112 Z"
+        d="M 138 122 C 130 117 122 119 118 126 C 116 131 118 136 123 136 C 130 134 136 128 138 124 Z"
+        fill="url(#lgold)"
+      />
+
+      {/* Right arm — slightly bent, elegant */}
+      <path
+        d="M 165 110 C 172 106 180 108 183 115 C 185 120 183 125 179 125 C 174 122 168 117 165 113 Z"
         fill="url(#lgold)"
       />
 
@@ -118,7 +130,7 @@ export default function LogoSvg({ size = 48, className = '' }) {
 
       {/* Tagline */}
       <text
-        x="150" y="278"
+        x="150" y="279"
         fontFamily="system-ui,Arial,sans-serif"
         fontSize="20"
         fill="url(#lgold)"
