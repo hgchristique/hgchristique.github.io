@@ -159,7 +159,30 @@
   border-bottom: 1px solid rgba(255,255,255,0.3);
   padding-bottom: 6px;
 }
-.hero-content { color: var(--white); }
+.hero-content {
+  position: absolute;
+  bottom: 80px;
+  left: 80px;
+  color: var(--white);
+  z-index: 2;
+}
+.hero-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.65);
+  margin-bottom: 10px;
+  font-family: var(--font-sans);
+}
+.hero-title {
+  font-family: var(--font-serif);
+  font-size: clamp(56px, 8vw, 108px);
+  font-weight: 300;
+  line-height: 0.9;
+  letter-spacing: 0.06em;
+  color: var(--white);
+  margin: 0;
+}
 .hero-headline {
   font-family: var(--font-serif);
   font-size: clamp(64px, 8vw, 110px);
@@ -230,6 +253,22 @@
   pointer-events: none;
 }
 .split-tile-svg svg { max-height: 72%; width: auto; }
+.split-tile-photo {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center 15%;
+}
+.split-tile-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0.15) 60%, rgba(0,0,0,0.1) 100%);
+  pointer-events: none;
+}
+.split-tile-img .tile-label,
+.split-tile-img > div { position: relative; z-index: 2; }
 .tile-headline {
   font-family: var(--font-serif);
   font-size: clamp(36px, 4vw, 56px);

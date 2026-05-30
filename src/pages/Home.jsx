@@ -53,6 +53,10 @@ export default function Home() {
             }}
           >
             <div className="slide-overlay" />
+            <div className="hero-content">
+              <p className="hero-eyebrow">THE FASHION HOUSE</p>
+              <h1 className="hero-title">STYLEBOSS</h1>
+            </div>
             <div className="hero-dots">
               {[0, 1, 2].map(d => (
                 <span
@@ -67,24 +71,11 @@ export default function Home() {
       </section>
 
       <section className="split-tiles">
-        <div className="split-tile" style={{ background: 'var(--slate)' }}>
-          <span className="tile-label">READY-TO-WEAR</span>
-          <div className="split-tile-svg">
-            <svg viewBox="0 0 220 320" fill="none" stroke="rgba(255,255,255,0.5)" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round">
-              <line x1="90" y1="8" x2="82" y2="44"/>
-              <line x1="130" y1="8" x2="138" y2="44"/>
-              <path d="M82 44 Q110 56 138 44"/>
-              <line x1="82" y1="44" x2="72" y2="104"/>
-              <line x1="138" y1="44" x2="148" y2="104"/>
-              <path d="M72 104 Q110 112 148 104"/>
-              <line x1="72" y1="104" x2="18" y2="298"/>
-              <line x1="148" y1="104" x2="202" y2="298"/>
-              <line x1="18" y1="298" x2="202" y2="298"/>
-            </svg>
-          </div>
+        <div className="split-tile split-tile-img" style={{ background: 'var(--slate)' }}>
+          <img src="/fabricbead.png" alt="Fabric Beading" className="split-tile-photo" />
+          <div className="split-tile-overlay" />
           <div>
-            <h2 className="tile-headline">An afternoon<br />in <em>silk.</em></h2>
-            <a href="#" className="tile-cta">EXPLORE THE EDIT →</a>
+            <h2 className="tile-headline">Crafted in<br /><em>beads.</em></h2>
           </div>
         </div>
         <div className="split-tile" style={{ background: 'var(--caramel)' }}>
