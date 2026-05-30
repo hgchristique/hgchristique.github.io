@@ -4,8 +4,6 @@ import '../styles/home.css'
 
 export default function Home() {
   const [current, setCurrent] = useState(0)
-  const [email, setEmail] = useState('')
-  const [newsletterConfirmed, setNewsletterConfirmed] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -14,11 +12,6 @@ export default function Home() {
     return () => clearInterval(timer)
   }, [])
 
-  function handleSubscribe(e) {
-    e.preventDefault()
-    setNewsletterConfirmed(true)
-    setEmail('')
-  }
 
   return (
     <>
@@ -91,29 +84,6 @@ export default function Home() {
         <Link to="/contact">CONTACT US</Link>
       </section>
 
-      <section className="newsletter">
-        <div>
-          <span className="label">HOUSE LETTERS</span>
-          <h2 className="newsletter-heading">One note a month. <em>No more.</em></h2>
-        </div>
-        <div>
-          <form className="newsletter-form" onSubmit={handleSubscribe}>
-            <div className="newsletter-field">
-              <input
-                type="email"
-                placeholder="Your email address"
-                required
-                value={email}
-                onChange={e => setEmail(e.target.value)}
-              />
-              <button type="submit" className="newsletter-submit">SUBSCRIBE</button>
-            </div>
-            {newsletterConfirmed && (
-              <p className="newsletter-confirm">You're on the list. One note a month, as promised.</p>
-            )}
-          </form>
-        </div>
-      </section>
 
       <footer className="site-footer">
         <div className="footer-grid">
