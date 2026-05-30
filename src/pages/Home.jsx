@@ -23,7 +23,8 @@ export default function Home() {
             </button>
           </div>
           <Link to="/" className="header-logo">STYLEBOSS</Link>
-          <div className="header-icons" style={{ marginLeft: 'auto' }}>
+          <div className="header-icons" style={{ marginLeft: 'auto', display: 'flex', gap: '12px', alignItems: 'center' }}>
+            <Link to="/contact" className="open-shop-btn">CONTACT US</Link>
             <Link to="/shop" className="open-shop-btn">OPEN SHOP <span>→</span></Link>
           </div>
         </div>
@@ -86,48 +87,6 @@ export default function Home() {
 
 
       <footer className="site-footer">
-        <div className="footer-grid">
-          <div className="footer-col">
-            <p className="footer-col-title">CLIENT SERVICES</p>
-            <ul>
-              <li><Link to="/contact">Contact us</Link></li>
-              <li><a href="#">Stores & locations</a></li>
-              <li><a href="#">Shipping & returns</a></li>
-              <li><a href="#">Repair & care</a></li>
-              <li><a href="#">Size guide</a></li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <p className="footer-col-title">THE HOUSE</p>
-            <ul>
-              <li><Link to="/contact">Our story</Link></li>
-              <li><a href="#">Craft & materials</a></li>
-              <li><a href="#">Sustainability</a></li>
-              <li><a href="#">Careers</a></li>
-              <li><a href="#">Press</a></li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <p className="footer-col-title">DISCOVER</p>
-            <ul>
-              <li><a href="#">Women</a></li>
-              <li><a href="#">Men</a></li>
-              <li><a href="#">Bags</a></li>
-              <li><a href="#">Ready-to-wear</a></li>
-              <li><a href="#">Accessories</a></li>
-            </ul>
-          </div>
-          <div className="footer-col">
-            <p className="footer-col-title">FOLLOW STYLEBOSS</p>
-            <ul>
-              <li><a href="#">Instagram</a></li>
-              <li><a href="#">Pinterest</a></li>
-              <li><a href="#">Spotify</a></li>
-              <li><a href="#">Journal</a></li>
-              <li><a href="#">Subscribe to letters</a></li>
-            </ul>
-          </div>
-        </div>
         <div className="footer-bottom">
           <span className="footer-logo">STYLEBOSS</span>
           <div className="footer-legal">
