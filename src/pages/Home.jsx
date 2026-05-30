@@ -90,7 +90,6 @@ export default function Home() {
           <p className="about-body">At StyleBoss, fashion is more than what you wear — it's how you present yourself to the world. Whether you're attending a special event, celebrating a milestone, building your career, or simply stepping out for the day, our goal is to help you feel your absolute best.</p>
           <p className="about-body">We are committed to delivering style, sophistication, and exceptional service, ensuring that every StyleBoss woman feels empowered to own her space and make her mark.</p>
           <p className="about-tagline">Because being a boss isn't just about what you do — it's about how you carry yourself.</p>
-          <Link to="/contact" className="about-cta">CONTACT US →</Link>
         </div>
       </section>
 
