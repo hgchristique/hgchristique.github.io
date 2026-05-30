@@ -59,41 +59,35 @@
 .open-shop-pill:hover { background: #3730a3; transform: translateY(-1px); }
 
 /* Hero */
-.contact-hero { padding: 80px 48px 60px; }
-.contact-hero .section-label {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  color: #888;
-  margin-bottom: 28px;
+.contact-hero {
+  padding: 100px 48px 70px;
+  text-align: center;
+  border-bottom: 1px solid rgba(0,0,0,0.07);
 }
-.section-label::before {
-  content: '';
-  display: block;
-  width: 28px;
-  height: 2px;
-  background: var(--indigo);
+.contact-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 20px;
 }
 .contact-hero h1 {
-  font-size: clamp(40px, 5vw, 70px);
-  font-weight: 700;
+  font-family: var(--font-serif);
+  font-size: clamp(44px, 6vw, 80px);
+  font-weight: 300;
   line-height: 1.05;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
+  letter-spacing: 0.01em;
+  margin-bottom: 20px;
+  color: var(--black);
 }
 .contact-hero h1 em {
   font-style: italic;
-  color: var(--indigo);
-  font-weight: 700;
+  font-weight: 300;
 }
-.contact-hero p {
-  font-size: 15px;
-  line-height: 1.65;
-  color: #555;
-  max-width: 600px;
+.contact-sub {
+  font-size: 14px;
+  color: #888;
+  letter-spacing: 0.02em;
 }
 
 /* Main grid */
@@ -207,45 +201,84 @@
 
 /* Store cards */
 .stores-section { display: flex; flex-direction: column; gap: 16px; }
-.stores-only { flex-direction: row; justify-content: center; max-width: 800px; margin: 60px auto; padding: 0 40px; }
+.stores-only {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  justify-content: center;
+  max-width: 860px;
+  margin: 80px auto 100px;
+  padding: 0 48px;
+  gap: 0;
+}
 .store-card {
+  flex: 1;
+  padding: 52px 48px;
   background: var(--white);
-  border-radius: 12px;
-  padding: 24px;
+  border: 1px solid rgba(0,0,0,0.08);
+}
+.store-card:first-child { border-radius: 16px 0 0 16px; }
+.store-card:last-child  { border-radius: 0 16px 16px 0; }
+.store-divider {
+  width: 1px;
+  background: rgba(0,0,0,0.08);
+  flex-shrink: 0;
 }
 .store-status {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  font-size: 11px;
-  letter-spacing: 0.1em;
+  gap: 7px;
+  font-size: 10px;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: #888;
-  margin-bottom: 12px;
+  color: #aaa;
+  margin-bottom: 28px;
 }
 .store-status .dot {
-  width: 7px;
-  height: 7px;
+  width: 6px;
+  height: 6px;
   border-radius: 50%;
   background: #ccc;
 }
-.store-status.open .dot { background: #22c55e; }
+.store-status.open  { color: #22c55e; }
+.store-status.open .dot  { background: #22c55e; }
 .store-status.closed .dot { background: #ef4444; }
-.store-card h3 { font-size: 22px; font-weight: 600; margin-bottom: 10px; letter-spacing: -0.01em; }
+.store-city {
+  font-family: var(--font-serif);
+  font-size: clamp(36px, 4vw, 54px);
+  font-weight: 300;
+  letter-spacing: 0.01em;
+  margin-bottom: 24px;
+  line-height: 1;
+  color: var(--black);
+}
 .store-card address {
   font-style: normal;
-  font-size: 13px;
-  line-height: 1.6;
-  color: #555;
-  margin-bottom: 14px;
+  font-size: 14px;
+  line-height: 1.8;
+  color: #666;
+  margin-bottom: 28px;
 }
-.store-card-links { display: flex; flex-direction: column; gap: 4px; }
+.store-hours {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 20px;
+  font-size: 13px;
+  color: #888;
+  margin-bottom: 32px;
+}
+.store-hours span:nth-child(odd) { font-weight: 500; color: #444; }
+.store-card-links { display: flex; flex-direction: column; gap: 8px; }
 .store-card-links a {
   font-size: 13px;
   color: #555;
+  letter-spacing: 0.01em;
   transition: color 0.2s;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  text-decoration-color: rgba(0,0,0,0.2);
 }
-.store-card-links a:hover { color: var(--indigo); }
+.store-card-links a:hover { color: var(--black); text-decoration-color: var(--black); }
 .press-card {
   background: var(--black);
   color: var(--white);
