@@ -333,10 +333,23 @@
   margin: 0 auto;
   text-align: center;
 }
+.about-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 28px;
+}
+.about-logo {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  border-radius: 6px;
+}
 .about-inner .label {
   display: block;
   color: #aaa;
-  margin-bottom: 28px;
+  margin-bottom: 0;
 }
 .about-heading {
   font-family: var(--font-serif);

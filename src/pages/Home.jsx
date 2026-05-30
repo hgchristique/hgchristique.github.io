@@ -83,7 +83,10 @@ export default function Home() {
 
       <section className="about-section">
         <div className="about-inner">
-          <span className="label">ABOUT STYLEBOSS</span>
+          <div className="about-label-row">
+            <img src="/logo.jpeg" alt="StyleBoss" className="about-logo" />
+            <span className="label">ABOUT STYLEBOSS</span>
+          </div>
           <h2 className="about-heading">Be a Boss <em>with Style.</em></h2>
           <p className="about-body">At StyleBoss, we believe every woman deserves to look confident, feel powerful, and express her unique sense of style. Our brand was created for women who embrace elegance, ambition, and individuality in every aspect of their lives.</p>
           <p className="about-body">We specialize in beautifully crafted fashion pieces, ready-to-wear collections, and exquisite beadwork that transform ordinary outfits into unforgettable statements. Every design is created with attention to detail, quality craftsmanship, and a passion for helping our clients stand out with confidence.</p>
