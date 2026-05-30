@@ -120,11 +120,11 @@ export default function LogoSvg({ size = 48, className = '' }) {
       <text
         x="150" y="278"
         fontFamily="system-ui,Arial,sans-serif"
-        fontSize="13"
+        fontSize="20"
         fill="url(#lgold)"
         textAnchor="middle"
         letterSpacing="3"
-        fontWeight="500"
+        fontWeight="600"
       >BE A BOSS WITH STYLE</text>
     </svg>
   )
