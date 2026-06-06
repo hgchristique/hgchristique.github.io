@@ -64,10 +64,17 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="hero-video-section">
-        <video className="hero-video-bg" src="/hero-video.mp4" autoPlay muted loop playsInline />
-        <div className="hero-video-scrim" />
-        <video className="hero-video-fg" src="/hero-video.mp4" autoPlay muted loop playsInline />
+      <section className="house-statement">
+        <div className="house-statement-inner">
+          <span className="house-statement-label">THE HOUSE OF STYLEBOSS</span>
+          <div className="house-statement-ornament" />
+          <blockquote className="house-statement-quote">
+            Style is not what you wear —<br />
+            <em>it is how you carry yourself.</em>
+          </blockquote>
+          <div className="house-statement-ornament" />
+          <span className="house-statement-sig">— STYLEBOSS · EST. MMXXIV</span>
+        </div>
       </section>
 
       <section className="about-section">
