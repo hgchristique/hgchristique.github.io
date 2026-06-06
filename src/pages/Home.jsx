@@ -93,7 +93,7 @@ export default function Home() {
           <p className="gallery-sub">A curated look into the world of StyleBoss</p>
         </div>
         <div className="gallery-grid">
-          {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].map(n => (
+          {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17].map(n => (
             <div key={n} className="gallery-item">
               <img src={`/gallery/g${n}.jpeg`} alt={`StyleBoss inspiration ${n}`} />
               <div className="gallery-overlay">
