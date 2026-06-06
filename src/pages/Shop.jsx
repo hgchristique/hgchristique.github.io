@@ -1,6 +1,51 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/shop.css'
+
+const CURRENCY_RATES = {
+  USD: { rate: 1,        locale: 'en-US',  decimals: 2 },
+  GHS: { rate: 15.4,     locale: 'en-GH',  decimals: 2 },
+  EUR: { rate: 0.92,     locale: 'de-DE',  decimals: 2 },
+  GBP: { rate: 0.79,     locale: 'en-GB',  decimals: 2 },
+  NGN: { rate: 1620,     locale: 'en-NG',  decimals: 0 },
+  ZAR: { rate: 18.2,     locale: 'en-ZA',  decimals: 2 },
+  KES: { rate: 130,      locale: 'sw-KE',  decimals: 0 },
+  CAD: { rate: 1.36,     locale: 'en-CA',  decimals: 2 },
+  AUD: { rate: 1.54,     locale: 'en-AU',  decimals: 2 },
+  JPY: { rate: 150,      locale: 'ja-JP',  decimals: 0 },
+  INR: { rate: 83.5,     locale: 'en-IN',  decimals: 2 },
+  AED: { rate: 3.67,     locale: 'ar-AE',  decimals: 2 },
+  CHF: { rate: 0.9,      locale: 'de-CH',  decimals: 2 },
+  SGD: { rate: 1.34,     locale: 'en-SG',  decimals: 2 },
+}
+
+function useCurrency() {
+  const [currencyCode, setCurrencyCode] = useState('USD')
+
+  useEffect(() => {
+    fetch('https://ipapi.co/json/')
+      .then(r => r.json())
+      .then(data => {
+        if (data.currency && CURRENCY_RATES[data.currency]) {
+          setCurrencyCode(data.currency)
+        }
+      })
+      .catch(() => {})
+  }, [])
+
+  const formatPrice = useCallback((usdPrice) => {
+    const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.USD
+    const converted = usdPrice * config.rate
+    return new Intl.NumberFormat(config.locale, {
+      style: 'currency',
+      currency: currencyCode,
+      minimumFractionDigits: config.decimals,
+      maximumFractionDigits: config.decimals,
+    }).format(converted)
+  }, [currencyCode])
+
+  return { currencyCode, formatPrice }
+}
 
 const PRODUCTS = [
   { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 1290, tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
@@ -59,9 +104,8 @@ function ProductSvg({ cat, color }) {
 
 const BAG_COLORS = ['#0a0a0a', '#b8845a', '#2d3642', '#6b2d3e', '#4a5240', '#c4b89a']
 
-const fmt = n => n.toLocaleString('en', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
-
 export default function Shop() {
+  const { currencyCode, formatPrice } = useCurrency()
   const [cart, setCart] = useState({})
   const [selectedColors, setSelectedColors] = useState({})
   const [activeCategory, setActiveCategory] = useState('all')
@@ -172,6 +216,7 @@ export default function Shop() {
         </div>
         <div className="pos-topbar-right">
           <div className="register-badge"><span className="dot"></span>Register open</div>
+          <div className="currency-badge">{currencyCode}</div>
           <div className="pos-time">{time}</div>
           <div className="pos-user">
             <div>
@@ -249,7 +294,7 @@ export default function Shop() {
                 <div className="product-info">
                   <div className="product-name">{p.name}</div>
                   <div className="product-cat">{p.cat}</div>
-                  <div className="product-price">${p.price.toLocaleString()}<span className="price-cents">.00</span></div>
+                  <div className="product-price">{formatPrice(p.price)}</div>
                 </div>
               </div>
             ))}
@@ -289,11 +334,11 @@ export default function Shop() {
                         <span className="qty-btn" onClick={e => { e.stopPropagation(); changeQty(sku, -1) }}>−</span>
                         {qty}
                         <span className="qty-btn" onClick={e => { e.stopPropagation(); changeQty(sku, 1) }}>+</span>
-                        <span>· ${p.price.toLocaleString()} each</span>
+                        <span>· {formatPrice(p.price)} each</span>
                       </div>
                     </div>
                     <div>
-                      <div className="order-item-price">${(p.price * qty).toLocaleString()}</div>
+                      <div className="order-item-price">{formatPrice(p.price * qty)}</div>
                       <span className="order-item-remove" onClick={e => { e.stopPropagation(); removeFromCart(sku) }}>×</span>
                     </div>
                   </div>
@@ -303,14 +348,12 @@ export default function Shop() {
           </div>
           {cartEntries.length > 0 && (
             <div className="order-footer">
-              <div className="order-line"><span>Subtotal</span><span>${fmt(subtotal)}</span></div>
-              <div className="order-line"><span>Sales tax · 8.75%</span><span>${fmt(tax)}</span></div>
-              <div className="order-line loyalty"><span>Loyalty credit</span><span>– $0.00</span></div>
+              <div className="order-line"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
+              <div className="order-line"><span>Sales tax · 8.75%</span><span>{formatPrice(tax)}</span></div>
+              <div className="order-line loyalty"><span>Loyalty credit</span><span>– {formatPrice(0)}</span></div>
               <div className="order-total">
                 <span className="order-total-label">Total due</span>
-                <span className="order-total-value">
-                  ${Math.floor(total).toLocaleString()}<span className="cents">.{total.toFixed(2).split('.')[1]}</span>
-                </span>
+                <span className="order-total-value">{formatPrice(total)}</span>
               </div>
               <div className="payment-methods">
                 {['Card', 'MoMo'].map(method => (
@@ -327,7 +370,7 @@ export default function Shop() {
               </div>
               <button className="charge-btn" onClick={processCharge}>
                 <span>Charge</span>
-                <span className="charge-amount">${fmt(total)}</span>
+                <span className="charge-amount">{formatPrice(total)}</span>
               </button>
             </div>
           )}
