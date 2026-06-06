@@ -53,7 +53,7 @@ function useCurrency() {
 const PRODUCTS = [
   { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 350,   tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
   { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Bags',        price: 350,   tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
-  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 9548,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
+  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 300,   tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 300,   tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
   { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 400,   tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg' },
   { sku: 'AT-0724', name: 'Linen Field Shirt',    cat: 'Shirts',      price: 500,   tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg' },
