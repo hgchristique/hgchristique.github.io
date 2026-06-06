@@ -64,21 +64,10 @@ export default function Home() {
         ))}
       </section>
 
-      <section className="split-tiles">
-        <div className="split-tile split-tile-img" style={{ background: 'var(--slate)' }}>
-          <img src="/fabricbead.png" alt="Fabric Beading" className="split-tile-photo" />
-          <div className="split-tile-overlay" />
-          <div>
-            <h2 className="tile-headline">Crafted in<br /><em>beads.</em></h2>
-          </div>
-        </div>
-        <div className="split-tile split-tile-img" style={{ background: 'var(--caramel)' }}>
-          <img src="/wed.png" alt="Wedding" className="split-tile-photo" />
-          <div className="split-tile-overlay" />
-          <div>
-            <h2 className="tile-headline">The carry,<br /><em>re-considered.</em></h2>
-          </div>
-        </div>
+      <section className="hero-video-section">
+        <video className="hero-video-bg" src="/hero-video.mp4" autoPlay muted loop playsInline />
+        <div className="hero-video-scrim" />
+        <video className="hero-video-fg" src="/hero-video.mp4" autoPlay muted loop playsInline />
       </section>
 
       <section className="about-section">
