@@ -97,6 +97,24 @@ export default function Home() {
       </section>
 
 
+      <section className="gallery-section">
+        <div className="gallery-header">
+          <span className="gallery-eyebrow">THE EDIT</span>
+          <h2 className="gallery-title">Gallery of <em>Inspiration</em></h2>
+          <p className="gallery-sub">A curated look into the world of StyleBoss</p>
+        </div>
+        <div className="gallery-grid">
+          {[1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16].map(n => (
+            <div key={n} className="gallery-item">
+              <img src={`/gallery/g${n}.jpeg`} alt={`StyleBoss inspiration ${n}`} />
+              <div className="gallery-overlay">
+                <svg viewBox="0 0 24 24"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
+
       <footer className="site-footer">
         <div className="footer-bottom">
           <span className="footer-logo">STYLEBOSS</span>

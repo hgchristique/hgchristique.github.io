@@ -68,6 +68,12 @@ const PRODUCTS = [
   { sku: 'AT-0318', name: 'Chain Shoulder Bag',   cat: 'Bags',        price: 15092, tag: null,   bg: '#6b5a4e', color: 'rgba(255,255,255,0.55)' },
   { sku: 'AT-0422', name: 'Zip Pouch',            cat: 'Bags',        price: 3234,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0533', name: 'Weekend Duffel',       cat: 'Bags',        price: 18172, tag: null,   bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0701', name: 'Gold Bead Bracelet',   cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bracelet1.jpeg' },
+  { sku: 'AT-0702', name: 'Pearl Bracelet',        cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bracelet2.jpeg' },
+  { sku: 'AT-0703', name: 'Chain Bracelet',        cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#c8a96e', color: 'rgba(0,0,0,0.45)', img: '/bracelet3.jpeg' },
+  { sku: 'AT-0704', name: 'Beaded Cuff',           cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bracelet4.jpeg' },
+  { sku: 'AT-0705', name: 'Stack Bracelet Set',    cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#3d302a', color: '#c8a96e', img: '/bracelet5.jpeg' },
+  { sku: 'AT-0706', name: 'Crystal Bracelet',      cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bracelet6.jpeg' },
   { sku: 'AT-0601', name: 'Silk Scarf',           cat: 'Accessories', price: 2772,  tag: 'new',  bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0614', name: 'Leather Belt',         cat: 'Accessories', price: 3388,  tag: null,   bg: '#3d302a', color: '#c8a96e' },
   { sku: 'AT-0627', name: 'Wool Beanie',          cat: 'Accessories', price: 1848,  tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
@@ -75,14 +81,13 @@ const PRODUCTS = [
 ]
 
 const CATEGORIES = [
-  { id: 'all',         label: 'All items',    count: 21 },
+  { id: 'all',         label: 'All items',    count: 15 },
   { id: 'Neckwear',    label: 'Neckwear',     count: 2 },
   { id: 'Knitwear',    label: 'Knitwear',     count: 1 },
   { id: 'Shirts',      label: 'Shirts',       count: 3 },
   { id: 'Trousers',    label: 'Trousers',     count: 2 },
-  { id: 'Dresses',     label: 'Dresses',      count: 2 },
-  { id: 'Bags',        label: 'Bags',         count: 7 },
-  { id: 'Accessories', label: 'Accessories',  count: 4 },
+  { id: 'Bags',        label: 'Bags',         count: 1 },
+  { id: 'Bracelets',   label: 'Bracelets',    count: 6 },
 ]
 
 function ProductSvg({ cat, color }) {
@@ -170,6 +175,7 @@ export default function Shop() {
   const total = subtotal + tax
 
   const filtered = PRODUCTS.filter(p => {
+    if (!p.img) return false
     if (activeCategory !== 'all' && p.cat !== activeCategory) return false
     if (activeFilter === 'new' && p.tag !== 'new') return false
     if (activeFilter === 'sale' && p.tag !== 'sale') return false

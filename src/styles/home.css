@@ -588,6 +588,80 @@
   margin-top: 16px;
 }
 
+/* ── Gallery of Inspiration ──────────────────────── */
+.gallery-section {
+  padding: 100px 0 0;
+  background: var(--black);
+  color: var(--white);
+}
+.gallery-header {
+  text-align: center;
+  padding: 0 48px 64px;
+}
+.gallery-eyebrow {
+  display: inline-block;
+  font-size: 10px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.4);
+  margin-bottom: 18px;
+}
+.gallery-title {
+  font-family: var(--font-serif);
+  font-size: clamp(40px, 5vw, 72px);
+  font-weight: 300;
+  line-height: 1.05;
+  color: var(--white);
+  margin-bottom: 16px;
+}
+.gallery-title em { font-style: italic; }
+.gallery-sub {
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  letter-spacing: 0.04em;
+}
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 3px;
+}
+.gallery-item {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  background: #111;
+  aspect-ratio: 1 / 1;
+}
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  display: block;
+}
+.gallery-item:hover img { transform: scale(1.07); }
+.gallery-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.38);
+  opacity: 0;
+  transition: opacity 0.3s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.gallery-overlay svg {
+  width: 28px;
+  height: 28px;
+  stroke: var(--white);
+  fill: none;
+  stroke-width: 1.8;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+.gallery-item:hover .gallery-overlay { opacity: 1; }
+
 /* ── Footer ──────────────────────────────────────── */
 .site-footer {
   background: var(--black);
@@ -672,10 +746,15 @@
   .site-footer { padding: 48px 20px 28px; }
   .footer-bottom { flex-direction: column; gap: 12px; text-align: center; }
   .footer-legal { gap: 16px; flex-wrap: wrap; justify-content: center; }
+
+  .gallery-section { padding: 60px 0 0; }
+  .gallery-header { padding: 0 20px 40px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
 }
 
 @media (max-width: 480px) {
   .open-shop-btn span { display: none; }
   .hero { height: 65vh; }
   .split-tile { height: 320px; }
+  .gallery-grid { grid-template-columns: repeat(3, 1fr); }
 }
