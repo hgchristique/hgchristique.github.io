@@ -2,21 +2,22 @@ import { useState, useEffect, useCallback } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/shop.css'
 
+// All rates are relative to GHS (base currency)
 const CURRENCY_RATES = {
-  USD: { rate: 1,        locale: 'en-US',  decimals: 2 },
-  GHS: { rate: 15.4,     locale: 'en-GH',  decimals: 2 },
-  EUR: { rate: 0.92,     locale: 'de-DE',  decimals: 2 },
-  GBP: { rate: 0.79,     locale: 'en-GB',  decimals: 2 },
-  NGN: { rate: 1620,     locale: 'en-NG',  decimals: 0 },
-  ZAR: { rate: 18.2,     locale: 'en-ZA',  decimals: 2 },
-  KES: { rate: 130,      locale: 'sw-KE',  decimals: 0 },
-  CAD: { rate: 1.36,     locale: 'en-CA',  decimals: 2 },
-  AUD: { rate: 1.54,     locale: 'en-AU',  decimals: 2 },
-  JPY: { rate: 150,      locale: 'ja-JP',  decimals: 0 },
-  INR: { rate: 83.5,     locale: 'en-IN',  decimals: 2 },
-  AED: { rate: 3.67,     locale: 'ar-AE',  decimals: 2 },
-  CHF: { rate: 0.9,      locale: 'de-CH',  decimals: 2 },
-  SGD: { rate: 1.34,     locale: 'en-SG',  decimals: 2 },
+  GHS: { rate: 1,      locale: 'en-GH',  decimals: 2 },
+  USD: { rate: 0.0649, locale: 'en-US',  decimals: 2 },
+  EUR: { rate: 0.0597, locale: 'de-DE',  decimals: 2 },
+  GBP: { rate: 0.0513, locale: 'en-GB',  decimals: 2 },
+  NGN: { rate: 105.19, locale: 'en-NG',  decimals: 0 },
+  ZAR: { rate: 1.182,  locale: 'en-ZA',  decimals: 2 },
+  KES: { rate: 8.44,   locale: 'sw-KE',  decimals: 0 },
+  CAD: { rate: 0.0883, locale: 'en-CA',  decimals: 2 },
+  AUD: { rate: 0.1,    locale: 'en-AU',  decimals: 2 },
+  JPY: { rate: 9.74,   locale: 'ja-JP',  decimals: 0 },
+  INR: { rate: 5.42,   locale: 'en-IN',  decimals: 2 },
+  AED: { rate: 0.238,  locale: 'ar-AE',  decimals: 2 },
+  CHF: { rate: 0.0584, locale: 'de-CH',  decimals: 2 },
+  SGD: { rate: 0.087,  locale: 'en-SG',  decimals: 2 },
 }
 
 function useCurrency() {
@@ -48,28 +49,29 @@ function useCurrency() {
   return { currencyCode, formatPrice }
 }
 
+// Prices stored in GHS (base currency)
 const PRODUCTS = [
-  { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 1290, tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
-  { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Bags',        price: 1480, tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
-  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 620,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
-  { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 540,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
-  { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 390,  tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg' },
-  { sku: 'AT-0724', name: 'Linen Field Shirt',    cat: 'Shirts',      price: 310,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg' },
-  { sku: 'AT-0731', name: 'Silk Poplin Shirt',    cat: 'Shirts',      price: 460,  tag: 'new',  bg: '#b8c4c0', color: 'rgba(0,0,0,0.45)', img: '/bag5.jpeg' },
-  { sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers',    price: 380,  tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg' },
-  { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Trousers',    price: 420,  tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)', img: '/bag7.jpeg' },
-  { sku: 'AT-1002', name: 'The Silk Slip Dress',  cat: 'Dresses',     price: 680,  tag: 'new',  bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-1018', name: 'Linen Shift Dress',    cat: 'Dresses',     price: 490,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
-  { sku: 'AT-0042', name: 'Onyx Crossbody',       cat: 'Bags',        price: 890,  tag: null,   bg: '#0a0a0a', color: '#c8a96e' },
-  { sku: 'AT-0105', name: 'Market Tote',          cat: 'Bags',        price: 620,  tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-0211', name: 'Box Clutch',           cat: 'Bags',        price: 540,  tag: 'new',  bg: '#3d302a', color: '#c8a96e' },
-  { sku: 'AT-0318', name: 'Chain Shoulder Bag',   cat: 'Bags',        price: 980,  tag: null,   bg: '#6b5a4e', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-0422', name: 'Zip Pouch',            cat: 'Bags',        price: 210,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
-  { sku: 'AT-0533', name: 'Weekend Duffel',       cat: 'Bags',        price: 1180, tag: null,   bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-0601', name: 'Silk Scarf',           cat: 'Accessories', price: 180,  tag: 'new',  bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
-  { sku: 'AT-0614', name: 'Leather Belt',         cat: 'Accessories', price: 220,  tag: null,   bg: '#3d302a', color: '#c8a96e' },
-  { sku: 'AT-0627', name: 'Wool Beanie',          cat: 'Accessories', price: 120,  tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-0641', name: 'Canvas Tote Bag',      cat: 'Accessories', price: 95,   tag: 'low',  bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 350,   tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
+  { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Bags',        price: 350,   tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
+  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 9548,  tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
+  { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 300,   tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
+  { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 400,   tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg' },
+  { sku: 'AT-0724', name: 'Linen Field Shirt',    cat: 'Shirts',      price: 500,   tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg' },
+  { sku: 'AT-0731', name: 'Silk Poplin Shirt',    cat: 'Shirts',      price: 400,   tag: 'new',  bg: '#b8c4c0', color: 'rgba(0,0,0,0.45)', img: '/bag5.jpeg' },
+  { sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers',    price: 350,   tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg' },
+  { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Trousers',    price: 300,   tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)', img: '/bag7.jpeg' },
+  { sku: 'AT-1002', name: 'The Silk Slip Dress',  cat: 'Dresses',     price: 10472, tag: 'new',  bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-1018', name: 'Linen Shift Dress',    cat: 'Dresses',     price: 7546,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0042', name: 'Onyx Crossbody',       cat: 'Bags',        price: 13706, tag: null,   bg: '#0a0a0a', color: '#c8a96e' },
+  { sku: 'AT-0105', name: 'Market Tote',          cat: 'Bags',        price: 9548,  tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0211', name: 'Box Clutch',           cat: 'Bags',        price: 8316,  tag: 'new',  bg: '#3d302a', color: '#c8a96e' },
+  { sku: 'AT-0318', name: 'Chain Shoulder Bag',   cat: 'Bags',        price: 15092, tag: null,   bg: '#6b5a4e', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0422', name: 'Zip Pouch',            cat: 'Bags',        price: 3234,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0533', name: 'Weekend Duffel',       cat: 'Bags',        price: 18172, tag: null,   bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0601', name: 'Silk Scarf',           cat: 'Accessories', price: 2772,  tag: 'new',  bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
+  { sku: 'AT-0614', name: 'Leather Belt',         cat: 'Accessories', price: 3388,  tag: null,   bg: '#3d302a', color: '#c8a96e' },
+  { sku: 'AT-0627', name: 'Wool Beanie',          cat: 'Accessories', price: 1848,  tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
+  { sku: 'AT-0641', name: 'Canvas Tote Bag',      cat: 'Accessories', price: 1463,  tag: 'low',  bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
 ]
 
 const CATEGORIES = [
