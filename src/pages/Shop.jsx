@@ -23,11 +23,12 @@ function useCurrency() {
   const [currencyCode, setCurrencyCode] = useState('USD')
 
   useEffect(() => {
-    fetch('https://ipapi.co/json/')
+    fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) })
       .then(r => r.json())
       .then(data => {
-        if (data.currency && CURRENCY_RATES[data.currency]) {
-          setCurrencyCode(data.currency)
+        const code = data.currency
+        if (typeof code === 'string' && /^[A-Z]{3}$/.test(code) && CURRENCY_RATES[code]) {
+          setCurrencyCode(code)
         }
       })
       .catch(() => {})
@@ -122,7 +123,7 @@ export default function Shop() {
       setTime(`${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`)
     }
     tick()
-    const timer = setInterval(tick, 10000)
+    const timer = setInterval(tick, 60000)
     return () => clearInterval(timer)
   }, [])
 
