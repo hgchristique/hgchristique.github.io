@@ -82,8 +82,8 @@
 /* ── Hero carousel ───────────────────────────────── */
 .hero {
   position: relative;
-  height: calc(100vh - 106px);
-  min-height: 560px;
+  height: 100vh;
+  min-height: 600px;
   overflow: hidden;
 }
 .slide {
