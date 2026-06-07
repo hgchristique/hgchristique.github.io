@@ -52,6 +52,7 @@ function useCurrency() {
 // Prices stored in GHS (base currency)
 const PRODUCTS = [
   { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 350,   tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
+  { sku: 'AT-0343', name: 'Bead Necklace',        cat: 'Neckwear',    price: 300,   tag: 'new',  bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck3.jpeg' },
   { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Bags',        price: 350,   tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
   { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 300,   tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 300,   tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
@@ -81,8 +82,8 @@ const PRODUCTS = [
 ]
 
 const CATEGORIES = [
-  { id: 'all',         label: 'All items',    count: 15 },
-  { id: 'Neckwear',    label: 'Neckwear',     count: 2 },
+  { id: 'all',         label: 'All items',    count: 16 },
+  { id: 'Neckwear',    label: 'Neckwear',     count: 3 },
   { id: 'Knitwear',    label: 'Knitwear',     count: 1 },
   { id: 'Shirts',      label: 'Shirts',       count: 3 },
   { id: 'Trousers',    label: 'Trousers',     count: 2 },
