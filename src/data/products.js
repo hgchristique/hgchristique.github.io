@@ -30,9 +30,10 @@ export const PRODUCTS = [
   { sku: 'AT-0701', name: 'Gold Bead Bracelet',   cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bracelet1.jpeg' },
   { sku: 'AT-0702', name: 'Pearl Bracelet',       cat: 'Bracelets',   price: 120,   tag: 'new',  bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bracelet2.jpeg', hidden: true },
   { sku: 'AT-0707', name: 'Bra Bracelet',         cat: 'Bracelets',   price: 120,   tag: 'new',  bg: '#c8a96e', color: 'rgba(0,0,0,0.45)', img: '/bra.jpeg', hidden: true },
+  { sku: 'AT-0708', name: 'Chief Bracelet',       cat: 'Bracelets',   price: 120,   tag: 'new',  bg: '#3d302a', color: '#c8a96e', img: '/chief.jpeg', hidden: true },
   {
     sku: 'AT-0703', name: 'Scarlet Bloom Bracelet', cat: 'Bracelets', price: 120, tag: 'new',
-    variants: ['AT-0702', 'AT-0707'],
+    variants: ['AT-0702', 'AT-0707', 'AT-0708'],
     bg: '#c8a96e', color: 'rgba(0,0,0,0.45)', img: '/bracelet3.jpeg',
     desc: 'A delicate masterpiece inspired by flowers in full bloom.',
     story: 'Every flower blooms in its own time, and Scarlet Bloom is a celebration of that timeless beauty. Handwoven with sparkling crystals and delicate floral details, this bracelet captures the elegance of nature and the brilliance of handcrafted artistry. Whether worn as a subtle statement or a finishing touch, it adds effortless sophistication to every look. Available in blue, black, yellow, red, and white, each shade reflects a unique expression of style.\n\nHG Christique — Luxury in Every Detail.',
