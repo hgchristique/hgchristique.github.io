@@ -117,8 +117,8 @@ export const PRODUCTS = [
       { name: 'Silver', hex: '#b0b8c1' },
     ],
   },
-  { sku: 'AT-0702', name: 'Scarlet Bloom Bracelet', cat: 'Bracelets',  price: 120,   tag: 'new',  bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bracelet2.jpeg', hidden: true },
-  { sku: 'AT-0707', name: 'Scarlet Bloom Bracelet', cat: 'Bracelets',  price: 120,   tag: 'new',  bg: '#c8a96e', color: 'rgba(0,0,0,0.45)', img: '/bra.jpeg', hidden: true },
+  { sku: 'AT-0702', name: 'Bloom Bracelet', cat: 'Bracelets',  price: 120,   tag: 'new',  bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bracelet2.jpeg', hidden: true },
+  { sku: 'AT-0707', name: 'Bloom Bracelet', cat: 'Bracelets',  price: 120,   tag: 'new',  bg: '#c8a96e', color: 'rgba(0,0,0,0.45)', img: '/bra.jpeg', hidden: true },
   { sku: 'AT-0708', name: 'Scarlet Bloom Bracelet', cat: 'Bracelets',  price: 120,   tag: 'new',  bg: '#3d302a', color: '#c8a96e', img: '/chief.jpeg', hidden: true },
   {
     sku: 'AT-0703', name: 'Scarlet Bloom Bracelet', cat: 'Bracelets', price: 120, tag: 'new',
