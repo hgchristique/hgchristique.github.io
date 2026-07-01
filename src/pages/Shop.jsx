@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, Fragment } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { PRODUCTS, CATEGORIES } from '../data/products'
 import { useCurrency } from '../hooks/useCurrency'
@@ -40,6 +40,17 @@ export default function Shop() {
   const [loadingVisible, setLoadingVisible] = useState(true)
   const [time, setTime] = useState('')
   const [cartOpen, setCartOpen] = useState(false)
+  const [expandedSkus, setExpandedSkus] = useState(new Set())
+
+  function toggleExpand(e, sku) {
+    e.stopPropagation()
+    setExpandedSkus(prev => {
+      const next = new Set(prev)
+      if (next.has(sku)) next.delete(sku)
+      else next.add(sku)
+      return next
+    })
+  }
 
   useEffect(() => {
     function tick() {
@@ -204,40 +215,65 @@ export default function Shop() {
             </div>
           </div>
           <div className="products-grid">
-            {filtered.map(p => (
-              <div
-                key={p.sku}
-                className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
-                onClick={() => navigate(`/shop/${p.sku}`)}
-              >
-                <div className="product-img" style={{ background: selectedColors[p.sku] ?? p.bg }}>
-                  {p.img
-                    ? <img src={p.img} alt={p.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                    : <ProductSvg cat={p.cat} color={p.color} />
-                  }
-                  <div className="product-add-btn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><polyline points="9,18 15,12 9,6"/></svg>
+            {filtered.map(p => {
+              const children = p.variants?.map(vsku => PRODUCTS.find(x => x.sku === vsku)).filter(Boolean) ?? []
+              const isExpanded = expandedSkus.has(p.sku)
+              return (
+                <Fragment key={p.sku}>
+                  <div
+                    className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
+                    onClick={() => navigate(`/shop/${p.sku}`)}
+                  >
+                    <div className="product-img" style={{ background: selectedColors[p.sku] ?? p.bg }}>
+                      {p.img
+                        ? <img src={p.img} alt={p.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                        : <ProductSvg cat={p.cat} color={p.color} />
+                      }
+                      <div className="product-add-btn">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><polyline points="9,18 15,12 9,6"/></svg>
+                      </div>
+                      {p.cat === 'Bags' && !p.img && (
+                        <div className="color-swatches" onClick={e => e.stopPropagation()}>
+                          {BAG_COLORS.map(c => (
+                            <span
+                              key={c}
+                              className={`color-swatch${(selectedColors[p.sku] ?? p.bg) === c ? ' active' : ''}`}
+                              style={{ background: c }}
+                              onClick={() => setSelectedColors(prev => ({ ...prev, [p.sku]: c }))}
+                            />
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                    <div className="product-info">
+                      <div className="product-name">{p.name}</div>
+                      <div className="product-cat">{p.cat}</div>
+                      <div className="product-price-row">
+                        <div className="product-price">{formatPrice(p.price)}</div>
+                        {children.length > 0 && (
+                          <button className={`expand-btn${isExpanded ? ' expanded' : ''}`} onClick={e => toggleExpand(e, p.sku)}>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="13" height="13"><polyline points="6,9 12,15 18,9"/></svg>
+                          </button>
+                        )}
+                      </div>
+                    </div>
                   </div>
-                  {p.cat === 'Bags' && !p.img && (
-                    <div className="color-swatches" onClick={e => e.stopPropagation()}>
-                      {BAG_COLORS.map(c => (
-                        <span
-                          key={c}
-                          className={`color-swatch${(selectedColors[p.sku] ?? p.bg) === c ? ' active' : ''}`}
-                          style={{ background: c }}
-                          onClick={() => setSelectedColors(prev => ({ ...prev, [p.sku]: c }))}
-                        />
+                  {children.length > 0 && isExpanded && (
+                    <div className="product-children-row">
+                      {children.map(child => (
+                        <div key={child.sku} className="child-card" onClick={() => navigate(`/shop/${child.sku}`)}>
+                          <div className="child-card-img" style={{ background: child.bg }}>
+                            {child.img && <img src={child.img} alt={child.name} />}
+                          </div>
+                          <span className="child-card-name">{child.name}</span>
+                          <span className="child-card-price">{formatPrice(child.price)}</span>
+                        </div>
                       ))}
                     </div>
                   )}
-                </div>
-                <div className="product-info">
-                  <div className="product-name">{p.name}</div>
-                  <div className="product-cat">{p.cat}</div>
-                  <div className="product-price">{formatPrice(p.price)}</div>
-                </div>
-              </div>
-            ))}
+                </Fragment>
+              )
+            })}
           </div>
         </section>
       </main>
