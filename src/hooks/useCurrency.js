@@ -72,7 +72,8 @@ export function useCurrency() {
 
   const formatPrice = useCallback((ghsPrice) => {
     const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.GHS
-    const converted = ghsPrice * config.rate
+    const multiplier = currencyCode === 'GHS' ? 1 : 3
+    const converted = ghsPrice * multiplier * config.rate
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: currencyCode,
