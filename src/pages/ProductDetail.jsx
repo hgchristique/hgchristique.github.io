@@ -33,9 +33,21 @@ export default function ProductDetail() {
   const [selectedColor, setSelectedColor] = useState(product?.colors?.[0] ?? null)
   const [added, setAdded] = useState(false)
 
-  const variants = product?.variants
-    ? product.variants.map(vsku => PRODUCTS.find(p => p.sku === vsku)).filter(Boolean)
-    : []
+  const parent = PRODUCTS.find(p => p.variants?.includes(product.sku))
+
+  const related = (() => {
+    if (product.variants?.length) {
+      return product.variants.map(vsku => PRODUCTS.find(p => p.sku === vsku)).filter(Boolean)
+    }
+    if (parent) {
+      const siblings = parent.variants
+        .filter(vsku => vsku !== product.sku)
+        .map(vsku => PRODUCTS.find(p => p.sku === vsku))
+        .filter(Boolean)
+      return [parent, ...siblings]
+    }
+    return []
+  })()
 
   if (!product) {
     return (
@@ -135,11 +147,11 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          {variants.length > 0 && (
+          {related.length > 0 && (
             <div className="pd-section">
               <h3 className="pd-section-title">Also in this style</h3>
               <div className="pd-variants">
-                {variants.map(v => (
+                {related.map(v => (
                   <div key={v.sku} className="pd-variant-card" onClick={() => navigate(`/shop/${v.sku}`)}>
                     <div className="pd-variant-img" style={{ background: v.bg }}>
                       {v.img && <img src={v.img} alt={v.name} />}
