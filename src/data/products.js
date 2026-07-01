@@ -19,6 +19,7 @@ export const PRODUCTS = [
     sku: 'AT-0724', name: 'Soleil Bloom', cat: 'Shirts', price: 500, tag: null,
     bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg',
     desc: 'A graceful celebration of sunshine, beauty, and effortless elegance.',
+    story: 'Inspired by the warmth of golden mornings and the delicate beauty of blooming flowers, Soleil Bloom is handcrafted for the woman who carries joy wherever she goes. Woven with care, adorned with elegant pearls, and finished with floral accents, this timeless handbag is the perfect blend of charm and sophistication.\n\nWhether you\'re attending a brunch, garden party, wedding, or simply elevating your everyday style, Soleil Bloom adds a touch of sunshine to every outfit.\n\nAvailable in Sunshine Yellow and Blush Pink, each shade is designed to let your elegance bloom beautifully.',
     variants: ['AT-0725'],
   },
   {
