@@ -24,7 +24,6 @@ export default function Home() {
       <header className={`site-header${scrolled ? ' scrolled' : ''}`}>
         <div className="header-main">
           <div className="header-icons" style={{ marginLeft: 'auto', display: 'flex', gap: '12px', alignItems: 'center' }}>
-            <Link to="/contact" className="open-shop-btn">CONTACT US</Link>
             <Link to="/shop" className="open-shop-btn">OPEN SHOP <span>→</span></Link>
           </div>
         </div>
@@ -106,6 +105,26 @@ export default function Home() {
               </div>
             </div>
           ))}
+        </div>
+      </section>
+
+      <section className="contact-section-home">
+        <div className="contact-section-inner">
+          <span className="contact-section-eyebrow">GET IN TOUCH</span>
+          <h2 className="contact-section-heading">Contact <em>Us</em></h2>
+          <div className="contact-section-cards">
+            <div className="contact-card-home">
+              <p className="contact-card-city">Accra, Ghana</p>
+              <a href="tel:+233244000000" className="contact-card-phone">+233 24 400 0000</a>
+              <a href="mailto:hello@hgchristique.co" className="contact-card-email">hello@hgchristique.co</a>
+            </div>
+            <div className="contact-card-divider" />
+            <div className="contact-card-home">
+              <p className="contact-card-city">Online Orders</p>
+              <a href="tel:+233244000001" className="contact-card-phone">+233 24 400 0001</a>
+              <a href="mailto:orders@hgchristique.co" className="contact-card-email">orders@hgchristique.co</a>
+            </div>
+          </div>
         </div>
       </section>
 
