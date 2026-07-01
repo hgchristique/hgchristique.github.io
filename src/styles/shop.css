@@ -302,77 +302,46 @@
 .product-price { font-size: 14px; font-weight: 600; }
 .price-cents { font-size: 11px; font-weight: 400; }
 
-.product-price-row {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-
-.expand-btn {
+.card-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(255,255,255,0.85);
+  color: #222;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 24px;
-  height: 24px;
-  border: 1px solid rgba(0,0,0,0.14);
-  border-radius: 50%;
-  background: #f5f2ee;
   cursor: pointer;
+  z-index: 10;
   padding: 0;
-  color: #555;
-  transition: background 0.15s, transform 0.2s;
-  flex-shrink: 0;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.18);
+  transition: background 0.15s, transform 0.15s;
 }
-.expand-btn:hover { background: #ece8e2; }
-.expand-btn svg { transition: transform 0.2s; }
-.expand-btn.expanded svg { transform: rotate(180deg); }
+.card-arrow:hover { background: #fff; transform: translateY(-50%) scale(1.1); }
+.card-arrow-left  { left: 6px; }
+.card-arrow-right { right: 6px; }
 
-.product-children-row {
-  grid-column: 1 / -1;
+.card-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
   display: flex;
-  gap: 12px;
-  padding: 14px 4px;
-  overflow-x: auto;
-  scrollbar-width: none;
+  gap: 4px;
+  z-index: 10;
 }
-.product-children-row::-webkit-scrollbar { display: none; }
-
-.child-card {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 6px;
-  cursor: pointer;
-  flex-shrink: 0;
-  transition: transform 0.15s;
+.card-dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.5);
+  transition: background 0.2s;
 }
-.child-card:hover { transform: translateY(-2px); }
-
-.child-card-img {
-  width: 80px;
-  height: 80px;
-  border-radius: 10px;
-  overflow: hidden;
-  border: 1px solid rgba(0,0,0,0.08);
-}
-.child-card-img img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-}
-.child-card-name {
-  font-size: 11px;
-  font-weight: 500;
-  color: #222;
-  text-align: center;
-  max-width: 80px;
-  line-height: 1.3;
-}
-.child-card-price {
-  font-size: 11px;
-  color: #888;
-}
+.card-dot.active { background: #fff; }
 
 /* Right panel — order */
 .pos-order {

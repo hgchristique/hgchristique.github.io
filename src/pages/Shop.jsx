@@ -40,15 +40,14 @@ export default function Shop() {
   const [loadingVisible, setLoadingVisible] = useState(true)
   const [time, setTime] = useState('')
   const [cartOpen, setCartOpen] = useState(false)
-  const [expandedSkus, setExpandedSkus] = useState(new Set())
+  const [slideIndexes, setSlideIndexes] = useState({})
 
-  function toggleExpand(e, sku) {
+  function slideCard(e, sku, slides, dir) {
     e.stopPropagation()
-    setExpandedSkus(prev => {
-      const next = new Set(prev)
-      if (next.has(sku)) next.delete(sku)
-      else next.add(sku)
-      return next
+    setSlideIndexes(prev => {
+      const cur = prev[sku] ?? 0
+      const next = (cur + dir + slides.length) % slides.length
+      return { ...prev, [sku]: next }
     })
   }
 
@@ -217,61 +216,57 @@ export default function Shop() {
           <div className="products-grid">
             {filtered.map(p => {
               const children = p.variants?.map(vsku => PRODUCTS.find(x => x.sku === vsku)).filter(Boolean) ?? []
-              const isExpanded = expandedSkus.has(p.sku)
+              const slides = children.length > 0 ? [p, ...children] : [p]
+              const idx = slideIndexes[p.sku] ?? 0
+              const shown = slides[idx]
               return (
-                <Fragment key={p.sku}>
-                  <div
-                    className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
-                    onClick={() => navigate(`/shop/${p.sku}`)}
-                  >
-                    <div className="product-img" style={{ background: selectedColors[p.sku] ?? p.bg }}>
-                      {p.img
-                        ? <img src={p.img} alt={p.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                        : <ProductSvg cat={p.cat} color={p.color} />
-                      }
-                      <div className="product-add-btn">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><polyline points="9,18 15,12 9,6"/></svg>
-                      </div>
-                      {p.cat === 'Bags' && !p.img && (
-                        <div className="color-swatches" onClick={e => e.stopPropagation()}>
-                          {BAG_COLORS.map(c => (
-                            <span
-                              key={c}
-                              className={`color-swatch${(selectedColors[p.sku] ?? p.bg) === c ? ' active' : ''}`}
-                              style={{ background: c }}
-                              onClick={() => setSelectedColors(prev => ({ ...prev, [p.sku]: c }))}
-                            />
+                <div
+                  key={p.sku}
+                  className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
+                  onClick={() => navigate(`/shop/${shown.sku}`)}
+                >
+                  <div className="product-img" style={{ background: selectedColors[p.sku] ?? shown.bg }}>
+                    {shown.img
+                      ? <img src={shown.img} alt={shown.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                      : <ProductSvg cat={shown.cat} color={shown.color} />
+                    }
+                    {slides.length > 1 && (
+                      <>
+                        <button className="card-arrow card-arrow-left" onClick={e => slideCard(e, p.sku, slides, -1)}>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="12" height="12"><polyline points="15,18 9,12 15,6"/></svg>
+                        </button>
+                        <button className="card-arrow card-arrow-right" onClick={e => slideCard(e, p.sku, slides, 1)}>
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="12" height="12"><polyline points="9,18 15,12 9,6"/></svg>
+                        </button>
+                        <div className="card-dots">
+                          {slides.map((_, i) => (
+                            <span key={i} className={`card-dot${i === idx ? ' active' : ''}`} />
                           ))}
                         </div>
-                      )}
+                      </>
+                    )}
+                    <div className="product-add-btn">
+                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><polyline points="9,18 15,12 9,6"/></svg>
                     </div>
-                    <div className="product-info">
-                      <div className="product-name">{p.name}</div>
-                      <div className="product-cat">{p.cat}</div>
-                      <div className="product-price-row">
-                        <div className="product-price">{formatPrice(p.price)}</div>
-                        {children.length > 0 && (
-                          <button className={`expand-btn${isExpanded ? ' expanded' : ''}`} onClick={e => toggleExpand(e, p.sku)}>
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="13" height="13"><polyline points="6,9 12,15 18,9"/></svg>
-                          </button>
-                        )}
+                    {p.cat === 'Bags' && !shown.img && (
+                      <div className="color-swatches" onClick={e => e.stopPropagation()}>
+                        {BAG_COLORS.map(c => (
+                          <span
+                            key={c}
+                            className={`color-swatch${(selectedColors[p.sku] ?? p.bg) === c ? ' active' : ''}`}
+                            style={{ background: c }}
+                            onClick={() => setSelectedColors(prev => ({ ...prev, [p.sku]: c }))}
+                          />
+                        ))}
                       </div>
-                    </div>
+                    )}
                   </div>
-                  {children.length > 0 && isExpanded && (
-                    <div className="product-children-row">
-                      {children.map(child => (
-                        <div key={child.sku} className="child-card" onClick={() => navigate(`/shop/${child.sku}`)}>
-                          <div className="child-card-img" style={{ background: child.bg }}>
-                            {child.img && <img src={child.img} alt={child.name} />}
-                          </div>
-                          <span className="child-card-name">{child.name}</span>
-                          <span className="child-card-price">{formatPrice(child.price)}</span>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                </Fragment>
+                  <div className="product-info">
+                    <div className="product-name">{shown.name}</div>
+                    <div className="product-cat">{shown.cat}</div>
+                    <div className="product-price">{formatPrice(shown.price)}</div>
+                  </div>
+                </div>
               )
             })}
           </div>
