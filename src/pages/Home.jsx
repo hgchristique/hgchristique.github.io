@@ -114,15 +114,14 @@ export default function Home() {
           <h2 className="contact-section-heading">Contact <em>Us</em></h2>
           <div className="contact-section-cards">
             <div className="contact-card-home">
-              <p className="contact-card-city">Accra, Ghana</p>
-              <a href="tel:+233244000000" className="contact-card-phone">+233 24 400 0000</a>
-              <a href="mailto:hello@hgchristique.co" className="contact-card-email">hello@hgchristique.co</a>
+              <p className="contact-card-city">Phone</p>
+              <a href="tel:+233594195592" className="contact-card-phone">+233 59 419 5592</a>
+              <a href="tel:+233558592710" className="contact-card-phone">+233 55 859 2710</a>
             </div>
             <div className="contact-card-divider" />
             <div className="contact-card-home">
-              <p className="contact-card-city">Online Orders</p>
-              <a href="tel:+233244000001" className="contact-card-phone">+233 24 400 0001</a>
-              <a href="mailto:orders@hgchristique.co" className="contact-card-email">orders@hgchristique.co</a>
+              <p className="contact-card-city">Email</p>
+              <a href="mailto:hello@hqchristique.art" className="contact-card-email">hello@hqchristique.art</a>
             </div>
           </div>
         </div>
