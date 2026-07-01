@@ -41,7 +41,7 @@ export default function Terms() {
         <p>These terms are reviewed and updated on the 1st of every month. Continued use of the site after any update constitutes your acceptance of the revised terms.</p>
 
         <h2>9. Contact</h2>
-        <p>For questions regarding these Terms of Use, please contact us at <a href="mailto:legal@hgchristique.co">legal@hgchristique.co</a>.</p>
+        <p>For questions regarding these Terms of Use, please contact us at <a href="mailto:hello@hgchristique.click">hello@hgchristique.click</a>.</p>
       </div>
 
       <footer className="legal-footer">

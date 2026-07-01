@@ -32,7 +32,7 @@ export default function Privacy() {
         <p>Our site uses cookies to improve your browsing experience. Cookies help us remember your preferences and understand how visitors use our site. You may disable cookies in your browser settings, though this may affect certain site functionality.</p>
 
         <h2>6. Your Rights</h2>
-        <p>You have the right to access, correct, or request deletion of your personal data. To exercise these rights, please contact us at <a href="mailto:privacy@hgchristique.co">privacy@hgchristique.co</a>.</p>
+        <p>You have the right to access, correct, or request deletion of your personal data. To exercise these rights, please contact us at <a href="mailto:hello@hgchristique.click">hello@hgchristique.click</a>.</p>
 
         <h2>7. Third-Party Links</h2>
         <p>Our site may contain links to third-party websites. HG Christique is not responsible for the privacy practices or content of those sites.</p>
@@ -41,7 +41,7 @@ export default function Privacy() {
         <p>This Privacy Policy is reviewed and updated on the 1st of every month. We encourage you to review it periodically. Continued use of the site following any update constitutes acceptance of the revised policy.</p>
 
         <h2>9. Contact</h2>
-        <p>For any privacy-related questions, please contact us at <a href="mailto:privacy@hgchristique.co">privacy@hgchristique.co</a>.</p>
+        <p>For any privacy-related questions, please contact us at <a href="mailto:hello@hgchristique.click">hello@hgchristique.click</a>.</p>
       </div>
 
       <footer className="legal-footer">
