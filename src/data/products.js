@@ -43,7 +43,12 @@ export const PRODUCTS = [
       { name: 'Blush Pink',      hex: '#f4a7b9' },
     ],
   },
-  { sku: 'AT-0731', name: 'Silk Poplin Shirt',    cat: 'Shirts',      price: 400,   tag: 'new',  bg: '#b8c4c0', color: 'rgba(0,0,0,0.45)', img: '/bag5.jpeg' },
+  {
+    sku: 'AT-0731', name: 'Violet Heirloom', cat: 'Bags', price: 400, tag: 'new',
+    bg: '#b8c4c0', color: 'rgba(0,0,0,0.45)', img: '/bag5.jpeg',
+    desc: 'A timeless treasure woven for the woman who embraces elegance with confidence.',
+    story: 'Luxury is found in the details, and Violet Heirloom is crafted to celebrate them all. Handwoven with precision, adorned with luminous pearl handles, and finished with shimmering crystal embellishments, this exquisite handbag blends classic sophistication with modern artistry.\n\nWhether you\'re attending a wedding, an elegant soirée, or a special celebration, Violet Heirloom is designed to leave a lasting impression. It\'s more than an accessory—it\'s a keepsake of grace, beauty, and timeless style.',
+  },
   { sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers',    price: 350,   tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg' },
   { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Trousers',    price: 300,   tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)', img: '/bag7.jpeg' },
   { sku: 'AT-1002', name: 'The Silk Slip Dress',  cat: 'Dresses',     price: 10472, tag: 'new',  bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
