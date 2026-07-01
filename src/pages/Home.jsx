@@ -121,7 +121,7 @@ export default function Home() {
             <div className="contact-card-divider" />
             <div className="contact-card-home">
               <p className="contact-card-city">Email</p>
-              <a href="mailto:hello@hgchristique.art" className="contact-card-email">hello@hgchristique.art</a>
+              <a href="mailto:hello@hgchristique.click" className="contact-card-email">hello@hgchristique.click</a>
             </div>
           </div>
         </div>
