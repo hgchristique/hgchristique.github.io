@@ -3,6 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        var p = new URLSearchParams(window.location.search).get('p');
+        if (p) {
+          var q = new URLSearchParams(window.location.search).get('q');
+          window.history.replaceState(null, null, '/' + p + (q ? '?' + q : '') + window.location.hash);
+        }
+      })();
+    </script>
     <title>HG CHRISTIQUE</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
