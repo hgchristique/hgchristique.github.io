@@ -28,9 +28,10 @@ export const PRODUCTS = [
   { sku: 'AT-0422', name: 'Zip Pouch',            cat: 'Bags',        price: 3234,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0533', name: 'Weekend Duffel',       cat: 'Bags',        price: 18172, tag: null,   bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
   { sku: 'AT-0701', name: 'Gold Bead Bracelet',   cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bracelet1.jpeg' },
-  { sku: 'AT-0702', name: 'Pearl Bracelet',       cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bracelet2.jpeg' },
+  { sku: 'AT-0702', name: 'Pearl Bracelet',       cat: 'Bracelets',   price: 120,   tag: 'new',  bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bracelet2.jpeg', hidden: true },
   {
     sku: 'AT-0703', name: 'Scarlet Bloom Bracelet', cat: 'Bracelets', price: 120, tag: 'new',
+    variants: ['AT-0702'],
     bg: '#c8a96e', color: 'rgba(0,0,0,0.45)', img: '/bracelet3.jpeg',
     desc: 'A delicate masterpiece inspired by flowers in full bloom.',
     story: 'Every flower blooms in its own time, and Scarlet Bloom is a celebration of that timeless beauty. Handwoven with sparkling crystals and delicate floral details, this bracelet captures the elegance of nature and the brilliance of handcrafted artistry. Whether worn as a subtle statement or a finishing touch, it adds effortless sophistication to every look. Available in blue, black, yellow, red, and white, each shade reflects a unique expression of style.\n\nHG Christique — Luxury in Every Detail.',

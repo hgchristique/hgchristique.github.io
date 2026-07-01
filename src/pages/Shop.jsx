@@ -107,6 +107,7 @@ export default function Shop() {
 
   const filtered = PRODUCTS.filter(p => {
     if (!p.img) return false
+    if (p.hidden) return false
     if (activeCategory !== 'all' && p.cat !== activeCategory) return false
     if (activeFilter === 'new' && p.tag !== 'new') return false
     if (activeFilter === 'sale' && p.tag !== 'sale') return false
