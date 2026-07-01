@@ -184,7 +184,7 @@ export const PRODUCTS = [
   },
   {
     sku: 'AT-0706', name: 'Golden Halo', cat: 'Bracelets', price: 100, tag: 'new',
-    hidden: true, bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bracelet6.jpeg',
+    hidden: true, bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/cr.jpeg',
     desc: 'A statement of grace, brilliance, and timeless beauty.',
     story: 'Some pieces don\'t just complete an outfit—they become the moment. Golden Halo is handcrafted to reflect elegance from every angle, blending luminous champagne crystals with sleek silver accents in a design that captures light with every movement. Whether styled for a wedding, an evening celebration, or a sophisticated occasion, this piece wraps your wrist in effortless luxury.',
   },
