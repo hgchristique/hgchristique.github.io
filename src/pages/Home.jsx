@@ -131,6 +131,10 @@ export default function Home() {
         <div className="footer-bottom">
           <span className="footer-logo">HG CHRISTIQUE</span>
 
+          <div className="footer-legal">
+            <Link to="/terms">TERMS OF USE</Link>
+            <Link to="/privacy">PRIVACY</Link>
+          </div>
           <span className="footer-copy">© {new Date().getFullYear()} HG CHRISTIQUE · ALL RIGHTS RESERVED</span>
         </div>
       </footer>
