@@ -4,6 +4,7 @@ import '../styles/home.css'
 
 export default function Home() {
   const [current, setCurrent] = useState(0)
+  const [scrolled, setScrolled] = useState(false)
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -12,13 +13,16 @@ export default function Home() {
     return () => clearInterval(timer)
   }, [])
 
+  useEffect(() => {
+    function onScroll() { setScrolled(window.scrollY > 80) }
+    window.addEventListener('scroll', onScroll)
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
     <>
-      <header className="site-header">
+      <header className={`site-header${scrolled ? ' scrolled' : ''}`}>
         <div className="header-main">
-          <div className="header-icons" style={{ marginRight: 'auto', marginLeft: 0, display: 'flex', alignItems: 'center' }}>
-            <Link to="/" className="header-logo">HG CHRISTIQUE</Link>
-          </div>
           <div className="header-icons" style={{ marginLeft: 'auto', display: 'flex', gap: '12px', alignItems: 'center' }}>
             <Link to="/contact" className="open-shop-btn">CONTACT US</Link>
             <Link to="/shop" className="open-shop-btn">OPEN SHOP <span>→</span></Link>
