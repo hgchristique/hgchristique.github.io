@@ -28,15 +28,20 @@ export const PRODUCTS = [
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 300,   tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
   { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 400,   tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg' },
   {
+  {
     sku: 'AT-0724', name: 'Soleil Bloom', cat: 'Shirts', price: 500, tag: null,
-    bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg',
+    hidden: true, bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg',
     desc: 'A graceful celebration of sunshine, beauty, and effortless elegance.',
     story: 'Inspired by the warmth of golden mornings and the delicate beauty of blooming flowers, Soleil Bloom is handcrafted for the woman who carries joy wherever she goes. Woven with care, adorned with elegant pearls, and finished with floral accents, this timeless handbag is the perfect blend of charm and sophistication.\n\nWhether you\'re attending a brunch, garden party, wedding, or simply elevating your everyday style, Soleil Bloom adds a touch of sunshine to every outfit.\n\nAvailable in Sunshine Yellow and Blush Pink, each shade is designed to let your elegance bloom beautifully.',
-    variants: ['AT-0725'],
+    colors: [
+      { name: 'Sunshine Yellow', hex: '#f5c842' },
+      { name: 'Blush Pink',      hex: '#f4a7b9' },
+    ],
   },
   {
     sku: 'AT-0725', name: 'Soleil Bloom', cat: 'Bags', price: 500, tag: 'new',
-    hidden: true, bg: '#f5c842', color: 'rgba(0,0,0,0.55)', img: '/no.jpeg',
+    bg: '#f5c842', color: 'rgba(0,0,0,0.55)', img: '/no.jpeg',
+    variants: ['AT-0724'],
     desc: 'A graceful celebration of sunshine, beauty, and effortless elegance.',
     story: 'Inspired by the warmth of golden mornings and the delicate beauty of blooming flowers, Soleil Bloom is handcrafted for the woman who carries joy wherever she goes. Woven with care, adorned with elegant pearls, and finished with floral accents, this timeless handbag is the perfect blend of charm and sophistication.\n\nWhether you\'re attending a brunch, garden party, wedding, or simply elevating your everyday style, Soleil Bloom adds a touch of sunshine to every outfit.\n\nAvailable in Sunshine Yellow and Blush Pink, each shade is designed to let your elegance bloom beautifully.',
     colors: [
