@@ -16,8 +16,9 @@ export const PRODUCTS = [
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 300,   tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
   { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 400,   tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg' },
   {
-    sku: 'AT-0724', name: 'Linen Field Shirt', cat: 'Shirts', price: 500, tag: null,
+    sku: 'AT-0724', name: 'Soleil Bloom', cat: 'Shirts', price: 500, tag: null,
     bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg',
+    desc: 'A graceful celebration of sunshine, beauty, and effortless elegance.',
     variants: ['AT-0725'],
   },
   {
