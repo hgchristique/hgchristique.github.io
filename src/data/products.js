@@ -14,6 +14,7 @@ export const PRODUCTS = [
   {
     sku: 'AT-0218', name: 'Rosé Royale', cat: 'Bags', price: 350, tag: null,
     bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg',
+    variants: ['AT-0903'],
     desc: 'A timeless expression of confidence, femininity, and luxury.',
     story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
     colors: [
@@ -49,7 +50,18 @@ export const PRODUCTS = [
     desc: 'A timeless treasure woven for the woman who embraces elegance with confidence.',
     story: 'Luxury is found in the details, and Violet Heirloom is crafted to celebrate them all. Handwoven with precision, adorned with luminous pearl handles, and finished with shimmering crystal embellishments, this exquisite handbag blends classic sophistication with modern artistry.\n\nWhether you\'re attending a wedding, an elegant soirée, or a special celebration, Violet Heirloom is designed to leave a lasting impression. It\'s more than an accessory—it\'s a keepsake of grace, beauty, and timeless style.',
   },
-  { sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers',    price: 350,   tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg' },
+  {
+    sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers', price: 350, tag: null,
+    hidden: true, bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg',
+    desc: 'A timeless expression of confidence, femininity, and luxury.',
+    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
+    colors: [
+      { name: 'Fuchsia Pink',  hex: '#e91e8c' },
+      { name: 'Royal Purple',  hex: '#7b2d8b' },
+      { name: 'Classic Brown', hex: '#5c3a1e' },
+      { name: 'Rich Wine',     hex: '#722f37' },
+    ],
+  },
   { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Trousers',    price: 300,   tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)', img: '/bag7.jpeg' },
   { sku: 'AT-1002', name: 'The Silk Slip Dress',  cat: 'Dresses',     price: 10472, tag: 'new',  bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
   { sku: 'AT-1018', name: 'Linen Shift Dress',    cat: 'Dresses',     price: 7546,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
