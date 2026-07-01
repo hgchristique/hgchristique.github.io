@@ -2,6 +2,12 @@ import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/home.css'
 
+function toRoman(n) {
+  const v = [1000,900,500,400,100,90,50,40,10,9,5,4,1]
+  const s = ['M','CM','D','CD','C','XC','L','XL','X','IX','V','IV','I']
+  return v.reduce((r, val, i) => { while (n >= val) { r += s[i]; n -= val } return r }, '')
+}
+
 export default function Home() {
   const [current, setCurrent] = useState(0)
   const [scrolled, setScrolled] = useState(false)
@@ -72,7 +78,7 @@ export default function Home() {
             <em>it is how you carry yourself.</em>
           </blockquote>
           <div className="house-statement-ornament" />
-          <span className="house-statement-sig">— HG CHRISTIQUE · EST. MMXXIV</span>
+          <span className="house-statement-sig">— HG CHRISTIQUE · EST. {new Date().getFullYear()}</span>
         </div>
       </section>
 
@@ -114,11 +120,10 @@ export default function Home() {
           <span className="footer-logo">HG CHRISTIQUE</span>
           <div className="footer-legal">
             <a href="#">LEGAL</a>
-            <a href="#">PRIVACY</a>
-            <a href="#">COOKIES</a>
-            <a href="#">ACCESSIBILITY</a>
+            <Link to="/terms">TERMS OF USE</Link>
+            <Link to="/privacy">PRIVACY</Link>
           </div>
-          <span className="footer-copy">© 2026 HG CHRISTIQUE · ALL RIGHTS RESERVED</span>
+          <span className="footer-copy">© {new Date().getFullYear()} HG CHRISTIQUE · ALL RIGHTS RESERVED</span>
         </div>
       </footer>
     </>
