@@ -79,7 +79,7 @@ export const PRODUCTS = [
     story: 'Luxury is found in the details, and Violet Heirloom is crafted to celebrate them all. Handwoven with precision, adorned with luminous pearl handles, and finished with shimmering crystal embellishments, this exquisite handbag blends classic sophistication with modern artistry.\n\nWhether you\'re attending a wedding, an elegant soirée, or a special celebration, Violet Heirloom is designed to leave a lasting impression. It\'s more than an accessory—it\'s a keepsake of grace, beauty, and timeless style.',
   },
   {
-    sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers', price: 350, tag: null,
+    sku: 'AT-0903', name: 'Rosé Royale', cat: 'Trousers', price: 350, tag: null,
     hidden: true, bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg',
     desc: 'A timeless expression of confidence, femininity, and luxury.',
     story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
