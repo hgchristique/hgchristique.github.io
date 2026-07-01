@@ -1,7 +1,17 @@
+import { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import '../styles/home.css'
 
 export default function Home() {
+  const [current, setCurrent] = useState(0)
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrent(prev => (prev + 1) % 3)
+    }, 5000)
+    return () => clearInterval(timer)
+  }, [])
+
   return (
     <>
       <header className="site-header">
@@ -17,13 +27,35 @@ export default function Home() {
       </header>
 
       <section className="hero" id="hero">
-        <div className="slide active">
-          <img src="/best.jpeg" className="hero-bg-img" alt="" />
-          <div className="slide-overlay" />
-          <div className="hero-content">
-            <p className="hero-eyebrow">THE FASHION HOUSE</p>
-            <h1 className="hero-title">HG CHRISTIQUE</h1>
+        {[
+          { img: '/hero5.jpg', pos: 'center 65%' },
+          { img: '/hero2.jpg', pos: 'center center' },
+          { img: '/hero3.jpg', pos: 'center 40%' },
+        ].map((slide, i) => (
+          <div
+            key={i}
+            className={`slide${current === i ? ' active' : ''}`}
+            style={{
+              backgroundImage: `url(${slide.img})`,
+              backgroundSize: 'cover',
+              backgroundPosition: slide.pos,
+            }}
+          >
+            <div className="slide-overlay" />
+            <div className="hero-content">
+              <p className="hero-eyebrow">THE FASHION HOUSE</p>
+              <h1 className="hero-title">HG CHRISTIQUE</h1>
+            </div>
           </div>
+        ))}
+        <div className="hero-dots">
+          {[0, 1, 2].map(d => (
+            <span
+              key={d}
+              className={`hero-dot${current === d ? ' active' : ''}`}
+              onClick={() => setCurrent(d)}
+            />
+          ))}
         </div>
       </section>
 

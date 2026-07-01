@@ -103,8 +103,7 @@ export default function Shop() {
     const p = PRODUCTS.find(x => x.sku === sku)
     return s + (p ? p.price * q : 0)
   }, 0)
-  const tax = subtotal * 0.0875
-  const total = subtotal + tax
+  const total = subtotal
 
   const filtered = PRODUCTS.filter(p => {
     if (!p.img) return false
@@ -305,8 +304,6 @@ export default function Shop() {
 
             {cartEntries.length > 0 && (
               <div className="order-footer">
-                <div className="order-line"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
-                <div className="order-line"><span>Sales tax · 8.75%</span><span>{formatPrice(tax)}</span></div>
                 <div className="order-line loyalty"><span>Loyalty credit</span><span>– {formatPrice(0)}</span></div>
                 <div className="order-total">
                   <span className="order-total-label">Total due</span>
