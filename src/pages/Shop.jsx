@@ -1,95 +1,9 @@
-import { useState, useEffect, useCallback } from 'react'
-import { Link } from 'react-router-dom'
+import { useState, useEffect } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { PRODUCTS, CATEGORIES } from '../data/products'
+import { useCurrency } from '../hooks/useCurrency'
+import { getCart, saveCart } from '../utils/cart'
 import '../styles/shop.css'
-
-// All rates are relative to GHS (base currency)
-const CURRENCY_RATES = {
-  GHS: { rate: 1,      locale: 'en-GH',  decimals: 2 },
-  USD: { rate: 0.0649, locale: 'en-US',  decimals: 2 },
-  EUR: { rate: 0.0597, locale: 'de-DE',  decimals: 2 },
-  GBP: { rate: 0.0513, locale: 'en-GB',  decimals: 2 },
-  NGN: { rate: 105.19, locale: 'en-NG',  decimals: 0 },
-  ZAR: { rate: 1.182,  locale: 'en-ZA',  decimals: 2 },
-  KES: { rate: 8.44,   locale: 'sw-KE',  decimals: 0 },
-  CAD: { rate: 0.0883, locale: 'en-CA',  decimals: 2 },
-  AUD: { rate: 0.1,    locale: 'en-AU',  decimals: 2 },
-  JPY: { rate: 9.74,   locale: 'ja-JP',  decimals: 0 },
-  INR: { rate: 5.42,   locale: 'en-IN',  decimals: 2 },
-  AED: { rate: 0.238,  locale: 'ar-AE',  decimals: 2 },
-  CHF: { rate: 0.0584, locale: 'de-CH',  decimals: 2 },
-  SGD: { rate: 0.087,  locale: 'en-SG',  decimals: 2 },
-}
-
-function useCurrency() {
-  const [currencyCode, setCurrencyCode] = useState('GHS')
-
-  useEffect(() => {
-    fetch('https://ipapi.co/json/', { signal: AbortSignal.timeout(5000) })
-      .then(r => r.json())
-      .then(data => {
-        const code = data.currency
-        if (typeof code === 'string' && /^[A-Z]{3}$/.test(code) && CURRENCY_RATES[code]) {
-          setCurrencyCode(code)
-        }
-      })
-      .catch(() => {})
-  }, [])
-
-  const formatPrice = useCallback((ghsPrice) => {
-    const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.GHS
-    const converted = ghsPrice * config.rate
-    return new Intl.NumberFormat(config.locale, {
-      style: 'currency',
-      currency: currencyCode,
-      minimumFractionDigits: config.decimals,
-      maximumFractionDigits: config.decimals,
-    }).format(converted)
-  }, [currencyCode])
-
-  return { currencyCode, formatPrice }
-}
-
-// Prices stored in GHS (base currency)
-const PRODUCTS = [
-  { sku: 'AT-0341', name: 'Root Necklace',        cat: 'Neckwear',    price: 350,   tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/neck.jpeg' },
-  { sku: 'AT-0343', name: 'Bead Necklace',        cat: 'Neckwear',    price: 300,   tag: 'new',  bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck3.jpeg' },
-  { sku: 'AT-0218', name: 'Mariner Trench',       cat: 'Bags',        price: 350,   tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg' },
-  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 300,   tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
-  { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Knitwear',    price: 300,   tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
-  { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Shirts',      price: 400,   tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg' },
-  { sku: 'AT-0724', name: 'Linen Field Shirt',    cat: 'Shirts',      price: 500,   tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg' },
-  { sku: 'AT-0731', name: 'Silk Poplin Shirt',    cat: 'Shirts',      price: 400,   tag: 'new',  bg: '#b8c4c0', color: 'rgba(0,0,0,0.45)', img: '/bag5.jpeg' },
-  { sku: 'AT-0903', name: 'Atelier Wide Trouser', cat: 'Trousers',    price: 350,   tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg' },
-  { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Trousers',    price: 300,   tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)', img: '/bag7.jpeg' },
-  { sku: 'AT-1002', name: 'The Silk Slip Dress',  cat: 'Dresses',     price: 10472, tag: 'new',  bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-1018', name: 'Linen Shift Dress',    cat: 'Dresses',     price: 7546,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
-  { sku: 'AT-0042', name: 'Onyx Crossbody',       cat: 'Bags',        price: 13706, tag: null,   bg: '#0a0a0a', color: '#c8a96e' },
-  { sku: 'AT-0105', name: 'Market Tote',          cat: 'Bags',        price: 9548,  tag: null,   bg: '#b8845a', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-0211', name: 'Box Clutch',           cat: 'Bags',        price: 8316,  tag: 'new',  bg: '#3d302a', color: '#c8a96e' },
-  { sku: 'AT-0318', name: 'Chain Shoulder Bag',   cat: 'Bags',        price: 15092, tag: null,   bg: '#6b5a4e', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-0422', name: 'Zip Pouch',            cat: 'Bags',        price: 3234,  tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)' },
-  { sku: 'AT-0533', name: 'Weekend Duffel',       cat: 'Bags',        price: 18172, tag: null,   bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-0701', name: 'Gold Bead Bracelet',   cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bracelet1.jpeg' },
-  { sku: 'AT-0702', name: 'Pearl Bracelet',        cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bracelet2.jpeg' },
-  { sku: 'AT-0703', name: 'Chain Bracelet',        cat: 'Bracelets',   price: 120,   tag: 'new',  bg: '#c8a96e', color: 'rgba(0,0,0,0.45)', img: '/bracelet3.jpeg' },
-  { sku: 'AT-0704', name: 'Beaded Cuff',           cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bracelet4.jpeg' },
-  { sku: 'AT-0705', name: 'Stack Bracelet Set',    cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#3d302a', color: '#c8a96e', img: '/bracelet5.jpeg' },
-  { sku: 'AT-0706', name: 'Crystal Bracelet',      cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bracelet6.jpeg' },
-  { sku: 'AT-0601', name: 'Silk Scarf',           cat: 'Accessories', price: 2772,  tag: 'new',  bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
-  { sku: 'AT-0614', name: 'Leather Belt',         cat: 'Accessories', price: 3388,  tag: null,   bg: '#3d302a', color: '#c8a96e' },
-  { sku: 'AT-0627', name: 'Wool Beanie',          cat: 'Accessories', price: 1848,  tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
-  { sku: 'AT-0641', name: 'Canvas Tote Bag',      cat: 'Accessories', price: 1463,  tag: 'low',  bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
-]
-
-const CATEGORIES = [
-  { id: 'all',         label: 'All items',    count: 16 },
-  { id: 'Neckwear',    label: 'Neckwear',     count: 3 },
-  { id: 'Knitwear',    label: 'Knitwear',     count: 1 },
-  { id: 'Shirts',      label: 'Shirts',       count: 3 },
-  { id: 'Trousers',    label: 'Trousers',     count: 2 },
-  { id: 'Bags',        label: 'Bags',         count: 1 },
-  { id: 'Bracelets',   label: 'Bracelets',    count: 6 },
-]
 
 function ProductSvg({ cat, color }) {
   const base = { fill: 'none', strokeWidth: '1.3', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: color }
@@ -114,8 +28,9 @@ function ProductSvg({ cat, color }) {
 const BAG_COLORS = ['#0a0a0a', '#b8845a', '#2d3642', '#6b2d3e', '#4a5240', '#c4b89a']
 
 export default function Shop() {
+  const navigate = useNavigate()
   const { currencyCode, formatPrice } = useCurrency()
-  const [cart, setCart] = useState({})
+  const [cart, setCart] = useState(() => getCart())
   const [selectedColors, setSelectedColors] = useState({})
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeFilter, setActiveFilter] = useState('instock')
@@ -124,6 +39,7 @@ export default function Shop() {
   const [loading, setLoading] = useState(true)
   const [loadingVisible, setLoadingVisible] = useState(true)
   const [time, setTime] = useState('')
+  const [cartOpen, setCartOpen] = useState(false)
 
   useEffect(() => {
     function tick() {
@@ -140,6 +56,20 @@ export default function Shop() {
     const remove = setTimeout(() => setLoadingVisible(false), 2000)
     return () => { clearTimeout(fade); clearTimeout(remove) }
   }, [])
+
+  useEffect(() => {
+    const stored = getCart()
+    if (Object.keys(stored).length > 0) {
+      setCart(prev => {
+        const merged = { ...stored, ...prev }
+        return merged
+      })
+    }
+  }, [])
+
+  useEffect(() => {
+    saveCart(cart)
+  }, [cart])
 
   function addToCart(sku) {
     setCart(prev => ({ ...prev, [sku]: (prev[sku] || 0) + 1 }))
@@ -160,6 +90,7 @@ export default function Shop() {
   function processCharge() {
     if (cartEntries.length === 0) return
     setCart({})
+    setCartOpen(false)
   }
 
   function toggleFilter(f) {
@@ -210,7 +141,7 @@ export default function Shop() {
         <div className="pos-brand">
           <div className="pos-brand-icon">S</div>
           <div>
-            <div className="pos-brand-name">Styleboss</div>
+            <div className="pos-brand-name">HG Christique</div>
             <div className="pos-register">Register 04 · Floor 1</div>
           </div>
         </div>
@@ -228,6 +159,10 @@ export default function Shop() {
           <div className="register-badge"><span className="dot"></span>Register open</div>
           <div className="currency-badge">{currencyCode}</div>
           <div className="pos-time">{time}</div>
+          <button className="cart-topbar-btn" onClick={() => setCartOpen(true)}>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="20" height="20"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+            {itemCount > 0 && <span className="cart-topbar-count">{itemCount}</span>}
+          </button>
           <div className="pos-user">
             <div>
               <div className="pos-user-name">Style Shop</div>
@@ -238,7 +173,7 @@ export default function Shop() {
         </div>
       </header>
 
-      <main className="pos-main">
+      <main className="pos-main pos-main-full">
         <aside className="pos-sidebar">
           <p className="sidebar-section-label">CATALOGUE</p>
           {CATEGORIES.map(c => (
@@ -260,9 +195,9 @@ export default function Shop() {
             </div>
             <div className="catalogue-filters">
               {[
-                { id: 'instock', label: 'In stock' },
-                { id: 'new',     label: 'New' },
-                { id: 'sale',    label: 'Sale' },
+                { id: 'instock',   label: 'In stock' },
+                { id: 'new',       label: 'New' },
+                { id: 'sale',      label: 'Sale' },
                 { id: 'all-items', label: 'Sort' },
               ].map(f => (
                 <button
@@ -280,14 +215,16 @@ export default function Shop() {
               <div
                 key={p.sku}
                 className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
-                onClick={() => addToCart(p.sku)}
+                onClick={() => navigate(`/shop/${p.sku}`)}
               >
                 <div className="product-img" style={{ background: selectedColors[p.sku] ?? p.bg }}>
                   {p.img
                     ? <img src={p.img} alt={p.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
                     : <ProductSvg cat={p.cat} color={p.color} />
                   }
-                  <div className="product-add-btn">+</div>
+                  <div className="product-add-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><polyline points="9,18 15,12 9,6"/></svg>
+                  </div>
                   {p.cat === 'Bags' && !p.img && (
                     <div className="color-swatches" onClick={e => e.stopPropagation()}>
                       {BAG_COLORS.map(c => (
@@ -310,82 +247,93 @@ export default function Shop() {
             ))}
           </div>
         </section>
+      </main>
 
-        <aside className="pos-order">
-          <div className="order-header">
-            <div>
-              <h3>Current order</h3>
-              <p>Nº MA-2452-1000 · Walk-in</p>
-            </div>
-            <div className="order-count-badge">{itemCount}</div>
-          </div>
-          <div className="order-items">
-            {cartEntries.length === 0 ? (
-              <div className="order-empty">
-                <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-                <p>Order is empty</p>
-                <span>Scan or tap an item to begin</span>
+      {cartOpen && (
+        <div className="cart-overlay" onClick={() => setCartOpen(false)}>
+          <div className="cart-drawer" onClick={e => e.stopPropagation()}>
+            <div className="cart-drawer-header">
+              <div>
+                <h3>Current order</h3>
+                <p>Nº MA-2452-1000 · Walk-in</p>
               </div>
-            ) : (
-              cartEntries.map(([sku, qty]) => {
-                const p = PRODUCTS.find(x => x.sku === sku)
-                if (!p) return null
-                return (
-                  <div key={sku} className="order-item">
-                    <div className="order-item-thumb" style={{ background: p.bg, overflow: 'hidden' }}>
-                      {p.img
-                        ? <img src={p.img} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-                        : <ProductSvg cat={p.cat} color={p.color} />
-                      }
-                    </div>
-                    <div>
-                      <div className="order-item-name">{p.name}</div>
-                      <div className="order-item-qty">
-                        <span className="qty-btn" onClick={e => { e.stopPropagation(); changeQty(sku, -1) }}>−</span>
-                        {qty}
-                        <span className="qty-btn" onClick={e => { e.stopPropagation(); changeQty(sku, 1) }}>+</span>
-                        <span>· {formatPrice(p.price)} each</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                <div className="order-count-badge">{itemCount}</div>
+                <button className="cart-drawer-close" onClick={() => setCartOpen(false)}>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="18" height="18"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                </button>
+              </div>
+            </div>
+
+            <div className="order-items">
+              {cartEntries.length === 0 ? (
+                <div className="order-empty">
+                  <svg viewBox="0 0 24 24"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
+                  <p>Order is empty</p>
+                  <span>Tap an item to begin</span>
+                </div>
+              ) : (
+                cartEntries.map(([sku, qty]) => {
+                  const p = PRODUCTS.find(x => x.sku === sku)
+                  if (!p) return null
+                  return (
+                    <div key={sku} className="order-item">
+                      <div className="order-item-thumb" style={{ background: p.bg, overflow: 'hidden' }}>
+                        {p.img
+                          ? <img src={p.img} alt={p.name} style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+                          : <ProductSvg cat={p.cat} color={p.color} />
+                        }
+                      </div>
+                      <div>
+                        <div className="order-item-name">{p.name}</div>
+                        <div className="order-item-qty">
+                          <span className="qty-btn" onClick={() => changeQty(sku, -1)}>−</span>
+                          {qty}
+                          <span className="qty-btn" onClick={() => changeQty(sku, 1)}>+</span>
+                          <span>· {formatPrice(p.price)} each</span>
+                        </div>
+                      </div>
+                      <div>
+                        <div className="order-item-price">{formatPrice(p.price * qty)}</div>
+                        <span className="order-item-remove" onClick={() => removeFromCart(sku)}>×</span>
                       </div>
                     </div>
-                    <div>
-                      <div className="order-item-price">{formatPrice(p.price * qty)}</div>
-                      <span className="order-item-remove" onClick={e => { e.stopPropagation(); removeFromCart(sku) }}>×</span>
-                    </div>
-                  </div>
-                )
-              })
+                  )
+                })
+              )}
+            </div>
+
+            {cartEntries.length > 0 && (
+              <div className="order-footer">
+                <div className="order-line"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
+                <div className="order-line"><span>Sales tax · 8.75%</span><span>{formatPrice(tax)}</span></div>
+                <div className="order-line loyalty"><span>Loyalty credit</span><span>– {formatPrice(0)}</span></div>
+                <div className="order-total">
+                  <span className="order-total-label">Total due</span>
+                  <span className="order-total-value">{formatPrice(total)}</span>
+                </div>
+                <div className="payment-methods">
+                  {['Card', 'MoMo'].map(method => (
+                    <button
+                      key={method}
+                      className={`pay-btn${paymentMethod === method ? ' active' : ''}`}
+                      onClick={() => setPaymentMethod(method)}
+                    >
+                      {method === 'Card' && <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>}
+                      {method === 'MoMo' && <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" strokeLinecap="round" strokeWidth="2"/></svg>}
+                      {method}
+                    </button>
+                  ))}
+                </div>
+                <button className="charge-btn" onClick={processCharge}>
+                  <span>Charge</span>
+                  <span className="charge-amount">{formatPrice(total)}</span>
+                </button>
+              </div>
             )}
           </div>
-          {cartEntries.length > 0 && (
-            <div className="order-footer">
-              <div className="order-line"><span>Subtotal</span><span>{formatPrice(subtotal)}</span></div>
-              <div className="order-line"><span>Sales tax · 8.75%</span><span>{formatPrice(tax)}</span></div>
-              <div className="order-line loyalty"><span>Loyalty credit</span><span>– {formatPrice(0)}</span></div>
-              <div className="order-total">
-                <span className="order-total-label">Total due</span>
-                <span className="order-total-value">{formatPrice(total)}</span>
-              </div>
-              <div className="payment-methods">
-                {['Card', 'MoMo'].map(method => (
-                  <button
-                    key={method}
-                    className={`pay-btn${paymentMethod === method ? ' active' : ''}`}
-                    onClick={() => setPaymentMethod(method)}
-                  >
-                    {method === 'Card' && <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>}
-                    {method === 'MoMo' && <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" strokeLinecap="round" strokeWidth="2"/></svg>}
-                    {method}
-                  </button>
-                ))}
-              </div>
-              <button className="charge-btn" onClick={processCharge}>
-                <span>Charge</span>
-                <span className="charge-amount">{formatPrice(total)}</span>
-              </button>
-            </div>
-          )}
-        </aside>
-      </main>
+        </div>
+      )}
     </div>
   )
 }

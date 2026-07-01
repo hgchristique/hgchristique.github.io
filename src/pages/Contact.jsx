@@ -26,7 +26,7 @@ export default function Contact() {
       <header className="contact-header">
         <Link to="/" className="contact-logo">
           <div className="logo-icon">S</div>
-          Styleboss
+          HG Christique
         </Link>
         <nav className="contact-nav">
           <Link to="/">Home</Link>
@@ -59,7 +59,7 @@ export default function Contact() {
           </div>
           <div className="store-card-links">
             <a href="tel:+12125550141">+1 (212) 555-0141</a>
-            <a href="mailto:ny@styleboss.co">ny@styleboss.co</a>
+            <a href="mailto:ny@hgchristique.co">ny@hgchristique.co</a>
           </div>
         </div>
 
@@ -81,7 +81,7 @@ export default function Contact() {
           </div>
           <div className="store-card-links">
             <a href="tel:+33145550190">+33 1 45 55 01 90</a>
-            <a href="mailto:paris@styleboss.co">paris@styleboss.co</a>
+            <a href="mailto:paris@hgchristique.co">paris@hgchristique.co</a>
           </div>
         </div>
       </div>
