@@ -23,7 +23,8 @@ export default function Terms() {
         <p>You may use this site for lawful purposes only. You agree not to use the site in any way that violates applicable laws or regulations, or that harms or interferes with the rights of HG Christique or any third party.</p>
 
         <h2>3. Intellectual Property</h2>
-        <p>All content on this site — including text, images, designs, logos, and product descriptions — is the exclusive property of HG Christique and is protected by applicable intellectual property laws. No content may be reproduced, distributed, or used without our prior written consent.</p>
+        <p>All original content on this site — including our brand name, logo, product descriptions, and product images — is the property of HG Christique and is protected by applicable intellectual property laws. No original content may be reproduced, distributed, or used without our prior written consent.</p>
+        <p>The Gallery of Inspiration section features images sourced from Pinterest and other third-party platforms for visual inspiration purposes only. HG Christique does not claim ownership of these images. All rights belong to their respective owners. If you are the owner of any image featured and wish it to be removed, please contact us at <a href="mailto:hello@hgchristique.click">hello@hgchristique.click</a>.</p>
 
         <h2>4. Products and Pricing</h2>
         <p>All products are subject to availability. Prices are displayed in Ghanaian Cedis (GH₵) by default and may vary by currency. HG Christique reserves the right to modify prices at any time without prior notice.</p>
