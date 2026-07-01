@@ -125,8 +125,8 @@ export default function Shop() {
           style={{ opacity: loading ? 1 : 0, pointerEvents: loading ? 'auto' : 'none', transition: 'opacity 0.5s' }}
         >
           <div className="loading-logo">
-            <div className="loading-icon">S</div>
-            <span className="loading-brand">STYLE <span>BOSS</span></span>
+            <div className="loading-icon">H</div>
+            <span className="loading-brand">HG <span>CHRISTIQUE</span></span>
           </div>
           <p className="loading-sub">Point-of-sale · Register 04 · Floor 1</p>
           <div className="loading-bar"><div className="loading-bar-fill"></div></div>
@@ -138,7 +138,7 @@ export default function Shop() {
           <svg viewBox="0 0 24 24"><polyline points="15,18 9,12 15,6"/></svg>
         </Link>
         <div className="pos-brand">
-          <div className="pos-brand-icon">S</div>
+          <div className="pos-brand-icon">H</div>
           <div>
             <div className="pos-brand-name">HG Christique</div>
             <div className="pos-register">Register 04 · Floor 1</div>
