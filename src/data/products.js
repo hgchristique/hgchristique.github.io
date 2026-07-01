@@ -14,7 +14,31 @@ export const PRODUCTS = [
   {
     sku: 'AT-0218', name: 'Rosé Royale', cat: 'Bags', price: 350, tag: null,
     bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg',
-    variants: ['AT-0903'],
+    variants: ['AT-0903', 'AT-0219', 'AT-0220'],
+    desc: 'A timeless expression of confidence, femininity, and luxury.',
+    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
+    colors: [
+      { name: 'Fuchsia Pink',  hex: '#e91e8c' },
+      { name: 'Royal Purple',  hex: '#7b2d8b' },
+      { name: 'Classic Brown', hex: '#5c3a1e' },
+      { name: 'Rich Wine',     hex: '#722f37' },
+    ],
+  },
+  {
+    sku: 'AT-0219', name: 'Rosé Royale', cat: 'Bags', price: 350, tag: null,
+    hidden: true, bg: '#e8b4c8', color: 'rgba(0,0,0,0.45)', img: '/cousin1.jpeg',
+    desc: 'A timeless expression of confidence, femininity, and luxury.',
+    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
+    colors: [
+      { name: 'Fuchsia Pink',  hex: '#e91e8c' },
+      { name: 'Royal Purple',  hex: '#7b2d8b' },
+      { name: 'Classic Brown', hex: '#5c3a1e' },
+      { name: 'Rich Wine',     hex: '#722f37' },
+    ],
+  },
+  {
+    sku: 'AT-0220', name: 'Rosé Royale', cat: 'Bags', price: 350, tag: null,
+    hidden: true, bg: '#c8a0b8', color: 'rgba(0,0,0,0.45)', img: '/cousin2.jpeg',
     desc: 'A timeless expression of confidence, femininity, and luxury.',
     story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
     colors: [
