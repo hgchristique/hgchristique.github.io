@@ -6,7 +6,7 @@ export const PRODUCTS = [
     story: "The Queen's Reef is more than jewelry—it's wearable art. Inspired by the intricate beauty of coral and handcrafted bead by bead, this statement piece celebrates elegance, strength, and individuality. The soft ivory tones paired with shimmering brown accents create a design that commands attention while remaining effortlessly refined.\n\nCreated for the woman who believes true luxury is found in the details.",
   },
   {
-    sku: 'AT-0343', name: 'Ember Royale', cat: 'Neckwear', price: 300, tag: 'new',
+    sku: 'AT-0343', name: 'Ember Royale', cat: 'Neckwear', price: 350, tag: 'new',
     bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck3.jpeg',
     desc: 'A timeless expression of confidence, elegance, and refined luxury.',
     story: 'Ember Royale is a celebration of brilliance and bold femininity. Handcrafted with radiant crystals and intricate beadwork, every detail reflects the beauty of confidence and the artistry of true craftsmanship. Designed to illuminate every occasion, this exquisite set transforms every entrance into a memorable statement of elegance.',
