@@ -150,10 +150,16 @@ export const PRODUCTS = [
   {
     sku: 'AT-0705', name: 'Golden Halo', cat: 'Bracelets', price: 100, tag: 'new',
     bg: '#3d302a', color: '#c8a96e', img: '/bracelet5.jpeg',
+    variants: ['AT-0706'],
     desc: 'A statement of grace, brilliance, and timeless beauty.',
     story: 'Some pieces don\'t just complete an outfit—they become the moment. Golden Halo is handcrafted to reflect elegance from every angle, blending luminous champagne crystals with sleek silver accents in a design that captures light with every movement. Whether styled for a wedding, an evening celebration, or a sophisticated occasion, this piece wraps your wrist in effortless luxury.',
   },
-  { sku: 'AT-0706', name: 'Crystal Bracelet',     cat: 'Bracelets',   price: 100,   tag: 'new',  bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bracelet6.jpeg' },
+  {
+    sku: 'AT-0706', name: 'Crystal Bracelet', cat: 'Bracelets', price: 100, tag: 'new',
+    hidden: true, bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bracelet6.jpeg',
+    desc: 'A statement of grace, brilliance, and timeless beauty.',
+    story: 'Some pieces don\'t just complete an outfit—they become the moment. Golden Halo is handcrafted to reflect elegance from every angle, blending luminous champagne crystals with sleek silver accents in a design that captures light with every movement. Whether styled for a wedding, an evening celebration, or a sophisticated occasion, this piece wraps your wrist in effortless luxury.',
+  },
   { sku: 'AT-0601', name: 'Silk Scarf',           cat: 'Accessories', price: 2772,  tag: 'new',  bg: '#d4a853', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0614', name: 'Leather Belt',         cat: 'Accessories', price: 3388,  tag: null,   bg: '#3d302a', color: '#c8a96e' },
   { sku: 'AT-0627', name: 'Wool Beanie',          cat: 'Accessories', price: 1848,  tag: null,   bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)' },
