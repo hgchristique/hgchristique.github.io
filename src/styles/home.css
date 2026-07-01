@@ -881,6 +881,13 @@
 
 /* ── Mobile responsive ───────────────────────────── */
 @media (max-width: 768px) {
+  .contact-section-home { padding: 72px 24px; }
+  .contact-section-cards { flex-direction: column; gap: 40px; }
+  .contact-card-home { padding: 0; }
+  .contact-card-divider { width: 60px; height: 1px; }
+  .contact-card-phone { font-size: 18px; }
+  .contact-card-email { font-size: 12px; word-break: break-all; }
+
   .header-main { padding: 10px 16px; gap: 8px; }
   .header-logo { position: static; transform: none; font-size: 15px; letter-spacing: 0.2em; }
   .header-icons { gap: 8px; }

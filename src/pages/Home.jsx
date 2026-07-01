@@ -115,7 +115,7 @@ export default function Home() {
           <div className="contact-section-cards">
             <div className="contact-card-home">
               <p className="contact-card-city">Phone</p>
-              <a href="tel:+233594195592" className="contact-card-phone">+233 59 419 5592</a>
+              <a href="tel:+233594195591" className="contact-card-phone">+233 59 419 5591</a>
               <a href="tel:+233558592710" className="contact-card-phone">+233 55 859 2710</a>
             </div>
             <div className="contact-card-divider" />
