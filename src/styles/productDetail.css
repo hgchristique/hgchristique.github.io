@@ -80,6 +80,22 @@
   display: block;
 }
 
+.pd-slide-counter {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 10;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  color: #fff;
+  background: rgba(0,0,0,0.45);
+  padding: 3px 9px;
+  border-radius: 20px;
+  pointer-events: none;
+  user-select: none;
+}
+
 .pd-slide-arrow {
   position: absolute;
   top: 50%;

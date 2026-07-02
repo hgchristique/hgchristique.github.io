@@ -1,4 +1,4 @@
-import { useState, useCallback } from 'react'
+import { useState, useCallback, useRef } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { PRODUCTS } from '../data/products'
 import { useCurrency } from '../hooks/useCurrency'
@@ -54,6 +54,16 @@ export default function ProductDetail() {
   const goPrev = useCallback(() => setSlideIdx(i => (i - 1 + slides.length) % slides.length), [slides.length])
   const goNext = useCallback(() => setSlideIdx(i => (i + 1) % slides.length), [slides.length])
 
+  const touchStartX = useRef(null)
+  const handleTouchStart = useCallback(e => { touchStartX.current = e.touches[0].clientX }, [])
+  const handleTouchEnd = useCallback(e => {
+    if (touchStartX.current === null) return
+    const dx = e.changedTouches[0].clientX - touchStartX.current
+    touchStartX.current = null
+    if (Math.abs(dx) < 40) return
+    dx < 0 ? goNext() : goPrev()
+  }, [goPrev, goNext])
+
   if (!product) {
     return (
       <div className="pd-not-found">
@@ -83,13 +93,19 @@ export default function ProductDetail() {
       </header>
 
       <div className="pd-body">
-        <div className="pd-image" style={{ background: imgBg }}>
+        <div
+          className="pd-image"
+          style={{ background: imgBg }}
+          onTouchStart={slides.length > 1 ? handleTouchStart : undefined}
+          onTouchEnd={slides.length > 1 ? handleTouchEnd : undefined}
+        >
           {shown.img
             ? <img src={shown.img} alt={shown.name} />
             : <ProductSvg cat={shown.cat} color={shown.color} />
           }
           {slides.length > 1 && (
             <>
+              <div className="pd-slide-counter">{slideIdx + 1}/{slides.length}</div>
               <button className="pd-slide-arrow pd-slide-left" onClick={goPrev}>&#8249;</button>
               <button className="pd-slide-arrow pd-slide-right" onClick={goNext}>&#8250;</button>
               <div className="pd-slide-dots">
