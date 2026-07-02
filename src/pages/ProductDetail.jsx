@@ -49,19 +49,31 @@ export default function ProductDetail() {
   })()
 
   const [slideIdx, setSlideIdx] = useState(() => slides.findIndex(s => s.sku === product.sku) ?? 0)
+  const [dragX, setDragX] = useState(0)
+  const [isDragging, setIsDragging] = useState(false)
   const shown = slides[slideIdx] ?? product
 
   const goPrev = useCallback(() => setSlideIdx(i => (i - 1 + slides.length) % slides.length), [slides.length])
   const goNext = useCallback(() => setSlideIdx(i => (i + 1) % slides.length), [slides.length])
 
   const touchStartX = useRef(null)
-  const handleTouchStart = useCallback(e => { touchStartX.current = e.touches[0].clientX }, [])
+  const handleTouchStart = useCallback(e => {
+    touchStartX.current = e.touches[0].clientX
+    setIsDragging(true)
+  }, [])
+  const handleTouchMove = useCallback(e => {
+    if (touchStartX.current === null) return
+    setDragX(e.touches[0].clientX - touchStartX.current)
+  }, [])
   const handleTouchEnd = useCallback(e => {
     if (touchStartX.current === null) return
     const dx = e.changedTouches[0].clientX - touchStartX.current
     touchStartX.current = null
-    if (Math.abs(dx) < 40) return
-    dx < 0 ? goNext() : goPrev()
+    setIsDragging(false)
+    setDragX(0)
+    if (Math.abs(dx) >= 40) {
+      dx < 0 ? goNext() : goPrev()
+    }
   }, [goPrev, goNext])
 
   if (!product) {
@@ -97,12 +109,25 @@ export default function ProductDetail() {
           className="pd-image"
           style={{ background: imgBg }}
           onTouchStart={slides.length > 1 ? handleTouchStart : undefined}
+          onTouchMove={slides.length > 1 ? handleTouchMove : undefined}
           onTouchEnd={slides.length > 1 ? handleTouchEnd : undefined}
         >
-          {shown.img
-            ? <img src={shown.img} alt={shown.name} />
-            : <ProductSvg cat={shown.cat} color={shown.color} />
-          }
+          <div
+            className="pd-slides-strip"
+            style={{
+              transform: `translateX(calc(${-slideIdx * 100}% + ${dragX}px))`,
+              transition: isDragging ? 'none' : 'transform 0.32s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
+            }}
+          >
+            {slides.map(slide => (
+              <div key={slide.sku} className="pd-slide-item">
+                {slide.img
+                  ? <img src={slide.img} alt={slide.name} />
+                  : <ProductSvg cat={slide.cat} color={slide.color} />
+                }
+              </div>
+            ))}
+          </div>
           {slides.length > 1 && (
             <>
               <div className="pd-slide-counter">{slideIdx + 1}/{slides.length}</div>
