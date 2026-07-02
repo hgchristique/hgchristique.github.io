@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useCallback } from 'react'
 import { useParams, useNavigate } from 'react-router-dom'
 import { PRODUCTS } from '../data/products'
 import { useCurrency } from '../hooks/useCurrency'
@@ -35,19 +35,24 @@ export default function ProductDetail() {
 
   const parent = PRODUCTS.find(p => p.variants?.includes(product.sku))
 
-  const related = (() => {
+  const slides = (() => {
     if (product.variants?.length) {
-      return product.variants.map(vsku => PRODUCTS.find(p => p.sku === vsku)).filter(Boolean)
+      return [product, ...product.variants.map(vsku => PRODUCTS.find(p => p.sku === vsku)).filter(Boolean)]
     }
     if (parent) {
       const siblings = parent.variants
-        .filter(vsku => vsku !== product.sku)
         .map(vsku => PRODUCTS.find(p => p.sku === vsku))
         .filter(Boolean)
       return [parent, ...siblings]
     }
-    return []
+    return [product]
   })()
+
+  const [slideIdx, setSlideIdx] = useState(() => slides.findIndex(s => s.sku === product.sku) ?? 0)
+  const shown = slides[slideIdx] ?? product
+
+  const goPrev = useCallback(() => setSlideIdx(i => (i - 1 + slides.length) % slides.length), [slides.length])
+  const goNext = useCallback(() => setSlideIdx(i => (i + 1) % slides.length), [slides.length])
 
   if (!product) {
     return (
@@ -59,12 +64,12 @@ export default function ProductDetail() {
   }
 
   function handleAddToCart() {
-    addCartItem(product.sku, qty)
+    addCartItem(shown.sku, qty)
     setAdded(true)
     setTimeout(() => navigate('/shop'), 900)
   }
 
-  const imgBg = selectedColor ? selectedColor.hex : product.bg
+  const imgBg = selectedColor ? selectedColor.hex : shown.bg
 
   return (
     <div className="pd-page">
@@ -79,37 +84,52 @@ export default function ProductDetail() {
 
       <div className="pd-body">
         <div className="pd-image" style={{ background: imgBg }}>
-          {product.img
-            ? <img src={product.img} alt={product.name} />
-            : <ProductSvg cat={product.cat} color={product.color} />
+          {shown.img
+            ? <img src={shown.img} alt={shown.name} />
+            : <ProductSvg cat={shown.cat} color={shown.color} />
           }
+          {slides.length > 1 && (
+            <>
+              <button className="pd-slide-arrow pd-slide-left" onClick={goPrev}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><polyline points="15,18 9,12 15,6"/></svg>
+              </button>
+              <button className="pd-slide-arrow pd-slide-right" onClick={goNext}>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><polyline points="9,18 15,12 9,6"/></svg>
+              </button>
+              <div className="pd-slide-dots">
+                {slides.map((_, i) => (
+                  <span key={i} className={`pd-slide-dot${i === slideIdx ? ' active' : ''}`} onClick={() => setSlideIdx(i)} />
+                ))}
+              </div>
+            </>
+          )}
         </div>
 
         <div className="pd-content">
           <div className="pd-meta">
-            <span className="pd-cat">{product.cat}</span>
-            {product.tag === 'new' && <span className="pd-badge">NEW</span>}
-            {product.tag === 'low' && <span className="pd-badge pd-badge-low">LOW STOCK</span>}
+            <span className="pd-cat">{shown.cat}</span>
+            {shown.tag === 'new' && <span className="pd-badge">NEW</span>}
+            {shown.tag === 'low' && <span className="pd-badge pd-badge-low">LOW STOCK</span>}
           </div>
 
-          <h1 className="pd-name">{product.name}</h1>
-          {product.desc && <p className="pd-desc">{product.desc}</p>}
-          <div className="pd-price">{formatPrice(product.price)}</div>
+          <h1 className="pd-name">{shown.name}</h1>
+          {shown.desc && <p className="pd-desc">{shown.desc}</p>}
+          <div className="pd-price">{formatPrice(shown.price)}</div>
 
-          {product.story && (
+          {shown.story && (
             <div className="pd-section">
               <h3 className="pd-section-title">The Story</h3>
-              {product.story.split('\n\n').map((para, i) => (
+              {shown.story.split('\n\n').map((para, i) => (
                 <p key={i} className="pd-story-para">{para}</p>
               ))}
             </div>
           )}
 
-          {product.colorMeanings && (
+          {shown.colorMeanings && (
             <div className="pd-section">
               <h3 className="pd-section-title">Color Meanings</h3>
               <div className="pd-color-meanings">
-                {product.colorMeanings.map(cm => (
+                {shown.colorMeanings.map(cm => (
                   <div key={cm.name} className="pd-color-meaning-row">
                     <span className="pd-color-meaning-left">{cm.emoji} <strong>{cm.name}</strong></span>
                     <span className="pd-color-meaning-right">{cm.meaning}</span>
@@ -119,13 +139,13 @@ export default function ProductDetail() {
             </div>
           )}
 
-          {product.colors && (
+          {shown.colors && (
             <div className="pd-section">
               <h3 className="pd-section-title">
                 Color{selectedColor ? ` — ${selectedColor.name}` : ''}
               </h3>
               <div className="pd-color-swatches">
-                {product.colors.map(c => (
+                {shown.colors.map(c => (
                   <button
                     key={c.hex}
                     className={`pd-color-swatch${selectedColor?.hex === c.hex ? ' active' : ''}`}
@@ -147,31 +167,12 @@ export default function ProductDetail() {
             </div>
           </div>
 
-          {related.length > 0 && (
-            <div className="pd-section">
-              <h3 className="pd-section-title">Also in this style</h3>
-              <div className="pd-variants">
-                {related.map(v => (
-                  <div key={v.sku} className="pd-variant-card" onClick={() => navigate(`/shop/${v.sku}`)}>
-                    <div className="pd-variant-img" style={{ background: v.bg }}>
-                      {v.img && <img src={v.img} alt={v.name} />}
-                    </div>
-                    <div className="pd-variant-info">
-                      <span className="pd-variant-name">{v.name}</span>
-                      <span className="pd-variant-price">{formatPrice(v.price)}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          )}
-
           <button
             className={`pd-add-btn${added ? ' pd-added' : ''}`}
             onClick={handleAddToCart}
             disabled={added}
           >
-            {added ? 'Added — returning to shop...' : `Add to Cart · ${formatPrice(product.price * qty)}`}
+            {added ? 'Added — returning to shop...' : `Add to Cart · ${formatPrice(shown.price * qty)}`}
           </button>
         </div>
       </div>

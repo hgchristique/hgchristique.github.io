@@ -40,16 +40,6 @@ export default function Shop() {
   const [loadingVisible, setLoadingVisible] = useState(true)
   const [time, setTime] = useState('')
   const [cartOpen, setCartOpen] = useState(false)
-  const [slideIndexes, setSlideIndexes] = useState({})
-
-  function slideCard(e, sku, slides, dir) {
-    e.stopPropagation()
-    setSlideIndexes(prev => {
-      const cur = prev[sku] ?? 0
-      const next = (cur + dir + slides.length) % slides.length
-      return { ...prev, [sku]: next }
-    })
-  }
 
   useEffect(() => {
     function tick() {
@@ -214,61 +204,40 @@ export default function Shop() {
             </div>
           </div>
           <div className="products-grid">
-            {filtered.map(p => {
-              const children = p.variants?.map(vsku => PRODUCTS.find(x => x.sku === vsku)).filter(Boolean) ?? []
-              const slides = children.length > 0 ? [p, ...children] : [p]
-              const idx = slideIndexes[p.sku] ?? 0
-              const shown = slides[idx]
-              return (
-                <div
-                  key={p.sku}
-                  className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
-                  onClick={() => navigate(`/shop/${shown.sku}`)}
-                >
-                  <div className="product-img" style={{ background: selectedColors[p.sku] ?? shown.bg }}>
-                    {shown.img
-                      ? <img src={shown.img} alt={shown.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
-                      : <ProductSvg cat={shown.cat} color={shown.color} />
-                    }
-                    {slides.length > 1 && (
-                      <>
-                        <button className="card-arrow card-arrow-left" onClick={e => slideCard(e, p.sku, slides, -1)}>
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="12" height="12"><polyline points="15,18 9,12 15,6"/></svg>
-                        </button>
-                        <button className="card-arrow card-arrow-right" onClick={e => slideCard(e, p.sku, slides, 1)}>
-                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="12" height="12"><polyline points="9,18 15,12 9,6"/></svg>
-                        </button>
-                        <div className="card-dots">
-                          {slides.map((_, i) => (
-                            <span key={i} className={`card-dot${i === idx ? ' active' : ''}`} />
-                          ))}
-                        </div>
-                      </>
-                    )}
-                    <div className="product-add-btn">
-                      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><polyline points="9,18 15,12 9,6"/></svg>
+            {filtered.map(p => (
+              <div
+                key={p.sku}
+                className={`product-card${cart[p.sku] ? ' in-cart' : ''}`}
+                onClick={() => navigate(`/shop/${p.sku}`)}
+              >
+                <div className="product-img" style={{ background: selectedColors[p.sku] ?? p.bg }}>
+                  {p.img
+                    ? <img src={p.img} alt={p.name} style={{ position: 'absolute', top: 0, right: 0, bottom: 0, left: 0, width: '100%', height: '100%', objectFit: 'cover' }} />
+                    : <ProductSvg cat={p.cat} color={p.color} />
+                  }
+                  <div className="product-add-btn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" width="14" height="14"><polyline points="9,18 15,12 9,6"/></svg>
+                  </div>
+                  {p.cat === 'Bags' && !p.img && (
+                    <div className="color-swatches" onClick={e => e.stopPropagation()}>
+                      {BAG_COLORS.map(c => (
+                        <span
+                          key={c}
+                          className={`color-swatch${(selectedColors[p.sku] ?? p.bg) === c ? ' active' : ''}`}
+                          style={{ background: c }}
+                          onClick={() => setSelectedColors(prev => ({ ...prev, [p.sku]: c }))}
+                        />
+                      ))}
                     </div>
-                    {p.cat === 'Bags' && !shown.img && (
-                      <div className="color-swatches" onClick={e => e.stopPropagation()}>
-                        {BAG_COLORS.map(c => (
-                          <span
-                            key={c}
-                            className={`color-swatch${(selectedColors[p.sku] ?? p.bg) === c ? ' active' : ''}`}
-                            style={{ background: c }}
-                            onClick={() => setSelectedColors(prev => ({ ...prev, [p.sku]: c }))}
-                          />
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                  <div className="product-info">
-                    <div className="product-name">{shown.name}</div>
-                    <div className="product-cat">{shown.cat}</div>
-                    <div className="product-price">{formatPrice(shown.price)}</div>
-                  </div>
+                  )}
                 </div>
-              )
-            })}
+                <div className="product-info">
+                  <div className="product-name">{p.name}</div>
+                  <div className="product-cat">{p.cat}</div>
+                  <div className="product-price">{formatPrice(p.price)}</div>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
       </main>
