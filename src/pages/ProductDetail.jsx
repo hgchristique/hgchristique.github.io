@@ -90,12 +90,8 @@ export default function ProductDetail() {
           }
           {slides.length > 1 && (
             <>
-              <button className="pd-slide-arrow pd-slide-left" onClick={goPrev}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><polyline points="15,18 9,12 15,6"/></svg>
-              </button>
-              <button className="pd-slide-arrow pd-slide-right" onClick={goNext}>
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" width="16" height="16"><polyline points="9,18 15,12 9,6"/></svg>
-              </button>
+              <button className="pd-slide-arrow pd-slide-left" onClick={goPrev}>&#8249;</button>
+              <button className="pd-slide-arrow pd-slide-right" onClick={goNext}>&#8250;</button>
               <div className="pd-slide-dots">
                 {slides.map((_, i) => (
                   <span key={i} className={`pd-slide-dot${i === slideIdx ? ' active' : ''}`} onClick={() => setSlideIdx(i)} />
