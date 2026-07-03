@@ -50,7 +50,12 @@ export const PRODUCTS = [
   },
   { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 300,   tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
   { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Bags',        price: 300,   tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
-  { sku: 'AT-0719', name: 'Boss Silk Blouse',     cat: 'Bags',        price: 400,   tag: null,   bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg' },
+  {
+    sku: 'AT-0719', name: 'The Sovereign Spark', cat: 'Bags', price: 400, tag: null,
+    bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg',
+    desc: 'Handcrafted elegance crowned with radiant crystal embellishments.',
+    story: 'Not every statement needs to be loud—some simply shimmer with quiet confidence.\n\nThe Sovereign Spark is handcrafted for the woman whose elegance speaks before she does. Woven with precision and crowned with radiant crystal embellishments, this piece captures the beauty of understated luxury. From intimate dinners to grand celebrations, it transforms every entrance into a lasting impression.\n\nBecause true style isn\'t worn—it is remembered.',
+  },
   {
     sku: 'AT-0724', name: 'Soleil Bloom', cat: 'Bags', price: 500, tag: null,
     hidden: true, bg: '#c4b89a', color: 'rgba(0,0,0,0.45)', img: '/bag4.jpeg',
