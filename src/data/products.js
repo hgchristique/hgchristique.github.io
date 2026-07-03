@@ -49,7 +49,12 @@ export const PRODUCTS = [
     ],
   },
   { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 300,   tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
-  { sku: 'AT-0517', name: 'Halsey Mohair Crew',   cat: 'Bags',        price: 300,   tag: 'low',  bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg' },
+  {
+    sku: 'AT-0517', name: 'Lavender Pearl', cat: 'Bags', price: 300, tag: 'low',
+    bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg',
+    desc: 'Handwoven in delicate lavender, adorned with luminous pearls.',
+    story: 'Soft as a whisper, unforgettable as a first impression.\n\nLavender Pearl is a celebration of grace and femininity. Handwoven in a delicate lavender hue and adorned with luminous pearls, it is designed for the woman who believes true luxury lies in timeless elegance. Whether carried to a bridal shower, an evening soirée, or a special celebration, this piece brings effortless sophistication to every moment.\n\nA bag that doesn\'t just complete your look—it becomes the highlight of it.',
+  },
   {
     sku: 'AT-0719', name: 'The Sovereign Spark', cat: 'Bags', price: 400, tag: null,
     bg: '#d8cec4', color: 'rgba(0,0,0,0.45)', img: '/bag3.jpeg',
