@@ -100,7 +100,12 @@ export const PRODUCTS = [
       { name: 'Rich Wine',     hex: '#722f37' },
     ],
   },
-  { sku: 'AT-0915', name: 'Wool Chalk Stripe',    cat: 'Bags',        price: 300,   tag: null,   bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)', img: '/bag7.jpeg' },
+  {
+    sku: 'AT-0915', name: 'Emerald Heirloom', cat: 'Bags', price: 300, tag: null,
+    bg: '#3d4a5c', color: 'rgba(255,255,255,0.55)', img: '/bag7.jpeg',
+    desc: 'Handwoven with radiant emerald crystals and luminous pearls.',
+    story: 'Every masterpiece begins with a single detail.\n\nEmerald Heirloom is handwoven with radiant emerald crystals and luminous pearls, creating a silhouette that feels both regal and refreshingly modern. Inspired by nature\'s richness and crafted for unforgettable moments, this piece is designed for the woman who carries confidence with grace and leaves elegance in her wake.\n\nMore than a handbag, it is a treasure to be admired, cherished, and passed down in memory.',
+  },
   { sku: 'AT-1002', name: 'The Silk Slip Dress',  cat: 'Dresses',     price: 10472, tag: 'new',  bg: '#2d3642', color: 'rgba(255,255,255,0.55)' },
   { sku: 'AT-1018', name: 'Linen Shift Dress',    cat: 'Dresses',     price: 7546,  tag: null,   bg: '#c4b89a', color: 'rgba(0,0,0,0.45)' },
   { sku: 'AT-0042', name: 'Onyx Crossbody',       cat: 'Bags',        price: 13706, tag: null,   bg: '#0a0a0a', color: '#c8a96e' },
