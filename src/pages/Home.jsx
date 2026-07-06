@@ -32,9 +32,9 @@ export default function Home() {
 
       <section className="hero" id="hero">
         {[
-          { img: '/hero5.webp', pos: 'center 65%' },
-          { img: '/hero2.webp', pos: 'center center' },
-          { img: '/hero3.webp', pos: 'center 40%' },
+          { img: '/erm1.webp', pos: 'center center' },
+          { img: '/erm2.webp', pos: 'center center' },
+          { img: '/erm3.webp', pos: 'center center' },
         ].map((slide, i) => (
           <div
             key={i}
@@ -47,8 +47,7 @@ export default function Home() {
           >
             <div className="slide-overlay" />
             <div className="hero-content">
-              <p className="hero-eyebrow">THE FASHION HOUSE</p>
-              <h1 className="hero-title">HG CHRISTIQUE</h1>
+              <h1 className="hero-tagline">Luxury,<br />Handcrafted to<br />Be Remembered.</h1>
             </div>
           </div>
         ))}
