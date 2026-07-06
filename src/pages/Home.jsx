@@ -142,6 +142,37 @@ export default function Home() {
         </div>
       </section>
 
+      <section className="reviews-marquee-section">
+        <div className="reviews-marquee-header">
+          <span className="reviews-eyebrow">WHAT OUR CLIENTS SAY</span>
+          <h2 className="reviews-heading">Loved by Women <em>Everywhere</em></h2>
+        </div>
+        <div className="reviews-track-wrap">
+          <div className="reviews-track">
+            {[
+              { name: 'Abena M.', text: 'The bag is absolutely stunning. I get compliments everywhere I go — pure luxury.' },
+              { name: 'Cynthia O.', text: 'Ordered the Lavender Pearl and it arrived even more beautiful than in the photos. Worth every penny.' },
+              { name: 'Nana A.', text: 'HG Christique understands elegance. My piece is handcrafted perfection.' },
+              { name: 'Efua D.', text: 'Fast delivery and the quality is unmatched. I\'ve already ordered twice and won\'t stop here.' },
+              { name: 'Maame B.', text: 'The Sovereign Spark is a showstopper. Wore it to a wedding and all eyes were on me.' },
+              { name: 'Akosua T.', text: 'Finally a Ghanaian brand that delivers luxury without compromise. So proud to wear HG Christique.' },
+              { name: 'Abena M.', text: 'The bag is absolutely stunning. I get compliments everywhere I go — pure luxury.' },
+              { name: 'Cynthia O.', text: 'Ordered the Lavender Pearl and it arrived even more beautiful than in the photos. Worth every penny.' },
+              { name: 'Nana A.', text: 'HG Christique understands elegance. My piece is handcrafted perfection.' },
+              { name: 'Efua D.', text: 'Fast delivery and the quality is unmatched. I\'ve already ordered twice and won\'t stop here.' },
+              { name: 'Maame B.', text: 'The Sovereign Spark is a showstopper. Wore it to a wedding and all eyes were on me.' },
+              { name: 'Akosua T.', text: 'Finally a Ghanaian brand that delivers luxury without compromise. So proud to wear HG Christique.' },
+            ].map((r, i) => (
+              <div key={i} className="review-card">
+                <div className="review-stars">★★★★★</div>
+                <p className="review-text">"{r.text}"</p>
+                <span className="review-name">— {r.name}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       <footer className="site-footer">
         <div className="footer-bottom">
           <span className="footer-logo">HG CHRISTIQUE</span>
