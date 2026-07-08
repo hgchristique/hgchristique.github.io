@@ -56,6 +56,12 @@ export const PRODUCTS = [
     story: 'Inspired by the quiet beauty of a starlit evening, Celestial Grace is a celebration of elegance in its purest form. Delicate white beads symbolize timeless grace, while shimmering crystal accents and deep sapphire-blue details capture the brilliance of stars dancing across the night sky.\n\nCelestial Grace is more than jewelry—it is a statement of sophistication, beauty, and enduring charm. Because true elegance never asks to be noticed—it is simply remembered.',
   },
   {
+    sku: 'AT-0345', name: 'Éclat Fleur', cat: 'Neckwear', price: 300, tag: 'new',
+    bg: '#e8e2d8', color: 'rgba(0,0,0,0.45)', img: '/neck5.jpeg',
+    desc: 'Crystal flowers framed in radiant gold, capturing the brilliance of first light in soft rainbow hues.',
+    story: 'A garden touched by starlight—Éclat Fleur is a celebration of grace in full bloom. Every crystal flower captures the brilliance of first light, reflecting soft rainbow hues that dance with every movement. Framed in radiant gold, each blossom symbolizes beauty that never fades and confidence that never asks for attention.\n\nCreated for the woman who leaves a lasting impression through elegance rather than extravagance, Éclat Fleur transforms every occasion into a moment worth remembering. It is not simply jewelry—it is a quiet expression of timeless luxury.',
+  },
+  {
     sku: 'AT-0517', name: 'Lavender Pearl', cat: 'Bags', price: 300, tag: 'low',
     bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bag2.jpeg',
     desc: 'Handwoven in delicate lavender, adorned with luminous pearls.',
