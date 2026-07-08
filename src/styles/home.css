@@ -33,7 +33,7 @@
 }
 .header-logo {
   font-family: var(--font-serif);
-  font-size: 22px;
+  font-size: 26px;
   font-weight: 700;
   letter-spacing: 0.34em;
   text-transform: uppercase;
@@ -1034,7 +1034,7 @@
   .contact-card-email { font-size: 12px; word-break: break-all; }
 
   .header-main { padding: 10px 16px; gap: 8px; }
-  .header-logo { font-size: 13px; letter-spacing: 0.12em; }
+  .header-logo { font-size: 14px; letter-spacing: 0.12em; }
   .header-icons { gap: 8px; }
   .open-shop-btn { padding: 7px 12px; font-size: 10px; letter-spacing: 0.08em; }
 
@@ -1067,7 +1067,7 @@
 
 @media (max-width: 480px) {
   .open-shop-btn span { display: none; }
-  .header-logo { font-size: 10px; letter-spacing: 0.04em; }
+  .header-logo { font-size: 11px; letter-spacing: 0.04em; }
   .open-shop-btn { padding: 6px 10px; }
   .hero { height: 60vh; min-height: 400px; }
   .house-statement { padding: 60px 20px; }
