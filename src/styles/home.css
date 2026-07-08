@@ -94,60 +94,62 @@
 .header-nav a:hover,
 .header-nav a.active { color: var(--black); }
 
-/* ── Hero carousel ───────────────────────────────── */
+/* ── Hero (editorial split layout) ───────────────── */
 .hero {
   position: relative;
   height: 100vh;
-  min-height: 600px;
+  min-height: 640px;
   overflow: hidden;
-}
-.hero-bg-img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center top;
+  background: #f2efe9;
 }
 
-.slide {
+.hero-image-frame {
   position: absolute;
   inset: 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding: 60px 80px 60px 120px;
   opacity: 0;
-  transition: opacity 0.9s ease;
+  transition: opacity 1.1s ease;
   pointer-events: none;
 }
-.slide.active { opacity: 1; pointer-events: auto; }
+.hero-image-frame.active { opacity: 1; pointer-events: auto; }
 
-.slide-overlay {
+.hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to right, rgba(255,255,255,0.72) 0%, rgba(255,255,255,0.35) 50%, rgba(255,255,255,0) 100%);
+  background: linear-gradient(to right, rgba(0,0,0,0.5) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0) 70%);
   pointer-events: none;
+  z-index: 1;
+}
+
+.hero-season-tag {
+  position: absolute;
+  top: 32px;
+  left: 80px;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.75);
+  z-index: 2;
 }
 
 .hero-dots {
   position: absolute;
-  bottom: 36px;
-  left: 120px;
+  bottom: 44px;
+  left: 80px;
   display: flex;
   gap: 10px;
   align-items: center;
+  z-index: 2;
 }
 .hero-dot {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: rgba(0,0,0,0.25);
+  background: rgba(255,255,255,0.4);
   cursor: pointer;
   transition: background 0.3s, transform 0.3s;
 }
 .hero-dot.active {
-  background: #0a0a0a;
+  background: var(--white);
   transform: scale(1.4);
 }
 
@@ -201,12 +203,39 @@
 }
 .hero-content {
   position: absolute;
-  top: 50%;
+  bottom: 96px;
   left: 80px;
-  transform: translateY(-50%);
-  color: #0a0a0a;
+  max-width: 46%;
+  color: var(--white);
   z-index: 2;
 }
+.hero-eyebrow-small {
+  display: block;
+  font-size: 11px;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.7);
+  margin-bottom: 18px;
+  font-family: var(--font-sans);
+}
+.hero-discover-cta {
+  position: absolute;
+  bottom: 44px;
+  right: 60px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--white);
+  border-bottom: 1px solid rgba(255,255,255,0.4);
+  padding-bottom: 4px;
+  z-index: 2;
+  transition: opacity 0.2s;
+}
+.hero-discover-cta:hover { opacity: 0.6; }
 .hero-eyebrow {
   font-size: 11px;
   letter-spacing: 0.28em;
@@ -232,9 +261,10 @@
   font-weight: 400;
   font-style: italic;
   line-height: 1.15;
-  color: #0a0a0a;
+  color: var(--white);
   margin: 0;
   max-width: 520px;
+  filter: drop-shadow(0 2px 20px rgba(0,0,0,0.25));
 }
 .hero-headline {
   font-family: var(--font-serif);
@@ -1018,12 +1048,16 @@
   .header-icons { gap: 8px; }
   .open-shop-btn { padding: 7px 12px; font-size: 10px; letter-spacing: 0.08em; }
 
-  .hero { height: 70vh; min-height: 420px; }
+  .hero { height: 60vh; min-height: 400px; }
   .hero-logo { top: 10px !important; left: 10px !important; width: 70px !important; height: auto !important; }
-  .hero-content { left: 16px; bottom: 50px; }
+  .hero-season-tag { top: 14px; left: 16px; font-size: 9px; letter-spacing: 0.12em; }
+  .hero-content { left: 16px; right: 16px; bottom: 72px; max-width: none; }
+  .hero-eyebrow-small { font-size: 9px; margin-bottom: 6px; letter-spacing: 0.16em; }
   .hero-title { font-size: clamp(32px, 8vw, 56px); }
+  .hero-tagline { font-size: clamp(20px, 6.5vw, 30px); line-height: 1.18; }
   .hero-eyebrow { font-size: 9px; margin-bottom: 6px; }
-  .hero-dots { left: 16px; bottom: 18px; }
+  .hero-discover-cta { left: 16px; right: auto; bottom: 34px; font-size: 9px; letter-spacing: 0.1em; }
+  .hero-dots { left: 16px; bottom: 14px; }
 
   .house-statement { padding: 80px 24px; }
 
@@ -1044,7 +1078,7 @@
 
 @media (max-width: 480px) {
   .open-shop-btn span { display: none; }
-  .hero { height: 65vh; }
+  .hero { height: 60vh; min-height: 400px; }
   .house-statement { padding: 60px 20px; }
   .gallery-grid { grid-template-columns: repeat(3, 1fr); }
 }

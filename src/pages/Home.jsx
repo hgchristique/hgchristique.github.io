@@ -38,19 +38,21 @@ export default function Home() {
         ].map((slide, i) => (
           <div
             key={i}
-            className={`slide${current === i ? ' active' : ''}`}
+            className={`hero-image-frame${current === i ? ' active' : ''}`}
             style={{
               backgroundImage: `url(${slide.img})`,
               backgroundSize: 'cover',
               backgroundPosition: slide.pos,
             }}
-          >
-            <div className="slide-overlay" />
-            <div className="hero-content">
-              <h1 className="hero-tagline">Luxury,<br />Handcrafted to<br />Be Remembered.</h1>
-            </div>
-          </div>
+          />
         ))}
+        <div className="hero-scrim" />
+        <span className="hero-season-tag">HG CHRISTIQUE · 2026</span>
+        <div className="hero-content">
+          <span className="hero-eyebrow-small">THE FASHION HOUSE</span>
+          <h1 className="hero-tagline">Luxury,<br />Handcrafted to<br />Be Remembered.</h1>
+        </div>
+        <Link to="/shop" className="hero-discover-cta">DISCOVER THE COLLECTION <span>→</span></Link>
         <div className="hero-dots">
           {[0, 1, 2].map(d => (
             <span
