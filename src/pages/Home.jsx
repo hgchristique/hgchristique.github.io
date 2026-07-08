@@ -82,9 +82,8 @@ export default function Home() {
           <div className="about-label-row">
             <span className="label">ABOUT HG CHRISTIQUE</span>
           </div>
-          <h2 className="about-heading">Be a Boss <em>with Style.</em></h2>
-          <p className="about-body">At HG Christique, we believe every woman deserves to look confident, feel powerful, and express her unique sense of style. Our brand was created for women who embrace elegance, ambition, and individuality in every aspect of their lives.</p>
-          <p className="about-body">We specialize in beautifully crafted fashion pieces, ready-to-wear collections, and exquisite beadwork that transform ordinary outfits into unforgettable statements. Every design is created with attention to detail, quality craftsmanship, and a passion for helping our clients stand out with confidence.</p>
+          <h2 className="about-heading">Where Craftsmanship <em>Meets Elegance</em></h2>
+          <p className="about-body">HG Christique was born from the belief that true luxury is deeply personal. Every bead is placed by hand, every stitch carries intention, and every creation is designed to become part of a woman's most unforgettable moments.</p>
           <p className="about-body">At HG Christique, fashion is more than what you wear — it's how you present yourself to the world. Whether you're attending a special event, celebrating a milestone, building your career, or simply stepping out for the day, our goal is to help you feel your absolute best.</p>
           <p className="about-body">We are committed to delivering style, sophistication, and exceptional service, ensuring that every HG Christique woman feels empowered to own her space and make her mark.</p>
           <p className="about-tagline">Because being a boss isn't just about what you do — it's about how you carry yourself.</p>
