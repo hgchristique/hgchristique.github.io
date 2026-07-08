@@ -24,6 +24,7 @@ export default function Home() {
     <>
       <header className={`site-header${scrolled ? ' scrolled' : ''}`}>
         <div className="header-main">
+          <span className="header-logo">HG CHRISTIQUE</span>
           <div className="header-icons" style={{ marginLeft: 'auto', display: 'flex', gap: '12px', alignItems: 'center' }}>
             <Link to="/shop" className="open-shop-btn">OPEN SHOP <span>→</span></Link>
           </div>
@@ -47,7 +48,6 @@ export default function Home() {
           />
         ))}
         <div className="hero-scrim" />
-        <span className="hero-season-tag">HG CHRISTIQUE · 2026</span>
         <div className="hero-content">
           <span className="hero-eyebrow-small">THE FASHION HOUSE</span>
           <h1 className="hero-tagline">Luxury,<br />Handcrafted to<br />Be Remembered.</h1>
