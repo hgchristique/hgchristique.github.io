@@ -50,7 +50,7 @@ export const PRODUCTS = [
   },
   { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 300,   tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
   {
-    sku: 'AT-0344', name: 'Celestial Grace', cat: 'Neckwear', price: 350, tag: 'new',
+    sku: 'AT-0344', name: 'Celestial Grace', cat: 'Neckwear', price: 300, tag: 'new',
     bg: '#1f2a44', color: 'rgba(255,255,255,0.55)', img: '/neck4.jpeg',
     desc: 'Delicate white beads with shimmering crystal and deep sapphire accents, inspired by a starlit evening.',
     story: 'Inspired by the quiet beauty of a starlit evening, Celestial Grace is a celebration of elegance in its purest form. Delicate white beads symbolize timeless grace, while shimmering crystal accents and deep sapphire-blue details capture the brilliance of stars dancing across the night sky.\n\nCelestial Grace is more than jewelry—it is a statement of sophistication, beauty, and enduring charm. Because true elegance never asks to be noticed—it is simply remembered.',
