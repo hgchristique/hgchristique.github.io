@@ -86,7 +86,6 @@ export default function Home() {
           <p className="about-body">HG Christique was born from the belief that true luxury is deeply personal. Every bead is placed by hand, every stitch carries intention, and every creation is designed to become part of a woman's most unforgettable moments.</p>
           <p className="about-body">At HG Christique, fashion is more than what you wear — it's how you present yourself to the world. Whether you're attending a special event, celebrating a milestone, building your career, or simply stepping out for the day, our goal is to help you feel your absolute best.</p>
           <p className="about-body">We are committed to delivering style, sophistication, and exceptional service, ensuring that every HG Christique woman feels empowered to own her space and make her mark.</p>
-          <p className="about-tagline">Because being a boss isn't just about what you do — it's about how you carry yourself.</p>
         </div>
       </section>
 
