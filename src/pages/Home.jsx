@@ -183,6 +183,7 @@ export default function Home() {
             <Link to="/privacy">PRIVACY</Link>
           </div>
           <span className="footer-copy">© {new Date().getFullYear()} HG CHRISTIQUE · ALL RIGHTS RESERVED</span>
+          <span className="footer-credit">Developed by <a href="https://tunnelo.click" target="_blank" rel="noopener noreferrer">Tunnelo</a></span>
         </div>
       </footer>
     </>
