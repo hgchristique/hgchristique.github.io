@@ -5,6 +5,17 @@ import { useCurrency } from '../hooks/useCurrency'
 import { getCart, saveCart } from '../utils/cart'
 import '../styles/shop.css'
 
+function PriceDisplay({ ghsAmount, isForeign, formatPrice, formatOriginalPrice }) {
+  if (!isForeign) return <>{formatPrice(ghsAmount)}</>
+  return (
+    <span className="price-discount-wrap">
+      <span className="price-original">{formatOriginalPrice(ghsAmount)}</span>
+      <span className="price-discount-badge">20% OFF</span>
+      <span className="price-final">{formatPrice(ghsAmount)}</span>
+    </span>
+  )
+}
+
 function ProductSvg({ cat, color }) {
   const base = { fill: 'none', strokeWidth: '1.3', strokeLinecap: 'round', strokeLinejoin: 'round', stroke: color }
   switch (cat) {
@@ -29,7 +40,7 @@ const BAG_COLORS = ['#0a0a0a', '#b8845a', '#2d3642', '#6b2d3e', '#4a5240', '#c4b
 
 export default function Shop() {
   const navigate = useNavigate()
-  const { currencyCode, formatPrice } = useCurrency()
+  const { currencyCode, isForeign, formatPrice, formatOriginalPrice } = useCurrency()
   const [cart, setCart] = useState(() => getCart())
   const [selectedColors, setSelectedColors] = useState({})
   const [activeCategory, setActiveCategory] = useState('all')
@@ -234,7 +245,7 @@ export default function Shop() {
                 <div className="product-info">
                   <div className="product-name">{p.name}</div>
                   <div className="product-cat">{p.cat}</div>
-                  <div className="product-price">{formatPrice(p.price)}</div>
+                  <div className="product-price"><PriceDisplay ghsAmount={p.price} isForeign={isForeign} formatPrice={formatPrice} formatOriginalPrice={formatOriginalPrice} /></div>
                 </div>
               </div>
             ))}
@@ -287,7 +298,7 @@ export default function Shop() {
                         </div>
                       </div>
                       <div>
-                        <div className="order-item-price">{formatPrice(p.price * qty)}</div>
+                        <div className="order-item-price"><PriceDisplay ghsAmount={p.price * qty} isForeign={isForeign} formatPrice={formatPrice} formatOriginalPrice={formatOriginalPrice} /></div>
                         <span className="order-item-remove" onClick={() => removeFromCart(sku)}>×</span>
                       </div>
                     </div>
@@ -301,7 +312,7 @@ export default function Shop() {
                 <div className="order-line loyalty"><span>Loyalty credit</span><span>– {formatPrice(0)}</span></div>
                 <div className="order-total">
                   <span className="order-total-label">Total due</span>
-                  <span className="order-total-value">{formatPrice(total)}</span>
+                  <span className="order-total-value"><PriceDisplay ghsAmount={total} isForeign={isForeign} formatPrice={formatPrice} formatOriginalPrice={formatOriginalPrice} /></span>
                 </div>
                 <div className="payment-methods">
                   {['Card', 'MoMo'].map(method => (

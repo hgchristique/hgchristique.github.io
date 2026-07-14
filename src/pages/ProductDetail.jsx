@@ -26,7 +26,7 @@ function ProductSvg({ cat, color }) {
 export default function ProductDetail() {
   const { sku } = useParams()
   const navigate = useNavigate()
-  const { formatPrice } = useCurrency()
+  const { isForeign, formatPrice, formatOriginalPrice } = useCurrency()
   const product = PRODUCTS.find(p => p.sku === sku)
 
   const [qty, setQty] = useState(1)
@@ -151,7 +151,15 @@ export default function ProductDetail() {
 
           <h1 className="pd-name">{shown.name}</h1>
           {shown.desc && <p className="pd-desc">{shown.desc}</p>}
-          <div className="pd-price">{formatPrice(shown.price)}</div>
+          <div className="pd-price">
+            {isForeign ? (
+              <span className="price-discount-wrap">
+                <span className="price-original">{formatOriginalPrice(shown.price)}</span>
+                <span className="price-discount-badge">20% OFF</span>
+                <span className="price-final">{formatPrice(shown.price)}</span>
+              </span>
+            ) : formatPrice(shown.price)}
+          </div>
 
           {shown.story && (
             <div className="pd-section">

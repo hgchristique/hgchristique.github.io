@@ -70,17 +70,36 @@ export function useCurrency() {
       .catch(() => {})
   }, [])
 
-  const formatPrice = useCallback((ghsPrice) => {
-    const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.GHS
-    const multiplier = currencyCode === 'GHS' ? 1 : 2
-    const converted = ghsPrice * multiplier * config.rate
+  const isForeign = currencyCode !== 'GHS'
+
+  const format = useCallback((amount, config) => {
     return new Intl.NumberFormat(config.locale, {
       style: 'currency',
       currency: currencyCode,
       minimumFractionDigits: config.decimals,
       maximumFractionDigits: config.decimals,
-    }).format(converted)
+    }).format(amount)
   }, [currencyCode])
 
-  return { currencyCode, formatPrice }
+  const convert = useCallback((ghsPrice) => {
+    const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.GHS
+    const multiplier = isForeign ? 2 : 1
+    return ghsPrice * multiplier * config.rate
+  }, [currencyCode, isForeign])
+
+  // Discounted price is the real, charged price for foreign currencies (20% off the converted amount).
+  const formatPrice = useCallback((ghsPrice) => {
+    const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.GHS
+    const converted = convert(ghsPrice)
+    const finalAmount = isForeign ? converted * 0.8 : converted
+    return format(finalAmount, config)
+  }, [currencyCode, convert, format, isForeign])
+
+  // Pre-discount converted price, for the struck-through display next to the discounted price.
+  const formatOriginalPrice = useCallback((ghsPrice) => {
+    const config = CURRENCY_RATES[currencyCode] || CURRENCY_RATES.GHS
+    return format(convert(ghsPrice), config)
+  }, [currencyCode, convert, format])
+
+  return { currencyCode, isForeign, formatPrice, formatOriginalPrice }
 }
