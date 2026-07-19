@@ -179,6 +179,9 @@ export default function Home() {
           <span className="footer-logo">HG CHRISTIQUE</span>
 
           <div className="footer-legal">
+            <Link to="/care-guide">CARE GUIDE</Link>
+            <Link to="/returns">RETURNS & EXCHANGES</Link>
+            <Link to="/faq">FAQ</Link>
             <Link to="/terms">TERMS OF USE</Link>
             <Link to="/privacy">PRIVACY</Link>
           </div>
