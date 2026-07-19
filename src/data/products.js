@@ -48,7 +48,11 @@ export const PRODUCTS = [
       { name: 'Rich Wine',     hex: '#722f37' },
     ],
   },
-  { sku: 'AT-0512', name: 'Ridge Cashmere Knit',  cat: 'Neckwear',    price: 300,   tag: null,   bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg' },
+  {
+    sku: 'AT-0512', name: 'Ember Crown', cat: 'Neckwear', price: 300, tag: null,
+    bg: '#d4a853', color: 'rgba(0,0,0,0.45)', img: '/neck2.jpeg',
+    story: 'Bold as the setting sun and graceful as a queen’s presence, Ember Crown is a celebration of heritage and confidence. The rich coral beads symbolize strength, prosperity, and vitality, while the cascading pearls represent purity, wisdom, and timeless elegance. Together, they create a statement piece designed for women who don’t simply enter a room—they command it.\n\nEvery strand is handcrafted with intention, making Ember Crown more than jewelry. It is a symbol of legacy, dignity, and the quiet confidence of a woman who knows her worth.',
+  },
   {
     sku: 'AT-0344', name: 'Celestial Grace', cat: 'Neckwear', price: 300, tag: 'new',
     bg: '#1f2a44', color: 'rgba(255,255,255,0.55)', img: '/neck4.jpeg',
