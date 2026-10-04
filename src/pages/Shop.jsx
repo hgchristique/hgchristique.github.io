@@ -48,6 +48,7 @@ const FOREIGN_MULTIPLIER = 2 * 0.8
 const MAX_QTY = 20
 const STATUS_POLL_MS = 4000
 const STATUS_POLL_LIMIT = 30
+const CANCEL_CHECKS = 3
 
 const formatGhs = amount => new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }).format(amount)
 
@@ -139,6 +140,8 @@ export default function Shop() {
     if (!reference || !ORDER_REFERENCE.test(reference) || !PAYMENT_API) return
 
     const wasCancelled = searchParams.has('cancelled')
+    // Only an order started in this browser may empty the bag; a reference pasted into a link must not.
+    const startedHere = reference === getPendingOrder()
     if (searchParams.has('ref')) setSearchParams({}, { replace: true })
 
     let stopped = false
@@ -147,7 +150,7 @@ export default function Shop() {
 
     function finish(status, amount) {
       if (status !== 'unknown') clearPendingOrder()
-      if (status === 'paid') setCart({})
+      if (status === 'paid' && startedHere) setCart({})
       setPayment({ reference, status, amount })
     }
 
@@ -166,10 +169,11 @@ export default function Shop() {
 
       if (result && result.status === 'paid') return finish('paid', result.amount)
       if (result && result.status === 'failed') return finish('failed', result.amount)
-      if (wasCancelled) return finish('cancelled')
+      // A payment approved on the phone just before pressing Cancel can still land, so look more than once.
+      if (wasCancelled && attempts >= CANCEL_CHECKS) return finish('cancelled')
       if (attempts >= STATUS_POLL_LIMIT) return finish('unknown')
 
-      setPayment({ reference, status: 'pending' })
+      setPayment({ reference, status: wasCancelled ? 'checking' : 'pending' })
       timer = setTimeout(check, STATUS_POLL_MS)
     }
 

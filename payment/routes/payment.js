@@ -260,7 +260,9 @@ router.get('/status/:reference', async (req, res) => {
     lastStatusCheck.set(reference, Date.now());
     try {
       const result = await hubtel.checkStatus(reference);
-      if (result.status === 'Paid' && Number.isFinite(result.amount) && result.amount + 0.01 >= order.total) {
+      // A callback may have landed while we were waiting.
+      order = orders.get(reference) || order;
+      if (order.status !== 'paid' && result.status === 'Paid' && Number.isFinite(result.amount) && result.amount + 0.01 >= order.total) {
         order = record(reference, { status: 'paid', paidAt: new Date().toISOString(), paidAmount: result.amount }) || order;
       }
     } catch (err) {
