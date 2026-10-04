@@ -6,7 +6,7 @@ export default function FAQ() {
     <div className="legal-page">
       <header className="legal-header">
         <Link to="/" className="legal-back">← Back</Link>
-        <span className="legal-brand">HG CHRISTIQUE</span>
+        <span className="legal-brand">HELORIA FASHION</span>
       </header>
 
       <div className="legal-body">
@@ -19,14 +19,14 @@ export default function FAQ() {
         <p>Most orders are delivered within 1–7 business days depending on your location and whether your item is made to order.</p>
 
         <h2>Are your products handmade?</h2>
-        <p>Yes. Every HG Christique piece is handcrafted with exceptional attention to detail.</p>
+        <p>Yes. Every Heloria Fashion piece is handcrafted with exceptional attention to detail.</p>
 
         <h2>How can I contact you?</h2>
         <p>You can reach us via email, WhatsApp, or Instagram. We're always happy to help.</p>
       </div>
 
       <footer className="legal-footer">
-        <span>© {new Date().getFullYear()} HG CHRISTIQUE · ALL RIGHTS RESERVED</span>
+        <span>© {new Date().getFullYear()} HELORIA FASHION · ALL RIGHTS RESERVED</span>
         <div className="legal-footer-links">
           <Link to="/terms">TERMS OF USE</Link>
           <Link to="/privacy">PRIVACY</Link>

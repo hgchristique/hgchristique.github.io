@@ -16,7 +16,7 @@ export const PRODUCTS = [
     bg: '#6b7c6e', color: 'rgba(255,255,255,0.55)', img: '/bag1.jpeg',
     variants: ['AT-0903', 'AT-0219', 'AT-0220'],
     desc: 'A timeless expression of confidence, femininity, and luxury.',
-    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
+    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of Heloria Fashion.',
     colors: [
       { name: 'Fuchsia Pink',  hex: '#e91e8c' },
       { name: 'Royal Purple',  hex: '#7b2d8b' },
@@ -28,7 +28,7 @@ export const PRODUCTS = [
     sku: 'AT-0219', name: 'Rosé Royale', cat: 'Bags', price: 350, tag: null,
     hidden: true, bg: '#e8b4c8', color: 'rgba(0,0,0,0.45)', img: '/cousin1.jpeg',
     desc: 'A timeless expression of confidence, femininity, and luxury.',
-    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
+    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of Heloria Fashion.',
     colors: [
       { name: 'Fuchsia Pink',  hex: '#e91e8c' },
       { name: 'Royal Purple',  hex: '#7b2d8b' },
@@ -40,7 +40,7 @@ export const PRODUCTS = [
     sku: 'AT-0220', name: 'Rosé Royale', cat: 'Bags', price: 350, tag: null,
     hidden: true, bg: '#c8a0b8', color: 'rgba(0,0,0,0.45)', img: '/cousin2.jpeg',
     desc: 'A timeless expression of confidence, femininity, and luxury.',
-    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
+    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of Heloria Fashion.',
     colors: [
       { name: 'Fuchsia Pink',  hex: '#e91e8c' },
       { name: 'Royal Purple',  hex: '#7b2d8b' },
@@ -108,7 +108,7 @@ export const PRODUCTS = [
     sku: 'AT-0903', name: 'Rosé Royale', cat: 'Bags', price: 350, tag: null,
     hidden: true, bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bag6.jpeg',
     desc: 'A timeless expression of confidence, femininity, and luxury.',
-    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of HG Christique.',
+    story: 'Designed for the woman who isn\'t afraid to stand out, Rosé Royale is a handcrafted masterpiece that blends modern elegance with timeless charm. Its intricate woven silhouette, radiant pearl centerpiece, sparkling crystal details, and luxurious gold chain create a statement that is both bold and refined.\n\nWhether carried to an intimate dinner, a wedding, or a glamorous celebration, Rosé Royale transforms every entrance into a memorable one. Because true elegance isn\'t just seen—it\'s felt.\n\nAvailable in Fuchsia Pink, Royal Purple, Classic Brown, and Rich Wine, each shade is thoughtfully crafted to complement your unique style while reflecting the signature sophistication of Heloria Fashion.',
     colors: [
       { name: 'Fuchsia Pink',  hex: '#e91e8c' },
       { name: 'Royal Purple',  hex: '#7b2d8b' },
@@ -135,7 +135,7 @@ export const PRODUCTS = [
     bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/bracelet1.jpeg',
     variants: ['AT-0704', 'AT-0709'],
     desc: 'Elegant in every curve — a symbol of timeless beauty and meaningful connections.',
-    story: 'Handcrafted with shimmering crystals and intricate beadwork, its flowing design reflects strength, grace, and sophistication. Available in green, yellow, red, and silver, each color tells its own story while celebrating the artistry behind every handcrafted detail.\n\nHG Christique — Luxury in Every Detail.',
+    story: 'Handcrafted with shimmering crystals and intricate beadwork, its flowing design reflects strength, grace, and sophistication. Available in green, yellow, red, and silver, each color tells its own story while celebrating the artistry behind every handcrafted detail.\n\nHeloria Fashion — Luxury in Every Detail.',
     colorMeanings: [
       { emoji: '💚', name: 'Green',  meaning: 'Growth, renewal, and prosperity.' },
       { emoji: '💛', name: 'Yellow', meaning: 'Joy, confidence, and optimism.' },
@@ -156,7 +156,7 @@ export const PRODUCTS = [
     variants: ['AT-0702', 'AT-0707'],
     bg: '#c8a96e', color: 'rgba(0,0,0,0.45)', img: '/bracelet3.jpeg',
     desc: 'A delicate masterpiece inspired by flowers in full bloom.',
-    story: 'Every flower blooms in its own time, and Scarlet Bloom is a celebration of that timeless beauty. Handwoven with sparkling crystals and delicate floral details, this bracelet captures the elegance of nature and the brilliance of handcrafted artistry. Whether worn as a subtle statement or a finishing touch, it adds effortless sophistication to every look. Available in blue, black, yellow, red, and white, each shade reflects a unique expression of style.\n\nHG Christique — Luxury in Every Detail.',
+    story: 'Every flower blooms in its own time, and Scarlet Bloom is a celebration of that timeless beauty. Handwoven with sparkling crystals and delicate floral details, this bracelet captures the elegance of nature and the brilliance of handcrafted artistry. Whether worn as a subtle statement or a finishing touch, it adds effortless sophistication to every look. Available in blue, black, yellow, red, and white, each shade reflects a unique expression of style.\n\nHeloria Fashion — Luxury in Every Detail.',
     colorMeanings: [
       { emoji: '❤️', name: 'Red',    meaning: 'Passion, confidence, and romance.' },
       { emoji: '💙', name: 'Blue',   meaning: 'Serenity, wisdom, and grace.' },
@@ -176,7 +176,7 @@ export const PRODUCTS = [
     sku: 'AT-0704', name: 'Eternal Grace Bracelet', cat: 'Bracelets', price: 120, tag: 'new',
     hidden: true, bg: '#b8845a', color: 'rgba(255,255,255,0.55)', img: '/bracelet4.jpeg',
     desc: 'Elegant in every curve — a symbol of timeless beauty and meaningful connections.',
-    story: 'Handcrafted with shimmering crystals and intricate beadwork, its flowing design reflects strength, grace, and sophistication. Available in green, yellow, red, and silver, each color tells its own story while celebrating the artistry behind every handcrafted detail.\n\nHG Christique — Luxury in Every Detail.',
+    story: 'Handcrafted with shimmering crystals and intricate beadwork, its flowing design reflects strength, grace, and sophistication. Available in green, yellow, red, and silver, each color tells its own story while celebrating the artistry behind every handcrafted detail.\n\nHeloria Fashion — Luxury in Every Detail.',
     colorMeanings: [
       { emoji: '💚', name: 'Green',  meaning: 'Growth, renewal, and prosperity.' },
       { emoji: '💛', name: 'Yellow', meaning: 'Joy, confidence, and optimism.' },
@@ -193,7 +193,7 @@ export const PRODUCTS = [
     sku: 'AT-0709', name: 'Eternal Grace Bracelet', cat: 'Bracelets', price: 120, tag: 'new',
     hidden: true, bg: '#c4944a', color: 'rgba(0,0,0,0.45)', img: '/sis.jpeg',
     desc: 'Elegant in every curve — a symbol of timeless beauty and meaningful connections.',
-    story: 'Handcrafted with shimmering crystals and intricate beadwork, its flowing design reflects strength, grace, and sophistication. Available in green, yellow, red, and silver, each color tells its own story while celebrating the artistry behind every handcrafted detail.\n\nHG Christique — Luxury in Every Detail.',
+    story: 'Handcrafted with shimmering crystals and intricate beadwork, its flowing design reflects strength, grace, and sophistication. Available in green, yellow, red, and silver, each color tells its own story while celebrating the artistry behind every handcrafted detail.\n\nHeloria Fashion — Luxury in Every Detail.',
     colorMeanings: [
       { emoji: '💚', name: 'Green',  meaning: 'Growth, renewal, and prosperity.' },
       { emoji: '💛', name: 'Yellow', meaning: 'Joy, confidence, and optimism.' },

@@ -9,7 +9,7 @@ export default function Privacy() {
     <div className="legal-page">
       <header className="legal-header">
         <Link to="/" className="legal-back">← Back</Link>
-        <span className="legal-brand">HG CHRISTIQUE</span>
+        <span className="legal-brand">HELORIA FASHION</span>
       </header>
 
       <div className="legal-body">
@@ -23,7 +23,7 @@ export default function Privacy() {
         <p>We use your information to process and fulfil orders, communicate with you about your purchases, improve our site and services, and send you updates or promotional content where you have consented to receive them.</p>
 
         <h2>3. Data Sharing</h2>
-        <p>HG Christique does not sell, rent, or trade your personal information. We may share data with trusted third-party service providers (such as payment processors and delivery partners) solely for the purpose of fulfilling your order.</p>
+        <p>Heloria Fashion does not sell, rent, or trade your personal information. We may share data with trusted third-party service providers (such as payment processors and delivery partners) solely for the purpose of fulfilling your order.</p>
 
         <h2>4. Data Security</h2>
         <p>We take reasonable measures to protect your personal information from unauthorised access, use, or disclosure. However, no method of transmission over the internet is completely secure, and we cannot guarantee absolute security.</p>
@@ -35,7 +35,7 @@ export default function Privacy() {
         <p>You have the right to access, correct, or request deletion of your personal data. To exercise these rights, please contact us at <a href="mailto:hello@hgchristique.click">hello@hgchristique.click</a>.</p>
 
         <h2>7. Third-Party Links</h2>
-        <p>Our site may contain links to third-party websites. HG Christique is not responsible for the privacy practices or content of those sites.</p>
+        <p>Our site may contain links to third-party websites. Heloria Fashion is not responsible for the privacy practices or content of those sites.</p>
 
         <h2>8. Policy Updates</h2>
         <p>This Privacy Policy is reviewed and updated on the 1st of every month. We encourage you to review it periodically. Continued use of the site following any update constitutes acceptance of the revised policy.</p>
@@ -45,7 +45,7 @@ export default function Privacy() {
       </div>
 
       <footer className="legal-footer">
-        <span>© {new Date().getFullYear()} HG CHRISTIQUE · ALL RIGHTS RESERVED</span>
+        <span>© {new Date().getFullYear()} HELORIA FASHION · ALL RIGHTS RESERVED</span>
         <div className="legal-footer-links">
           <Link to="/terms">TERMS OF USE</Link>
           <Link to="/privacy">PRIVACY</Link>

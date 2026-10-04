@@ -26,7 +26,7 @@ export default function Contact() {
       <header className="contact-header">
         <Link to="/" className="contact-logo">
           <div className="logo-icon">S</div>
-          HG Christique
+          Heloria Fashion
         </Link>
         <nav className="contact-nav">
           <Link to="/">Home</Link>

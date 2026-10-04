@@ -9,7 +9,7 @@ export default function Terms() {
     <div className="legal-page">
       <header className="legal-header">
         <Link to="/" className="legal-back">← Back</Link>
-        <span className="legal-brand">HG CHRISTIQUE</span>
+        <span className="legal-brand">HELORIA FASHION</span>
       </header>
 
       <div className="legal-body">
@@ -17,26 +17,26 @@ export default function Terms() {
         <h1>Terms of Use</h1>
 
         <h2>1. Acceptance of Terms</h2>
-        <p>By accessing and using the HG Christique website and services, you accept and agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use our site.</p>
+        <p>By accessing and using the Heloria Fashion website and services, you accept and agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use our site.</p>
 
         <h2>2. Use of the Site</h2>
-        <p>You may use this site for lawful purposes only. You agree not to use the site in any way that violates applicable laws or regulations, or that harms or interferes with the rights of HG Christique or any third party.</p>
+        <p>You may use this site for lawful purposes only. You agree not to use the site in any way that violates applicable laws or regulations, or that harms or interferes with the rights of Heloria Fashion or any third party.</p>
 
         <h2>3. Intellectual Property</h2>
-        <p>All original content on this site — including our brand name, logo, product descriptions, and product images — is the property of HG Christique and is protected by applicable intellectual property laws. No original content may be reproduced, distributed, or used without our prior written consent.</p>
-        <p>The Gallery of Inspiration section features images sourced from Pinterest and other third-party platforms for visual inspiration purposes only. HG Christique does not claim ownership of these images. All rights belong to their respective owners. If you are the owner of any image featured and wish it to be removed, please contact us at <a href="mailto:hello@hgchristique.click">hello@hgchristique.click</a>.</p>
+        <p>All original content on this site — including our brand name, logo, product descriptions, and product images — is the property of Heloria Fashion and is protected by applicable intellectual property laws. No original content may be reproduced, distributed, or used without our prior written consent.</p>
+        <p>The Gallery of Inspiration section features images sourced from Pinterest and other third-party platforms for visual inspiration purposes only. Heloria Fashion does not claim ownership of these images. All rights belong to their respective owners. If you are the owner of any image featured and wish it to be removed, please contact us at <a href="mailto:hello@hgchristique.click">hello@hgchristique.click</a>.</p>
 
         <h2>4. Products and Pricing</h2>
-        <p>All products are subject to availability. Prices are displayed in Ghanaian Cedis (GH₵) by default and may vary by currency. HG Christique reserves the right to modify prices at any time without prior notice.</p>
+        <p>All products are subject to availability. Prices are displayed in Ghanaian Cedis (GH₵) by default and may vary by currency. Heloria Fashion reserves the right to modify prices at any time without prior notice.</p>
 
         <h2>5. Orders and Payment</h2>
-        <p>Placing an order constitutes an offer to purchase. HG Christique reserves the right to accept or decline any order. Payment must be completed in full before any order is processed or dispatched.</p>
+        <p>Placing an order constitutes an offer to purchase. Heloria Fashion reserves the right to accept or decline any order. Payment must be completed in full before any order is processed or dispatched.</p>
 
         <h2>6. Returns and Refunds</h2>
         <p>We take quality seriously. If you receive a damaged or incorrect item, please contact us within 7 days of receipt. Returns are assessed on a case-by-case basis. Custom and personalised orders are non-refundable.</p>
 
         <h2>7. Limitation of Liability</h2>
-        <p>HG Christique shall not be liable for any indirect, incidental, or consequential damages arising from the use of or inability to use this site or its products.</p>
+        <p>Heloria Fashion shall not be liable for any indirect, incidental, or consequential damages arising from the use of or inability to use this site or its products.</p>
 
         <h2>8. Changes to Terms</h2>
         <p>These terms are reviewed and updated on the 1st of every month. Continued use of the site after any update constitutes your acceptance of the revised terms.</p>
@@ -46,7 +46,7 @@ export default function Terms() {
       </div>
 
       <footer className="legal-footer">
-        <span>© {new Date().getFullYear()} HG CHRISTIQUE · ALL RIGHTS RESERVED</span>
+        <span>© {new Date().getFullYear()} HELORIA FASHION · ALL RIGHTS RESERVED</span>
         <div className="legal-footer-links">
           <Link to="/terms">TERMS OF USE</Link>
           <Link to="/privacy">PRIVACY</Link>

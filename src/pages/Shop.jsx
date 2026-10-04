@@ -138,7 +138,7 @@ export default function Shop() {
         >
           <div className="loading-logo">
             <div className="loading-icon">H</div>
-            <span className="loading-brand">HG <span>CHRISTIQUE</span></span>
+            <span className="loading-brand">HELORIA <span>FASHION</span></span>
           </div>
           <p className="loading-sub">Point-of-sale · Register 04 · Floor 1</p>
           <div className="loading-bar"><div className="loading-bar-fill"></div></div>
@@ -152,7 +152,7 @@ export default function Shop() {
         <div className="pos-brand">
           <div className="pos-brand-icon">H</div>
           <div>
-            <div className="pos-brand-name">HG Christique</div>
+            <div className="pos-brand-name">Heloria Fashion</div>
             <div className="pos-register">Register 04 · Floor 1</div>
           </div>
         </div>

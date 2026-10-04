@@ -6,7 +6,7 @@ export default function Returns() {
     <div className="legal-page">
       <header className="legal-header">
         <Link to="/" className="legal-back">← Back</Link>
-        <span className="legal-brand">HG CHRISTIQUE</span>
+        <span className="legal-brand">HELORIA FASHION</span>
       </header>
 
       <div className="legal-body">
@@ -19,7 +19,7 @@ export default function Returns() {
       </div>
 
       <footer className="legal-footer">
-        <span>© {new Date().getFullYear()} HG CHRISTIQUE · ALL RIGHTS RESERVED</span>
+        <span>© {new Date().getFullYear()} HELORIA FASHION · ALL RIGHTS RESERVED</span>
         <div className="legal-footer-links">
           <Link to="/terms">TERMS OF USE</Link>
           <Link to="/privacy">PRIVACY</Link>

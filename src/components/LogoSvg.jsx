@@ -176,7 +176,7 @@ export default function LogoSvg({ size = 48, className = '' }) {
         fill="url(#lgText)"
         textAnchor="middle"
         letterSpacing="5.5"
-      >HG CHRISTIQUE</text>
+      >HELORIA FASHION</text>
 
       {/* Ornament divider */}
       <line x1="78"  y1="458" x2="192" y2="458" stroke="url(#lgText)" strokeWidth="0.8" opacity="0.5"/>
