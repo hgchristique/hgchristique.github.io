@@ -1,8 +1,8 @@
 import { useState, useEffect, Fragment } from 'react'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import { PRODUCTS, CATEGORIES } from '../data/products'
 import { useCurrency } from '../hooks/useCurrency'
-import { getCart, saveCart } from '../utils/cart'
+import { getCart, saveCart, getPendingOrder, savePendingOrder, clearPendingOrder } from '../utils/cart'
 import '../styles/shop.css'
 
 function PriceDisplay({ ghsAmount, isForeign, formatPrice, formatOriginalPrice }) {
@@ -38,15 +38,47 @@ function ProductSvg({ cat, color }) {
 
 const BAG_COLORS = ['#0a0a0a', '#b8845a', '#2d3642', '#6b2d3e', '#4a5240', '#c4b89a']
 
+const PAYMENT_API = import.meta.env.VITE_PAYMENT_API_URL || (import.meta.env.DEV ? 'http://localhost:3001' : '')
+const ORDER_REFERENCE = /^HF[A-Z0-9]{10,30}/
+const PHONE_PATTERN = /^\+?\d{9,15}$/
+const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+// Mirrors useCurrency: foreign prices are doubled, then 20% off. Payment is always taken in GHS.
+const FOREIGN_MULTIPLIER = 2 * 0.8
+const STATUS_POLL_MS = 4000
+const STATUS_POLL_LIMIT = 30
+
+const formatGhs = amount => new Intl.NumberFormat('en-GH', { style: 'currency', currency: 'GHS' }).format(amount)
+
+const PAYMENT_MESSAGES = {
+  checking:  { title: 'Checking your payment', text: 'One moment while we confirm with the payment provider.' },
+  pending:   { title: 'Waiting for payment confirmation', text: 'This can take a minute. You can keep browsing.' },
+  paid:      { title: 'Payment received', text: 'Thank you. We will contact you shortly to arrange delivery.' },
+  failed:    { title: 'Payment was not completed', text: 'You have not been charged. Your order is still in your bag if you want to try again.' },
+  cancelled: { title: 'Payment cancelled', text: 'You have not been charged. Your order is still in your bag.' },
+  unknown:   { title: 'Payment not confirmed yet', text: 'If you were charged, please contact us with your order reference.' },
+}
+
+function validateCustomer({ name, phone, address, email }) {
+  if (name.trim().length < 2 || name.trim().length > 80) return 'Enter your full name.'
+  if (!PHONE_PATTERN.test(phone.replace(/[\s()-]/g, ''))) return 'Enter a valid phone number.'
+  if (address.trim().length < 5 || address.trim().length > 200) return 'Enter your delivery address.'
+  if (email.trim() && !EMAIL_PATTERN.test(email.trim())) return 'Enter a valid email address, or leave it blank.'
+  return null
+}
+
 export default function Shop() {
   const navigate = useNavigate()
+  const [searchParams, setSearchParams] = useSearchParams()
   const { currencyCode, isForeign, formatPrice, formatOriginalPrice } = useCurrency()
   const [cart, setCart] = useState(() => getCart())
   const [selectedColors, setSelectedColors] = useState({})
   const [activeCategory, setActiveCategory] = useState('all')
   const [activeFilter, setActiveFilter] = useState('instock')
   const [searchQuery, setSearchQuery] = useState('')
-  const [paymentMethod, setPaymentMethod] = useState('Card')
+  const [customer, setCustomer] = useState({ name: '', phone: '', address: '', email: '' })
+  const [checkoutError, setCheckoutError] = useState('')
+  const [submitting, setSubmitting] = useState(false)
+  const [payment, setPayment] = useState(null)
   const [loading, setLoading] = useState(true)
   const [loadingVisible, setLoadingVisible] = useState(true)
   const [time, setTime] = useState('')
@@ -98,10 +130,96 @@ export default function Shop() {
     })
   }
 
-  function processCharge() {
-    if (cartEntries.length === 0) return
-    setCart({})
-    setCartOpen(false)
+  // Back from the payment page: confirm the order with the payment server.
+  useEffect(() => {
+    const fromUrl = (searchParams.get('ref') || '').match(ORDER_REFERENCE)
+    const reference = fromUrl ? fromUrl[0] : getPendingOrder()
+    if (!reference || !ORDER_REFERENCE.test(reference) || !PAYMENT_API) return
+
+    const wasCancelled = searchParams.has('cancelled')
+    if (searchParams.has('ref')) setSearchParams({}, { replace: true })
+
+    let stopped = false
+    let timer = null
+    let attempts = 0
+
+    function finish(status, amount) {
+      if (status !== 'unknown') clearPendingOrder()
+      if (status === 'paid') setCart({})
+      setPayment({ reference, status, amount })
+    }
+
+    async function check() {
+      attempts += 1
+      let result = null
+      try {
+        const res = await fetch(`${PAYMENT_API}/api/payment/status/${reference}`, { signal: AbortSignal.timeout(20000) })
+        if (stopped) return
+        if (res.status === 404) { clearPendingOrder(); setPayment(null); return }
+        if (res.ok) result = await res.json()
+      } catch {
+        // Network trouble: fall through and retry.
+      }
+      if (stopped) return
+
+      if (result && result.status === 'paid') return finish('paid', result.amount)
+      if (result && result.status === 'failed') return finish('failed', result.amount)
+      if (wasCancelled) return finish('cancelled')
+      if (attempts >= STATUS_POLL_LIMIT) return finish('unknown')
+
+      setPayment({ reference, status: 'pending' })
+      timer = setTimeout(check, STATUS_POLL_MS)
+    }
+
+    setPayment({ reference, status: 'checking' })
+    check()
+    return () => { stopped = true; clearTimeout(timer) }
+    // Runs once on arrival; the reference is read from the URL before it is cleared.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
+  function updateCustomer(field, value) {
+    setCustomer(prev => ({ ...prev, [field]: value }))
+    setCheckoutError('')
+  }
+
+  async function processCharge() {
+    if (cartEntries.length === 0 || submitting) return
+
+    const invalid = validateCustomer(customer)
+    if (invalid) { setCheckoutError(invalid); return }
+    if (!PAYMENT_API) { setCheckoutError('Online payment is not available yet. Please contact us to place your order.'); return }
+
+    setSubmitting(true)
+    setCheckoutError('')
+    try {
+      const res = await fetch(`${PAYMENT_API}/api/payment/checkout`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          items: cartEntries.map(([sku, qty]) => ({ sku, qty })),
+          customer: {
+            name: customer.name.trim(),
+            phone: customer.phone.trim(),
+            address: customer.address.trim(),
+            email: customer.email.trim() || undefined,
+          },
+          currency: currencyCode,
+        }),
+        signal: AbortSignal.timeout(30000),
+      })
+      const data = await res.json().catch(() => null)
+      if (!res.ok || !data || !data.checkoutUrl) {
+        setCheckoutError((data && data.error) || 'Could not start the payment. Please try again.')
+        setSubmitting(false)
+        return
+      }
+      savePendingOrder(data.reference)
+      window.location.assign(data.checkoutUrl)
+    } catch {
+      setCheckoutError('Could not reach the payment service. Check your connection and try again.')
+      setSubmitting(false)
+    }
   }
 
   function toggleFilter(f) {
@@ -115,6 +233,7 @@ export default function Shop() {
     return s + (p ? p.price * q : 0)
   }, 0)
   const total = subtotal
+  const ghsCharge = isForeign ? total * FOREIGN_MULTIPLIER : total
 
   const filtered = PRODUCTS.filter(p => {
     if (!p.img) return false
@@ -142,6 +261,26 @@ export default function Shop() {
           </div>
           <p className="loading-sub">Point-of-sale · Register 04 · Floor 1</p>
           <div className="loading-bar"><div className="loading-bar-fill"></div></div>
+        </div>
+      )}
+
+      {payment && (
+        <div className={`payment-banner ${payment.status}`} role="status">
+          <div>
+            <div className="payment-banner-title">{PAYMENT_MESSAGES[payment.status].title}</div>
+            <div className="payment-banner-text">
+              {PAYMENT_MESSAGES[payment.status].text}
+              {payment.status === 'paid' && payment.amount ? ` Amount paid: ${formatGhs(payment.amount)}.` : ''}
+            </div>
+            <div className="payment-banner-ref">Order reference {payment.reference}</div>
+          </div>
+          <button
+            className="payment-banner-close"
+            aria-label="Dismiss"
+            onClick={() => { if (payment.status !== 'unknown') clearPendingOrder(); setPayment(null) }}
+          >
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" width="16" height="16"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          </button>
         </div>
       )}
 
@@ -314,21 +453,30 @@ export default function Shop() {
                   <span className="order-total-label">Total due</span>
                   <span className="order-total-value"><PriceDisplay ghsAmount={total} isForeign={isForeign} formatPrice={formatPrice} formatOriginalPrice={formatOriginalPrice} /></span>
                 </div>
-                <div className="payment-methods">
-                  {['Card', 'MoMo'].map(method => (
-                    <button
-                      key={method}
-                      className={`pay-btn${paymentMethod === method ? ' active' : ''}`}
-                      onClick={() => setPaymentMethod(method)}
-                    >
-                      {method === 'Card' && <svg viewBox="0 0 24 24"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>}
-                      {method === 'MoMo' && <svg viewBox="0 0 24 24"><rect x="5" y="2" width="14" height="20" rx="2"/><line x1="12" y1="18" x2="12" y2="18" strokeLinecap="round" strokeWidth="2"/></svg>}
-                      {method}
-                    </button>
-                  ))}
+                <div className="checkout-form">
+                  <input
+                    type="text" placeholder="Full name" autoComplete="name" maxLength={80}
+                    value={customer.name} onChange={e => updateCustomer('name', e.target.value)}
+                  />
+                  <input
+                    type="tel" placeholder="Phone number" autoComplete="tel" maxLength={20}
+                    value={customer.phone} onChange={e => updateCustomer('phone', e.target.value)}
+                  />
+                  <input
+                    type="text" placeholder="Delivery address" autoComplete="street-address" maxLength={200}
+                    value={customer.address} onChange={e => updateCustomer('address', e.target.value)}
+                  />
+                  <input
+                    type="email" placeholder="Email (optional)" autoComplete="email" maxLength={120}
+                    value={customer.email} onChange={e => updateCustomer('email', e.target.value)}
+                  />
                 </div>
-                <button className="charge-btn" onClick={processCharge}>
-                  <span>Charge</span>
+                {isForeign && (
+                  <p className="checkout-note">Payment is taken in Ghana Cedis: {formatGhs(ghsCharge)}.</p>
+                )}
+                {checkoutError && <p className="checkout-error" role="alert">{checkoutError}</p>}
+                <button className="charge-btn" onClick={processCharge} disabled={submitting}>
+                  <span>{submitting ? 'Opening secure payment...' : 'Pay now'}</span>
                   <span className="charge-amount">{formatPrice(total)}</span>
                 </button>
               </div>

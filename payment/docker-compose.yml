@@ -1,0 +1,34 @@
+# Production stack for the payment server. Run from the repository root:
+#   docker compose -f payment/docker-compose.yml up -d --build
+# Credentials come from payment/.env on the host (never committed).
+name: heloria-payment
+
+services:
+  payment:
+    build:
+      context: ..
+      dockerfile: payment/Dockerfile
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      PORT: 3001
+    volumes:
+      - orders:/app/payment/data
+    networks:
+      proxy:
+        aliases:
+          - heloria-payment
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+volumes:
+  orders:
+
+# The droplet's existing Caddy container terminates HTTPS and reaches this service over its network.
+networks:
+  proxy:
+    name: tunnelosu_default
+    external: true

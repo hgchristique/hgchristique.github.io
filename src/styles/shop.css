@@ -481,6 +481,49 @@
 }
 .charge-btn:hover { background: #3730a3; transform: translateY(-1px); }
 .charge-btn .charge-amount { font-size: 13px; font-weight: 700; }
+.charge-btn:disabled { opacity: 0.6; cursor: wait; transform: none; }
+.checkout-form { display: grid; gap: 8px; margin-bottom: 10px; }
+.checkout-form input {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid rgba(0,0,0,0.12);
+  border-radius: 8px;
+  font-size: 13px;
+  font-family: inherit;
+  background: var(--white);
+  color: var(--black);
+}
+.checkout-form input:focus { outline: none; border-color: var(--indigo); }
+.checkout-note { font-size: 12px; color: #555; margin: 0 0 10px; }
+.checkout-error { font-size: 12px; color: #b91c1c; margin: 0 0 10px; }
+
+/* ── Payment result banner ───────────────────────── */
+.payment-banner {
+  position: fixed;
+  top: 12px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 500;
+  width: min(440px, calc(100vw - 24px));
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 12px;
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: var(--white);
+  border-left: 4px solid var(--indigo);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+}
+.payment-banner.paid { border-left-color: #22c55e; }
+.payment-banner.failed,
+.payment-banner.cancelled { border-left-color: #b91c1c; }
+.payment-banner.unknown { border-left-color: var(--gold-line); }
+.payment-banner-title { font-size: 14px; font-weight: 600; color: var(--black); }
+.payment-banner-text { font-size: 12px; color: #555; margin-top: 2px; }
+.payment-banner-ref { font-size: 11px; color: #aaa; margin-top: 6px; }
+.payment-banner-close {
+  background: none; border: none; cursor: pointer;
+  color: #666; padding: 4px; border-radius: 4px;
+  display: flex; align-items: center;
+}
+.payment-banner-close:hover { background: rgba(0,0,0,0.07); }
 
 /* ── Mobile responsive ───────────────────────────── */
 @media (max-width: 1024px) {

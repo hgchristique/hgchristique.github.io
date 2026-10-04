@@ -1,0 +1,8 @@
+# Only the payment server and the product list go into the image.
+*
+!payment/package.json
+!payment/package-lock.json
+!payment/server.js
+!payment/lib
+!payment/routes
+!src/data/products.js
