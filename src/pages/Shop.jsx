@@ -44,6 +44,8 @@ const PHONE_PATTERN = /^\+?\d{9,15}$/
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 // Mirrors useCurrency: foreign prices are doubled, then 20% off. Payment is always taken in GHS.
 const FOREIGN_MULTIPLIER = 2 * 0.8
+// Matches the payment server's per-product limit.
+const MAX_QTY = 20
 const STATUS_POLL_MS = 4000
 const STATUS_POLL_LIMIT = 30
 
@@ -124,7 +126,7 @@ export default function Shop() {
 
   function changeQty(sku, delta) {
     setCart(prev => {
-      const next = { ...prev, [sku]: (prev[sku] || 0) + delta }
+      const next = { ...prev, [sku]: Math.min(MAX_QTY, (prev[sku] || 0) + delta) }
       if (next[sku] <= 0) delete next[sku]
       return next
     })
@@ -178,6 +180,13 @@ export default function Shop() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  // Coming back from the payment page with the Back button restores this page as it was left.
+  useEffect(() => {
+    const onPageShow = e => { if (e.persisted) setSubmitting(false) }
+    window.addEventListener('pageshow', onPageShow)
+    return () => window.removeEventListener('pageshow', onPageShow)
+  }, [])
+
   function updateCustomer(field, value) {
     setCustomer(prev => ({ ...prev, [field]: value }))
     setCheckoutError('')
@@ -197,7 +206,8 @@ export default function Shop() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          items: cartEntries.map(([sku, qty]) => ({ sku, qty })),
+          // Skus no longer in the catalogue are not shown in the bag, so they are not charged either.
+          items: cartEntries.filter(([sku]) => PRODUCTS.some(p => p.sku === sku)).map(([sku, qty]) => ({ sku, qty })),
           customer: {
             name: customer.name.trim(),
             phone: customer.phone.trim(),
@@ -455,19 +465,19 @@ export default function Shop() {
                 </div>
                 <div className="checkout-form">
                   <input
-                    type="text" placeholder="Full name" autoComplete="name" maxLength={80}
+                    type="text" placeholder="Full name" aria-label="Full name" autoComplete="name" maxLength={80}
                     value={customer.name} onChange={e => updateCustomer('name', e.target.value)}
                   />
                   <input
-                    type="tel" placeholder="Phone number" autoComplete="tel" maxLength={20}
+                    type="tel" placeholder="Phone number" aria-label="Phone number" autoComplete="tel" maxLength={20}
                     value={customer.phone} onChange={e => updateCustomer('phone', e.target.value)}
                   />
                   <input
-                    type="text" placeholder="Delivery address" autoComplete="street-address" maxLength={200}
+                    type="text" placeholder="Delivery address" aria-label="Delivery address" autoComplete="street-address" maxLength={200}
                     value={customer.address} onChange={e => updateCustomer('address', e.target.value)}
                   />
                   <input
-                    type="email" placeholder="Email (optional)" autoComplete="email" maxLength={120}
+                    type="email" placeholder="Email (optional)" aria-label="Email (optional)" autoComplete="email" maxLength={120}
                     value={customer.email} onChange={e => updateCustomer('email', e.target.value)}
                   />
                 </div>

@@ -30,18 +30,32 @@ function get(reference) {
   return Object.prototype.hasOwnProperty.call(all, reference) ? all[reference] : null;
 }
 
+// Both writers undo their in-memory change if the write fails, so memory never runs ahead of disk.
 function create(order) {
-  load()[order.reference] = order;
-  persist();
+  const all = load();
+  all[order.reference] = order;
+  try {
+    persist();
+  } catch (err) {
+    delete all[order.reference];
+    throw err;
+  }
   return order;
 }
 
 function update(reference, changes) {
-  const order = get(reference);
-  if (!order) return null;
-  Object.assign(order, changes, { updatedAt: new Date().toISOString() });
-  persist();
-  return order;
+  const all = load();
+  const previous = get(reference);
+  if (!previous) return null;
+  const next = { ...previous, ...changes, updatedAt: new Date().toISOString() };
+  all[reference] = next;
+  try {
+    persist();
+  } catch (err) {
+    all[reference] = previous;
+    throw err;
+  }
+  return next;
 }
 
 module.exports = { load, get, create, update };

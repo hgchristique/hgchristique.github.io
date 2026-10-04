@@ -21,8 +21,23 @@ const checkoutHits    = new Map();
 
 const round2 = n => Math.round(n * 100) / 100;
 
+// A failed write must not take the request, or the process, down with it.
+function record(reference, changes) {
+  try {
+    return orders.update(reference, changes);
+  } catch (err) {
+    console.error(`Could not save order ${reference}:`, err.message);
+    return null;
+  }
+}
+
 function rateLimited(ip) {
   const now  = Date.now();
+  if (checkoutHits.size > 5000) {
+    for (const [key, times] of checkoutHits) {
+      if (times.every(t => now - t >= RATE_WINDOW_MS)) checkoutHits.delete(key);
+    }
+  }
   const hits = (checkoutHits.get(ip) || []).filter(t => now - t < RATE_WINDOW_MS);
   hits.push(now);
   checkoutHits.set(ip, hits);
@@ -139,16 +154,21 @@ router.post('/checkout', async (req, res) => {
   const callbackToken = crypto.randomBytes(24).toString('hex');
   const itemCount = items.value.reduce((sum, line) => sum + line.qty, 0);
 
-  orders.create({
-    reference,
-    callbackToken,
-    status: 'pending',
-    items: items.value,
-    total,
-    displayCurrency,
-    customer: customer.value,
-    createdAt: new Date().toISOString(),
-  });
+  try {
+    orders.create({
+      reference,
+      callbackToken,
+      status: 'pending',
+      items: items.value,
+      total,
+      displayCurrency,
+      customer: customer.value,
+      createdAt: new Date().toISOString(),
+    });
+  } catch (err) {
+    console.error(`Could not record order ${reference}:`, err.message);
+    return res.status(503).json({ error: 'We could not record your order just now. You have not been charged. Please try again.' });
+  }
 
   try {
     const checkout = await hubtel.initiateCheckout({
@@ -163,11 +183,11 @@ router.post('/checkout', async (req, res) => {
       payeeEmail: customer.value.email,
     });
 
-    orders.update(reference, { checkoutId: checkout.checkoutId });
+    record(reference, { checkoutId: checkout.checkoutId });
     return res.json({ reference, checkoutUrl: checkout.checkoutUrl, amount: total, currency: 'GHS' });
   } catch (err) {
     console.error(`Checkout ${reference} failed:`, err.message);
-    orders.update(reference, { status: 'failed', failureReason: err.message });
+    record(reference, { status: 'failed', failureReason: err.message });
 
     if (err.name === 'TimeoutError' || err.name === 'AbortError') {
       return res.status(504).json({ error: 'The payment provider took too long to respond. Please try again.' });
@@ -199,24 +219,27 @@ router.post('/callback', (req, res) => {
 
   const succeeded = body.ResponseCode === '0000' && data.Status === 'Success';
   if (!succeeded) {
-    orders.update(reference, { status: 'failed', failureReason: String(data.Description || body.Status || 'Payment failed').slice(0, 200) });
+    record(reference, { status: 'failed', failureReason: String(data.Description || body.Status || 'Payment failed').slice(0, 200) });
     return res.json({ received: true });
   }
 
+  // Acknowledged with 200 so Hubtel does not keep retrying; the order stays unpaid for manual follow-up.
   const paidAmount = Number(data.Amount);
   if (!Number.isFinite(paidAmount) || paidAmount + 0.01 < order.total) {
     console.error(`Callback for ${reference} reported ${data.Amount}, expected ${order.total}`);
-    orders.update(reference, { status: 'failed', failureReason: 'Amount paid does not match the order total' });
-    return res.status(400).json({ error: 'Amount does not match the order total' });
+    record(reference, { status: 'failed', failureReason: `Amount paid (${String(data.Amount).slice(0, 20)}) does not match the order total` });
+    return res.json({ received: true });
   }
 
-  orders.update(reference, {
+  const saved = record(reference, {
     status: 'paid',
     paidAt: new Date().toISOString(),
     paidAmount,
     hubtelInvoiceId: typeof data.SalesInvoiceId === 'string' ? data.SalesInvoiceId : null,
     channel: data.PaymentDetails && typeof data.PaymentDetails.Channel === 'string' ? data.PaymentDetails.Channel : null,
   });
+  // Not acknowledged, so Hubtel can deliver the confirmation again once storage recovers.
+  if (!saved) return res.status(503).json({ error: 'Could not record the payment yet, please retry' });
   return res.json({ received: true });
 });
 
@@ -238,7 +261,7 @@ router.get('/status/:reference', async (req, res) => {
     try {
       const result = await hubtel.checkStatus(reference);
       if (result.status === 'Paid' && Number.isFinite(result.amount) && result.amount + 0.01 >= order.total) {
-        order = orders.update(reference, { status: 'paid', paidAt: new Date().toISOString(), paidAmount: result.amount });
+        order = record(reference, { status: 'paid', paidAt: new Date().toISOString(), paidAmount: result.amount }) || order;
       }
     } catch (err) {
       console.warn(`Status check for ${reference} unavailable: ${err.message}`);

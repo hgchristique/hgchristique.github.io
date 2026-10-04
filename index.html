@@ -61,7 +61,13 @@
         var p = /[?&]p=([^&]*)/.exec(l.search);
         if (!p) return;
         var q = /[?&]q=([^&]*)/.exec(l.search);
-        window.history.replaceState(null, '', '/' + decodeURIComponent(p[1]) + (q ? '?' + decodeURIComponent(q[1]) : '') + l.hash);
+        try {
+          // Leading slashes are dropped so the result is always a path on this site.
+          var path = decodeURIComponent(p[1]).replace(/^[\/\\]+/, '');
+          window.history.replaceState(null, '', '/' + path + (q ? '?' + decodeURIComponent(q[1]) : '') + l.hash);
+        } catch (e) {
+          // Malformed link: stay on the home page.
+        }
       })(window.location);
     </script>
     <script type="module" src="/src/main.jsx"></script>

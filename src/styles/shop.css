@@ -525,6 +525,19 @@
 }
 .payment-banner-close:hover { background: rgba(0,0,0,0.07); }
 
+@media (max-width: 768px) {
+  /* Below 16px, iOS zooms the page when an input is focused. */
+  .checkout-form input { font-size: 16px; }
+  /* Sit under the top bar so its controls stay reachable. */
+  .payment-banner { top: 56px; }
+}
+
+/* Short screens: let the whole bag scroll so the item list is not squeezed out by the form. */
+@media (max-height: 640px) {
+  .cart-drawer { overflow-y: auto; }
+  .order-items { flex: none; overflow-y: visible; }
+}
+
 /* ── Mobile responsive ───────────────────────────── */
 @media (max-width: 1024px) {
   .pos-main { grid-template-columns: 180px 1fr 300px; }
