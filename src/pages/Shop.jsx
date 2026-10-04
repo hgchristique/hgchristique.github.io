@@ -147,6 +147,7 @@ export default function Shop() {
     let stopped = false
     let timer = null
     let attempts = 0
+    let answered = false
 
     function finish(status, amount) {
       if (status !== 'unknown') clearPendingOrder()
@@ -161,7 +162,7 @@ export default function Shop() {
         const res = await fetch(`${PAYMENT_API}/api/payment/status/${reference}`, { signal: AbortSignal.timeout(20000) })
         if (stopped) return
         if (res.status === 404) { clearPendingOrder(); setPayment(null); return }
-        if (res.ok) result = await res.json()
+        if (res.ok) { result = await res.json(); answered = true }
       } catch {
         // Network trouble: fall through and retry.
       }
@@ -170,7 +171,8 @@ export default function Shop() {
       if (result && result.status === 'paid') return finish('paid', result.amount)
       if (result && result.status === 'failed') return finish('failed', result.amount)
       // A payment approved on the phone just before pressing Cancel can still land, so look more than once.
-      if (wasCancelled && attempts >= CANCEL_CHECKS) return finish('cancelled')
+      // Without a single answer from the server we cannot promise the shopper was not charged.
+      if (wasCancelled && attempts >= CANCEL_CHECKS) return finish(answered ? 'cancelled' : 'unknown')
       if (attempts >= STATUS_POLL_LIMIT) return finish('unknown')
 
       setPayment({ reference, status: wasCancelled ? 'checking' : 'pending' })
